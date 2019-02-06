@@ -1,6 +1,11 @@
 #!/bin/bash
 
 function install() {
+  if [ ! -d ~/.logs ]; then
+    mkdir ~/.logs
+    chmod 700 ~/.logs
+  fi
+  
   rsync --exclude ".git/" \
         --exclude "install.sh" \
         --exclude "README.md" \
