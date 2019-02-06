@@ -1,0 +1,16 @@
+# Navigation
+alias ..="cd .."
+alias ....="cd ../.."
+alias ......="cd ../../.."
+alias ........="cd ../../../.."
+
+# List files
+alias la="ls -a"
+
+# Handy stuff
+fuck="sudo $(history -p \!\!)"
+
+# Docker
+alias dps="docker ps"
+alias dl="docker logs"
+alias de="docker exec -it"

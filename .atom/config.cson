@@ -1,0 +1,25 @@
+"*":
+  Zen:
+    typewriter: true
+    width: 160
+  "atom-limelight": {}
+  core:
+    autoHideMenuBar: true
+    customFileTypes:
+      "source.js.jsx": [
+        "js"
+      ]
+    telemetryConsent: "no"
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
+  editor:
+    scrollPastEnd: true
+  "exception-reporting":
+    userId: "4a617b37-053b-4559-943e-731bdd54acb2"
+  minimap: {}
+  "tree-view":
+    hideVcsIgnoredFiles: false
+  welcome:
+    showOnStartup: false
