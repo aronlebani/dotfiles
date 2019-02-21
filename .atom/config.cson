@@ -11,11 +11,13 @@
       ]
     telemetryConsent: "no"
     themes: [
-      "atom-dark-ui"
-      "atom-dark-syntax"
+      "one-dark-ui"
+      "dark-plus-syntax"
     ]
   editor:
     scrollPastEnd: true
+    showIndentGuide: true
+    showInvisibles: true
   "exception-reporting":
     userId: "4a617b37-053b-4559-943e-731bdd54acb2"
   minimap: {}
