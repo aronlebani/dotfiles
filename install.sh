@@ -2,13 +2,13 @@
 apt install snapd
 
 # Atom
-snap install atom
+snap install atom --classic
 
 # Chrome
 snap install chromium
 
 # Datagrip
-snap install datagrip
+snap install datagrip --classic
 
 # Postman
 snap install postman

@@ -14,7 +14,7 @@ function sync() {
   # Atom
   if command -v apm > /dev/null 2>&1; then
     echo "Installing Atom plugins..."
-    apm install --packages ./.atom/packages.txt
+    apm install --packages-file ./.atom/packages.txt
   fi
 }
 
