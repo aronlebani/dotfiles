@@ -18,3 +18,6 @@ snap install gitkraken
 
 # Spotify
 snap install spotify
+
+# Docker
+snap install docker
