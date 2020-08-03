@@ -1,23 +1,27 @@
-# Snap
+#!/bin/bash
+
+# From package manager
 apt install snapd
+apt install git
+apt install curl
+apt install python3.8
+apt install python2
 
-# Atom
+# Snap installs
 snap install atom --classic
-
-# Chrome
 snap install chromium
-
-# Datagrip
 snap install datagrip --classic
-
-# Postman
 snap install postman
-
-# Gitkraken
-snap install gitkraken
-
-# Spotify
 snap install spotify
-
-# Docker
 snap install docker
+snap install code --classic
+snap install slack --classic
+
+# node
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash && nvm install node
+
+# Dropbox daemon
+#
+# Need to check "Start Dropbox on system startup" in preferences to automatically run the daemon - not
+# sure how to automate this
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - && ~/.dropbox-dist/dropboxd

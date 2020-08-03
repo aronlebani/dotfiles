@@ -11,10 +11,15 @@ function sync() {
         --exclude "README.md" \
         -av . ~
 
-  # Atom
-  if command -v apm > /dev/null 2>&1; then
-    echo "Installing Atom plugins..."
-    apm install --packages-file ./.atom/packages.txt
+  if command -v code > /dev/null 2>&1; then
+    echo "Install vscode plugins..."
+    code --install-extension eamodio.gitlens
+    code --install-extension monokai.theme-monokai-pro-vscode
+    code --install-extension aaron-bond.better-comments
+    code --install-extension platformio.platformio-ide
+    code --install-extension ms-python.python
+    code --install-extension ms-vscode.cpptools
+    code --install-extension Compulim.indent4to2
   fi
 }
 
