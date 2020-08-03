@@ -10,17 +10,6 @@ function sync() {
         --exclude "install.sh" \
         --exclude "README.md" \
         -av . ~
-
-  if command -v code > /dev/null 2>&1; then
-    echo "Install vscode plugins..."
-    code --install-extension eamodio.gitlens
-    code --install-extension monokai.theme-monokai-pro-vscode
-    code --install-extension aaron-bond.better-comments
-    code --install-extension platformio.platformio-ide
-    code --install-extension ms-python.python
-    code --install-extension ms-vscode.cpptools
-    code --install-extension Compulim.indent4to2
-  fi
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then
@@ -32,6 +21,3 @@ else
     sync
   fi
 fi
-
-unset install
-source ~/.bash_profile
