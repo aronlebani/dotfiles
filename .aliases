@@ -9,6 +9,7 @@ alias la="ls -a"
 
 # Handy stuff
 alias fuck='sudo $(history -p \!\!)'
+alias copy='xclip -sel clip'
 
 # Docker
 alias dps="docker ps"
