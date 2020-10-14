@@ -9,6 +9,10 @@ set hlsearch	" Highlighting for search
 set ruler	    " Show cursor lie and column position
 set number      " Show line numbers
 inoremap jj <Esc>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 colorscheme sonokai
 
 set background=dark
@@ -49,6 +53,7 @@ let NERDTreeShowHidden=1
 call plug#begin()
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
+Plug 'sainnhe/sonokai'
 " Plug 'othree/yajs.vim'
 " Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mxw/vim-jsx'
