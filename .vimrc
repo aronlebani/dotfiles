@@ -9,6 +9,7 @@ set hlsearch	" Highlighting for search
 set ruler	    " Show cursor lie and column position
 set number      " Show line numbers
 inoremap jj <Esc>
+colorscheme sonokai
 
 set background=dark
 
@@ -42,3 +43,20 @@ autocmd FileType gitcommit setlocal spell
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
+
+" vim-plug
+
+call plug#begin()
+Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
+" Plug 'othree/yajs.vim'
+" Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'othree/html5.vim'
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-commentary'
+call plug#end()
