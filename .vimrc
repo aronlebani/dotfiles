@@ -30,9 +30,9 @@ map <C-t> :terminal<CR>
 
 " ---- Autocomplete braces ----
 
-inoremap {<CR> {<CR>}<Esc>ko<tab>
-inoremap [<CR> [<CR>]<Esc>ko<tab>
-inoremap (<CR> (<CR>)<Esc>ko<tab>
+inoremap {<CR> {<CR>}<Esc>ko
+inoremap [<CR> [<CR>]<Esc>ko
+inoremap (<CR> (<CR>)<Esc>ko
 
 " ---- Tab width ----
 
@@ -78,13 +78,13 @@ let NERDTreeShowHidden=1
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Modified'  :'~',
     \ 'Staged'    :'+',
-    \ 'Untracked' :'.',
-    \ 'Ignored'   :'•',
+    \ 'Untracked' :'x',
+    \ 'Ignored'   :'*',
     \ 'Deleted'   :'-',
-    \ 'Renamed'   :'➜',
+    \ 'Renamed'   :'>',
     \ 'Unmerged'  :'═',
-    \ 'Dirty'     :'✗',
-    \ 'Clean'     :'✔︎',
+    \ 'Dirty'     :'~',
+    \ 'Clean'     :' ',
     \ 'Unknown'   :'?',
     \ }
 

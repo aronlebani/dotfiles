@@ -6,6 +6,7 @@ alias ........="cd ../../../.."
 
 # List files
 alias la="ls -a"
+alias lah="ls -lah"
 
 # Handy stuff
 alias fuck='sudo $(history -p \!\!)'
