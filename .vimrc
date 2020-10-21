@@ -50,6 +50,7 @@ set wrap!
 
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd FileType javascript.jsx setlocal ts=2 sts=2 sw=2
+autocmd FileType scss setlocal ts=2 sts=2 sw=2
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 
@@ -78,7 +79,7 @@ let NERDTreeShowHidden=1
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Modified'  :'~',
     \ 'Staged'    :'+',
-    \ 'Untracked' :'x',
+    \ 'Untracked' :'+',
     \ 'Ignored'   :'*',
     \ 'Deleted'   :'-',
     \ 'Renamed'   :'>',
