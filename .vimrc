@@ -10,6 +10,8 @@ set number                                  " Show line numbers
 set noswapfile                              " Disable swap files
 set colorcolumn=100                         " Vertical ruler
 set autoread                                " Reload externally modified files
+set ignorecase                              " Required for smartcase to work
+set smartcase                               " Case sensitive if uppercase, else case insensitive
 autocmd InsertEnter,InsertLeave * set cul!  " Toggle cursor line in insert mode
 
 " ---- Colour scheme ----
@@ -55,7 +57,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 
 " ---- Spell check by language ---- 
 
-autocmd FileType markdown setlocal spell
+" autocmd FileType markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
 
 autocmd FileType markdown setlocal wrap
