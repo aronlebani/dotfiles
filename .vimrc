@@ -17,7 +17,6 @@ autocmd InsertEnter,InsertLeave * set cul!  " Toggle cursor line in insert mode
 set termguicolors
 set background=dark
 syntax on
-colorscheme sonokai
 
 " ---- Key maps ----
 
@@ -127,3 +126,5 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }   " Prettier
 Plug 'freitass/todo.txt-vim'            " Todo.txt
 Plug 'tyru/open-browser.vim'            " Use gx to open url in browser or smart search
 call plug#end()
+
+colorscheme space-vim-dark              " This needs to be set after declaring the plugin
