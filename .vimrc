@@ -100,9 +100,18 @@ let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_removed_above_and_below = '-'
 let g:gitgutter_sign_modified_removed = '-'
 
+" vim-prettier
+let g:prettier#autoformat_require_pragma = 1    " Only format files with @format or @prettier
+
+" open-browser
+let g:netrw_nogx = 1    " Disable netrw's gx mapping
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
 " vim-plug
 call plug#begin()
 Plug 'sainnhe/sonokai'                  " Color theme
+Plug 'liuchengxu/space-vim-dark'        " Color theme
 Plug 'mxw/vim-jsx'                      " JSX syntax
 Plug 'pangloss/vim-javascript'          " JS syntax
 Plug 'othree/html5.vim'                 " HTML syntax
@@ -114,4 +123,7 @@ Plug 'tpope/vim-commentary'             " Block commenting
 Plug 'vim-airline/vim-airline'          " Status bar
 Plug 'tpope/vim-fugitive'               " Git plugin
 Plug 'nelstrom/vim-visual-star-search'  " Search by entire selected text
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }   " Prettier
+Plug 'freitass/todo.txt-vim'            " Todo.txt
+Plug 'tyru/open-browser.vim'            " Use gx to open url in browser or smart search
 call plug#end()
