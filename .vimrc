@@ -69,6 +69,24 @@ set runtimepath+=$GOROOT/misc/vim
 filetype plugin indent on
 syntax on
 
+" ---- Functions ----
+
+" Execute shell command between backticks
+fu ExecuteCommand()
+    let l:save_clipboard = &clipboard
+    set clipboard= " Avoid clobbering the selection and clipboard registers.
+    let l:save_reg = getreg('"')
+    let l:save_regmode = getregtype('"')
+    normal! yi`
+    let l:text = @@ " Your text object contents are here.
+    call setreg('"', l:save_reg, l:save_regmode)
+    let &clipboard = l:save_clipboard
+    silent execute "!" . l:text
+    redraw!
+endfu
+
+nnoremap gr :call ExecuteCommand()<CR>
+
 " ---- Plugins ----
 
 " NERDTree
