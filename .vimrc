@@ -127,6 +127,12 @@ let g:netrw_nogx = 1    " Disable netrw's gx mapping
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
+" vim-markdown
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_folding_level = 2
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_follow_anchor = 1
+
 " vim-plug
 call plug#begin()
 Plug 'sainnhe/sonokai'                  " Color theme
@@ -143,8 +149,9 @@ Plug 'vim-airline/vim-airline'          " Status bar
 Plug 'tpope/vim-fugitive'               " Git plugin
 Plug 'nelstrom/vim-visual-star-search'  " Search by entire selected text
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }   " Prettier
-Plug 'freitass/todo.txt-vim'            " Todo.txt
 Plug 'tyru/open-browser.vim'            " Use gx to open url in browser or smart search
+Plug 'dense-analysis/ale'               " Linter
+Plug 'plasticboy/vim-markdown'          " Markdown
 call plug#end()
 
 colorscheme space-vim-dark              " This needs to be set after declaring the plugin
