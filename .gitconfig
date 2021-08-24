@@ -1,3 +1,11 @@
 [user]
 	email = aron@lebani.dev
 	name = Aron Lebani
+[push]
+    default = simple
+[core]
+    editor = vim
+[pull]
+    rebase = true
+[init]
+    defaultBranch = main

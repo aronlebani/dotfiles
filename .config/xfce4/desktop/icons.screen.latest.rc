@@ -1,15 +1,1 @@
-[xfdesktop-version-4.10.3+-rcfile_format]
-4.10.3+=true
-
-[Rubbish]
-row=3
-col=0
-
-[/]
-row=5
-col=0
-
-[/home/aron]
-row=4
-col=0
-
+/home/aron/.config/xfce4/desktop/icons.screen0-3824x1039.rc

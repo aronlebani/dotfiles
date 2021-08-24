@@ -12,6 +12,7 @@
 !.functions
 !.gitconfig
 !.gitignore
+!.gitignore_global
 !.inputrc
 !.profile
 !.vimrc
