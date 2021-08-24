@@ -1,11 +1,12 @@
 *
-!*/
 !.aliases
 !.bash_logout
 !.bash_prompt
 !.bashrc
-!.config
+!.config/
+!.config/xfce4/
 !.config/xfce4/**
+!.config/xubuntu/
 !.config/xubuntu/**
 !.exports
 !.functions
