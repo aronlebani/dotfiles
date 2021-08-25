@@ -48,6 +48,7 @@
       <property name="square-icons" type="bool" value="true"/>
       <property name="size-max" type="uint" value="22"/>
       <property name="names-ordered" type="array">
+        <value type="string" value="evolution-alarm-notify"/>
         <value type="string" value="thunar"/>
       </property>
     </property>

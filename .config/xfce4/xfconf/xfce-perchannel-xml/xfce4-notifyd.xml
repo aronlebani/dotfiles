@@ -9,7 +9,10 @@
     <property name="known_applications" type="array">
       <value type="string" value="Dropbox"/>
       <value type="string" value="nm-applet"/>
+      <value type="string" value="org.gnome.Evolution"/>
+      <value type="string" value="org.gnome.Evolution-alarm-notify"/>
       <value type="string" value="org.gnome.Software"/>
+      <value type="string" value="Rider"/>
       <value type="string" value="Slack"/>
       <value type="string" value="Spotify"/>
       <value type="string" value="thunar"/>

@@ -140,6 +140,7 @@ Plug 'liuchengxu/space-vim-dark'        " Color theme
 Plug 'mxw/vim-jsx'                      " JSX syntax
 Plug 'pangloss/vim-javascript'          " JS syntax
 Plug 'othree/html5.vim'                 " HTML syntax
+Plug 'fsharp/vim-fsharp'                " F# syntax
 Plug 'preservim/nerdtree'               " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'      " Git for nerdtree
 Plug 'airblade/vim-gitgutter'           " Git gutter
