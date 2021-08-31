@@ -1,49 +1,33 @@
-# @gf3’s Sexy Bash Prompt, inspired by “Extravagant Zsh Prompt”
-# Shamelessly copied from https://github.com/gf3/dotfiles
-
-# https://spin.atomicobject.com/2016/05/28/log-bash-history/
-export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then log=~/.logs/bash_history-$(date "+%Y-%m-%d").log; echo "# $(date "+%Y-%m-%d.%H:%M:%S") $(pwd)" >> $log; echo "$(history 1)" >> $log; fi'
-
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-  export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-  export TERM=xterm-256color
-fi
-
 if tput setaf 1 &> /dev/null; then
-  tput sgr0
-  MAGENTA=$(tput setaf 5)
-  ORANGE=$(tput setaf 4)
-  GREEN=$(tput setaf 2)
-  PURPLE=$(tput setaf 1)
-  BOLD=$(tput bold)
-  RESET=$(tput sgr0)
+    tput sgr0
+    MAGENTA=$(tput setaf 5)
+    ORANGE=$(tput setaf 4)
+    GREEN=$(tput setaf 2)
+    PURPLE=$(tput setaf 1)
+    BOLD=$(tput bold)
+    RESET=$(tput sgr0)
 else
-  MAGENTA="\033[1;31m"
-  ORANGE="\033[1;33m"
-  GREEN="\033[1;32m"
-  PURPLE="\033[1;35m"
-  BOLD=""
-  RESET="\033[m"
+    MAGENTA="\033[1;31m"
+    ORANGE="\033[1;33m"
+    GREEN="\033[1;32m"
+    PURPLE="\033[1;35m"
+    BOLD=""
+    RESET="\033[m"
 fi
-
 
 function git_info() {
-  # check if we're in a git repo
-  git rev-parse --is-inside-work-tree &>/dev/null || return
-
-  # quickest check for what branch we're on
-  branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
-
-  # check if it's dirty (via github.com/sindresorhus/pure)
-  dirty=$(git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ]&& echo -e "*")
-
-  echo $RESET$BOLD" on "$PURPLE$branch$dirty
+    git rev-parse --is-inside-work-tree &>/dev/null || return # check if we're in a git repo
+    branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||') # quickest check for what branch we're on
+    dirty=$(git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ]&& echo -e "*") # check if it's dirty (via github.com/sindresorhus/pure)
+    echo $RESET$BOLD" on "$PURPLE$branch$dirty
 }
 
-# Only show username/host if not default
-function usernamehost() {
-  if [[ $USER != stefan* ]]; then echo "${MAGENTA}$USER${RESET}${BOLD} at ${ORANGE}$HOSTNAME${RESET}${BOLD} in "; fi
+function username_host() {
+    # Only show username/host if not default
+    if [[ $USER != stefan* ]]; then
+        echo "${MAGENTA}$USER${RESET}${BOLD} at ${ORANGE}$HOSTNAME${RESET}${BOLD} in ";
+    fi
 }
 
-PS1="\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]${BOLD}\$(usernamehost)\[$GREEN\]\w\$(git_info)\[$RESET\]\[$BOLD\]\n\$ \[$RESET\]"
+# Fancy bash prompt
+PS1="\[\e]2;$PWD\[\a\]\[\e]1;\]$(basename "$(dirname "$PWD")")/\W\[\a\]${BOLD}\$(username_host)\[$GREEN\]\w\$(git_info)\[$RESET\]\[$BOLD\]\n\$ \[$RESET\]"

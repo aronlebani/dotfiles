@@ -1,4 +1,4 @@
-# Make Tab autocomplete regardless of filename case
+# Tab autocomplete case insensitive
 set completion-ignore-case on
 
 # List all matches in case multiple possible completions are possible
