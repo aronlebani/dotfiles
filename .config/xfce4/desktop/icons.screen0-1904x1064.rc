@@ -1,19 +1,15 @@
 [xfdesktop-version-4.10.3+-rcfile_format]
 4.10.3+=true
 
-[/home/aron/Desktop/Repositories]
-row=3
-col=0
-
-[/home/aron]
-row=2
+[Rubbish]
+row=0
 col=0
 
 [/]
 row=1
 col=0
 
-[Rubbish]
-row=0
+[/home/aron]
+row=2
 col=0
 

@@ -49,6 +49,7 @@
       <property name="square-icons" type="bool" value="true"/>
       <property name="size-max" type="uint" value="22"/>
       <property name="names-ordered" type="array">
+        <value type="string" value="reminders"/>
         <value type="string" value="evolution-alarm-notify"/>
         <value type="string" value="thunar"/>
       </property>
@@ -71,6 +72,7 @@
       <property name="square-icons" type="bool" value="true"/>
       <property name="symbolic-icons" type="bool" value="true"/>
       <property name="known-items" type="array">
+        <value type="string" value="dropbox-client-294377"/>
         <value type="string" value="dropbox-client-18901"/>
         <value type="string" value="dropbox-client-35172"/>
         <value type="string" value="dropbox-client-114731"/>
