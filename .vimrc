@@ -12,6 +12,7 @@ set colorcolumn=100                         " Vertical ruler
 set autoread                                " Reload externally modified files
 set ignorecase                              " Required for smartcase to work
 set smartcase                               " Case sensitive if uppercase, else case insensitive
+set so=999                                  " Keep cursor vertically centered where possible
 autocmd InsertEnter,InsertLeave * set cul!  " Toggle cursor line in insert mode
 
 " ---- Colour scheme ----
