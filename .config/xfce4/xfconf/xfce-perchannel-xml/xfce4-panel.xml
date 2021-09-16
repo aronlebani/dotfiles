@@ -72,6 +72,10 @@
       <property name="square-icons" type="bool" value="true"/>
       <property name="symbolic-icons" type="bool" value="true"/>
       <property name="known-items" type="array">
+        <value type="string" value="dropbox-client-14724"/>
+        <value type="string" value="dropbox-client-14493"/>
+        <value type="string" value="dropbox-client-18979"/>
+        <value type="string" value="dropbox-client-37669"/>
         <value type="string" value="dropbox-client-294377"/>
         <value type="string" value="dropbox-client-18901"/>
         <value type="string" value="dropbox-client-35172"/>
@@ -92,7 +96,7 @@
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="enable-mpris" type="bool" value="true"/>
       <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="chromium.instance1828;chromium.instance2257;chromium.instance2497;chromium.instance2751;parole;spotify"/>
+      <property name="mpris-players" type="string" value="chromium.instance1828;chromium.instance2257;chromium.instance2497;chromium.instance2751;firefox.instance3282;parole;spotify"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
