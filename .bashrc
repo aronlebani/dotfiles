@@ -27,7 +27,6 @@ alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public}"
 alias fuck="sudo $(history -p \!\!)"
 alias copy="xclip -sel clip"
 alias glog="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-alias q="ruby q.rb"
 alias ..="cd .."
 alias ....="cd ../.."
 alias ......="cd ../../.."
@@ -46,3 +45,8 @@ fi
 # Nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Rust
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
