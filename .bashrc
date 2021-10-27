@@ -28,10 +28,6 @@ alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 alias glog="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-alias ..="cd .."
-alias ....="cd ../.."
-alias ......="cd ../../.."
-alias ........="cd ../../../.."
 
 # Include private bin in PATH
 if [ -d "$HOME/bin" ]; then
