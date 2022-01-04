@@ -19,7 +19,10 @@
         <value type="int" value="9"/>
         <value type="int" value="10"/>
         <value type="int" value="11"/>
+        <value type="int" value="17"/>
+        <value type="int" value="16"/>
         <value type="int" value="13"/>
+        <value type="int" value="15"/>
         <value type="int" value="12"/>
       </property>
       <property name="background-style" type="uint" value="0"/>
@@ -108,6 +111,9 @@
       <property name="mode" type="uint" value="2"/>
     </property>
     <property name="plugin-13" type="string" value="pager"/>
+    <property name="plugin-15" type="string" value="weather"/>
+    <property name="plugin-16" type="string" value="systemload"/>
+    <property name="plugin-17" type="string" value="netload"/>
   </property>
   <property name="configver" type="int" value="2"/>
 </channel>
