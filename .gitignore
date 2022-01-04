@@ -9,6 +9,7 @@
 !.gitignore
 !.gitignore_global
 !.vimrc
+!.ideavimrc
 !.config/
 !.config/xfce4/
 !.config/xfce4/**
