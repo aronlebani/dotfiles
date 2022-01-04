@@ -3,7 +3,7 @@
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+    *) return;;
 esac
 
 shopt -s histappend     # Append to the history file, don't overwrite it
@@ -46,6 +46,13 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
-# Mac things
-export BASH_SILENCE_DEPRECATION_WARNING=1
-export CLICOLOR=1
+# OS specific
+case "$(uname -s)" in
+    Linux*)
+        alias ls="ls --color=auto"
+        ;;
+    Darwin*)
+        export BASH_SILENCE_DEPRECATION_WARNING=1
+        export CLICOLOR=1
+        ;;
+esac
