@@ -42,4 +42,6 @@
   <property name="text-beside-icons" type="bool" value="true"/>
   <property name="item-icon-size" type="uint" value="1"/>
   <property name="hide-category-pane" type="bool" value="true"/>
+  <property name="remember-category" type="bool" value="true"/>
+  <property name="always-center" type="bool" value="true"/>
 </channel>
