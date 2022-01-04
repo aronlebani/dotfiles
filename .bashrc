@@ -9,7 +9,6 @@ esac
 shopt -s histappend     # Append to the history file, don't overwrite it
 shopt -s checkwinsize   # Update window size if necessary after each command
 
-export TERM=xterm-color
 export LANG=en_AU.UTF-8
 export VISUAL=vim
 export EDITOR=vim
@@ -22,8 +21,7 @@ alias dl="cd ~/Downloads"
 alias db="cd ~/Dropbox"
 alias wiki="cd ~/Dropbox/Wiki && vim index.md"
 alias repo="cd ~/Repositories"
-alias ls="ls --color=auto"
-alias lah="ls -lah --color=auto"
+alias lah="ls -lah"
 alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
@@ -47,3 +45,7 @@ fi
 if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
+
+# Mac things
+export BASH_SILENCE_DEPRECATION_WARNING=1
+export CLICOLOR=1
