@@ -1,5 +1,5 @@
 favorites=exo-web-browser.desktop,exo-mail-reader.desktop,exo-file-manager.desktop,libreoffice-writer.desktop,libreoffice-calc.desktop,pidgin.desktop,org.gnome.Software.desktop,exo-terminal-emulator.desktop,xfhelp4.desktop
-recent=exo-file-manager.desktop,xfce4-taskmanager.desktop,org.gnome.Mines.desktop,xfce-display-settings.desktop,ristretto.desktop,org.bluesabre.SgtLauncher.desktop,org.gnome.font-viewer.desktop,simple-scan.desktop,pidgin.desktop,xfce4-about.desktop
+recent=xfce-session-settings.desktop,exo-file-manager.desktop,xfce4-taskmanager.desktop,org.gnome.Mines.desktop,xfce-display-settings.desktop,ristretto.desktop,org.bluesabre.SgtLauncher.desktop,org.gnome.font-viewer.desktop,simple-scan.desktop,pidgin.desktop
 button-title=Applications Menu
 button-icon=xubuntu-logo-menu
 button-single-row=false
