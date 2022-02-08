@@ -52,7 +52,7 @@
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="enable-mpris" type="bool" value="true"/>
       <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="chromium.instance1828;chromium.instance2257;chromium.instance2497;chromium.instance2751;firefox.instance2314;firefox.instance2869;firefox.instance3282;firefox.instance3941;parole;spotify"/>
+      <property name="mpris-players" type="string" value="chromium.instance1828;chromium.instance2257;chromium.instance2497;chromium.instance2751;firefox.instance2314;firefox.instance2409;firefox.instance2593;firefox.instance2624;firefox.instance2866;firefox.instance2869;firefox.instance3282;firefox.instance3941;firefox.instance5667;parole;spotify"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
@@ -82,8 +82,8 @@
       </property>
     </property>
     <property name="plugin-5" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
-      <property name="expand" type="bool" value="true"/>
+      <property name="style" type="uint" value="1"/>
+      <property name="expand" type="bool" value="false"/>
     </property>
     <property name="plugin-3" type="string" value="launcher">
       <property name="items" type="array">
@@ -124,6 +124,23 @@
     </property>
     <property name="plugin-27" type="string" value="statusnotifier">
       <property name="known-items" type="array">
+        <value type="string" value="zoom"/>
+        <value type="string" value="dropbox-client-2082"/>
+        <value type="string" value="dropbox-client-2612"/>
+        <value type="string" value="dropbox-client-102664"/>
+        <value type="string" value="dropbox-client-2160"/>
+        <value type="string" value="dropbox-client-2067"/>
+        <value type="string" value="dropbox-client-2061"/>
+        <value type="string" value="dropbox-client-1409"/>
+        <value type="string" value="dropbox-client-1924"/>
+        <value type="string" value="dropbox-client-1999"/>
+        <value type="string" value="dropbox-client-1825"/>
+        <value type="string" value="dropbox-client-2109"/>
+        <value type="string" value="dropbox-client-2064"/>
+        <value type="string" value="dropbox-client-2099"/>
+        <value type="string" value="dropbox-client-2105"/>
+        <value type="string" value="dropbox-client-1978"/>
+        <value type="string" value="dropbox-client-187420"/>
         <value type="string" value="Slack1"/>
         <value type="string" value="blueman"/>
         <value type="string" value="nm-applet"/>
