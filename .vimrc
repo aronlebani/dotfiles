@@ -54,6 +54,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 map <C-t> :terminal<CR>
 tnoremap <C-b> <C-w>N
+nnoremap ff :noh<CR><CR>
 
 " ---- Autocomplete braces ----
 

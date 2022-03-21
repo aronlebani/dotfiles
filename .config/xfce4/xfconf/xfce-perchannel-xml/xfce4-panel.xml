@@ -9,18 +9,8 @@
       <property name="position-locked" type="bool" value="true"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="1"/>
-        <value type="int" value="5"/>
-        <value type="int" value="21"/>
-        <value type="int" value="19"/>
-        <value type="int" value="22"/>
-        <value type="int" value="3"/>
-        <value type="int" value="7"/>
-        <value type="int" value="14"/>
-        <value type="int" value="15"/>
-        <value type="int" value="23"/>
-        <value type="int" value="17"/>
         <value type="int" value="25"/>
-        <value type="int" value="24"/>
+        <value type="int" value="2"/>
         <value type="int" value="4"/>
         <value type="int" value="27"/>
         <value type="int" value="10"/>
@@ -52,7 +42,7 @@
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="enable-mpris" type="bool" value="true"/>
       <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="chromium.instance1828;chromium.instance2257;chromium.instance2497;chromium.instance2751;firefox.instance2314;firefox.instance2409;firefox.instance2593;firefox.instance2624;firefox.instance2866;firefox.instance2869;firefox.instance3282;firefox.instance3941;firefox.instance5667;parole;spotify"/>
+      <property name="mpris-players" type="string" value="chromium.instance16723;chromium.instance1828;chromium.instance19732;chromium.instance2257;chromium.instance2497;chromium.instance2751;firefox.instance2313;firefox.instance2314;firefox.instance2353;firefox.instance2384;firefox.instance2409;firefox.instance2467;firefox.instance2477;firefox.instance2501;firefox.instance2593;firefox.instance2599;firefox.instance2624;firefox.instance2716;firefox.instance2866;firefox.instance2869;firefox.instance2951;firefox.instance3282;firefox.instance3941;firefox.instance5667;parole;spotify"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
     <property name="plugin-11" type="string" value="separator">
@@ -68,62 +58,52 @@
       <property name="style" type="uint" value="0"/>
       <property name="expand" type="bool" value="false"/>
     </property>
-    <property name="plugin-19" type="string" value="directorymenu">
-      <property name="base-directory" type="string" value="/home/aron"/>
-    </property>
-    <property name="plugin-21" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16425741311.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-22" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16425741592.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-5" type="string" value="separator">
-      <property name="style" type="uint" value="1"/>
-      <property name="expand" type="bool" value="false"/>
-    </property>
-    <property name="plugin-3" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16426413232.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-7" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16426413753.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-14" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16426413914.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-15" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16426414405.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-17" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16426414966.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-23" type="string" value="launcher">
-      <property name="items" type="array">
-        <value type="string" value="16426415737.desktop"/>
-      </property>
-    </property>
-    <property name="plugin-24" type="string" value="windowmenu">
-      <property name="style" type="uint" value="0"/>
-      <property name="workspace-actions" type="bool" value="false"/>
-    </property>
     <property name="plugin-25" type="string" value="separator">
       <property name="style" type="uint" value="1"/>
     </property>
     <property name="plugin-27" type="string" value="statusnotifier">
       <property name="known-items" type="array">
+        <value type="string" value="dropbox-client-2041"/>
+        <value type="string" value="dropbox-client-2102"/>
+        <value type="string" value="dropbox-client-2005"/>
+        <value type="string" value="dropbox-client-2014"/>
+        <value type="string" value="dropbox-client-193366"/>
+        <value type="string" value="dropbox-client-1998"/>
+        <value type="string" value="dropbox-client-2334"/>
+        <value type="string" value="dropbox-client-1790"/>
+        <value type="string" value="dropbox-client-1751"/>
+        <value type="string" value="dropbox-client-2002"/>
+        <value type="string" value="dropbox-client-2040"/>
+        <value type="string" value="remmina-icon"/>
+        <value type="string" value="dropbox-client-1418"/>
+        <value type="string" value="dropbox-client-1798"/>
+        <value type="string" value="dropbox-client-2020"/>
+        <value type="string" value="dropbox-client-2863"/>
+        <value type="string" value="dropbox-client-2017"/>
+        <value type="string" value="dropbox-client-2166"/>
+        <value type="string" value="dropbox-client-2142"/>
+        <value type="string" value="dropbox-client-1895"/>
+        <value type="string" value="dropbox-client-2209"/>
+        <value type="string" value="dropbox-client-1974"/>
+        <value type="string" value="dropbox-client-1957"/>
+        <value type="string" value="dropbox-client-2029"/>
+        <value type="string" value="dropbox-client-2038"/>
+        <value type="string" value="dropbox-client-2188"/>
+        <value type="string" value="dropbox-client-1877"/>
+        <value type="string" value="dropbox-client-11866"/>
+        <value type="string" value="dropbox-client-1365"/>
+        <value type="string" value="dropbox-client-1397"/>
+        <value type="string" value="dropbox-client-1995"/>
+        <value type="string" value="dropbox-client-2073"/>
+        <value type="string" value="dropbox-client-1986"/>
+        <value type="string" value="dropbox-client-1904"/>
+        <value type="string" value="dropbox-client-1938"/>
+        <value type="string" value="dropbox-client-2034"/>
+        <value type="string" value="dropbox-client-2536"/>
+        <value type="string" value="dropbox-client-2089"/>
+        <value type="string" value="dropbox-client-1952"/>
+        <value type="string" value="dropbox-client-2010"/>
+        <value type="string" value="dropbox-client-1891"/>
         <value type="string" value="zoom"/>
         <value type="string" value="dropbox-client-2082"/>
         <value type="string" value="dropbox-client-2612"/>
@@ -149,6 +129,7 @@
       <property name="icon-size" type="int" value="19"/>
       <property name="square-icons" type="bool" value="false"/>
     </property>
+    <property name="plugin-2" type="string" value="windowmenu"/>
   </property>
   <property name="configver" type="int" value="2"/>
 </channel>
