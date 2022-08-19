@@ -19,6 +19,7 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }   " Prettier
 Plug 'tyru/open-browser.vim'                " Use gx to open url in browser or smart search
 Plug 'dense-analysis/ale'                   " Linter
 Plug 'plasticboy/vim-markdown'              " Markdown
+Plug 'OmniSharp/omnisharp-vim'              " C# stuff
 call plug#end()
 
 " ---- Basics ----

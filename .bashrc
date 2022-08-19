@@ -16,7 +16,6 @@ export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 export NVM_DIR="$HOME/.nvm"     # Nvm
 
-alias open="xdg-open"
 alias dl="cd ~/Downloads"
 alias db="cd ~/Dropbox"
 alias repo="cd ~/Repositories"
@@ -24,8 +23,6 @@ alias lah="ls -lah"
 alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
-alias glog="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-alias vpn="sudo openvpn3 session-start --config /home/aron/client.ovpn"
 
 # Include private bin in PATH
 if [ -d "$HOME/bin" ]; then
