@@ -16,13 +16,14 @@ export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 export NVM_DIR="$HOME/.nvm"     # Nvm
 
-alias dl="cd ~/Downloads"
-alias db="cd ~/Dropbox"
-alias repo="cd ~/Repositories"
 alias lah="ls -lah"
 alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
+
+# For work
+alias bc-server="cd ~/Repositories/server && /Users/aron/.dotnet/dotnet run --project ./App/App.csproj --launch-profile AppAllHosts"
+alias bc-front="cd ~/Repositories/front && nvm use 14.13 && npm run dev"
 
 # Include private bin in PATH
 if [ -d "$HOME/bin" ]; then
