@@ -47,6 +47,7 @@
       <property name="size-max" type="uint" value="22"/>
       <property name="symbolic-icons" type="bool" value="true"/>
       <property name="known-items" type="array">
+        <value type="string" value="dropbox-client-6673"/>
         <value type="string" value="dropbox-client-2181"/>
         <value type="string" value="dropbox-client-1578"/>
         <value type="string" value="dropbox-client-10458"/>
