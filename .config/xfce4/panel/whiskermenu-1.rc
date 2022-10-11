@@ -1,5 +1,5 @@
 favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop,xfhelp4.desktop
-recent=firefox_firefox.desktop,xfce-settings-manager.desktop,xfce4-mail-reader.desktop,synaptic.desktop,software-properties-gtk.desktop,xfce4-file-manager.desktop,xfce-session-settings.desktop,monodoc-http.desktop,xfce-wmtweaks-settings.desktop,org.gnome.Evolution.desktop
+recent=xfce-settings-manager.desktop,xfce4-mail-reader.desktop,xfce4-web-browser.desktop,firefox_firefox.desktop,synaptic.desktop,software-properties-gtk.desktop,xfce4-file-manager.desktop,xfce-session-settings.desktop,monodoc-http.desktop,xfce-wmtweaks-settings.desktop
 button-icon=xubuntu-logo-menu
 button-single-row=false
 show-button-title=false
