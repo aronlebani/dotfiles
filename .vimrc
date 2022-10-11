@@ -56,6 +56,7 @@ nnoremap <C-H> <C-W><C-H>
 map <C-t> :terminal<CR>
 tnoremap <C-b> <C-w>N
 nnoremap ff :noh<CR><CR>
+nnoremap gr :call ExecuteCommand()<CR>
 
 " ---- Autocomplete braces ----
 
@@ -82,27 +83,14 @@ autocmd FileType javascript.jsx setlocal ts=2 sts=2 sw=2
 autocmd FileType scss setlocal ts=2 sts=2 sw=2
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
-
-" ---- Spell check by language ---- 
-
-autocmd FileType gitcommit setlocal spell
-
-" ---- Other language specific settings ----
-
-" Markdown
+autocmd FileType type call Type()
 autocmd FileType markdown setlocal wrap     " Wrap text       
-
-" Golang
-filetype off
-filetype plugin indent off
-set runtimepath+=$GOROOT/misc/vim
-filetype plugin indent on
-syntax on
+autocmd FileType gitcommit setlocal spell
 
 " ---- Functions ----
 
 " Execute shell command between backticks
-fu ExecuteCommand()
+function ExecuteCommand()
     let l:save_clipboard = &clipboard
     set clipboard= " Avoid clobbering the selection and clipboard registers.
     let l:save_reg = getreg('"')
@@ -113,9 +101,34 @@ fu ExecuteCommand()
     let &clipboard = l:save_clipboard
     silent execute "!" . l:text
     redraw!
-endfu
+endfunction
 
-nnoremap gr :call ExecuteCommand()<CR>
+" Typewriter mode
+function Type()
+    set insertmode
+
+    " Disable the normal-mode escape (in insertmode)
+    imap <c-l> <nop>
+
+    " Disable the one-func insert-mode escape
+    imap <c-o> <nop>
+
+    " Disable the direction keys
+    imap <left> <nop>
+    imap <right> <nop>
+    imap <up> <nop>
+    imap <down> <nop>
+
+    " Disable the various forms of deletion
+    imap <c-u> <nop>
+    imap <c-w> <nop>
+    imap <BS> <nop>
+    imap <c-h> <nop>
+
+    imap <c-q> <cmd>:confirm q<CR>
+    imap <c-s> <cmd>:update<CR>
+endfunction
+
 
 " ---- Plugin specific settings ----
 

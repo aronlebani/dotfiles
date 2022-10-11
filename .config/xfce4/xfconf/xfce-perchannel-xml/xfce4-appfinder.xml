@@ -35,13 +35,7 @@
   </property>
   <property name="last" type="empty">
     <property name="window-height" type="int" value="400"/>
-    <property name="window-width" type="int" value="400"/>
+    <property name="window-width" type="int" value="234"/>
     <property name="pane-position" type="int" value="180"/>
   </property>
-  <property name="icon-view" type="bool" value="true"/>
-  <property name="text-beside-icons" type="bool" value="true"/>
-  <property name="item-icon-size" type="uint" value="1"/>
-  <property name="hide-category-pane" type="bool" value="true"/>
-  <property name="remember-category" type="bool" value="true"/>
-  <property name="always-center" type="bool" value="true"/>
 </channel>

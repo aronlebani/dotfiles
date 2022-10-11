@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xfce4-panel" version="1.0">
-  <property name="panels" type="array">
-    <value type="int" value="0"/>
+  <property name="panels" type="uint" value="1">
     <property name="panel-0" type="empty">
-      <property name="position" type="string" value="p=9;x=957;y=20"/>
+      <property name="position" type="string" value="p=6;x=0;y=0"/>
       <property name="length" type="uint" value="100"/>
       <property name="position-locked" type="bool" value="true"/>
       <property name="plugin-ids" type="array">
         <value type="int" value="1"/>
-        <value type="int" value="25"/>
         <value type="int" value="2"/>
+        <value type="int" value="3"/>
         <value type="int" value="4"/>
-        <value type="int" value="27"/>
-        <value type="int" value="10"/>
-        <value type="int" value="9"/>
-        <value type="int" value="11"/>
-        <value type="int" value="16"/>
+        <value type="int" value="5"/>
+        <value type="int" value="6"/>
+        <value type="int" value="7"/>
         <value type="int" value="8"/>
-        <value type="int" value="12"/>
+        <value type="int" value="9"/>
+        <value type="int" value="10"/>
       </property>
       <property name="background-style" type="uint" value="0"/>
       <property name="size" type="uint" value="24"/>
@@ -26,110 +24,62 @@
       <property name="span-monitors" type="bool" value="false"/>
       <property name="mode" type="uint" value="0"/>
       <property name="autohide-behavior" type="uint" value="0"/>
-      <property name="icon-size" type="uint" value="0"/>
-      <property name="leave-opacity" type="uint" value="100"/>
-      <property name="disable-struts" type="bool" value="false"/>
     </property>
   </property>
   <property name="plugins" type="empty">
     <property name="plugin-1" type="string" value="whiskermenu"/>
+    <property name="plugin-2" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+      <property name="expand" type="bool" value="false"/>
+    </property>
+    <property name="plugin-3" type="string" value="tasklist">
+      <property name="show-handle" type="bool" value="false"/>
+      <property name="flat-buttons" type="bool" value="true"/>
+    </property>
     <property name="plugin-4" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
       <property name="expand" type="bool" value="true"/>
     </property>
-    <property name="plugin-9" type="string" value="power-manager-plugin"/>
-    <property name="plugin-10" type="string" value="pulseaudio">
-      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="enable-mpris" type="bool" value="true"/>
-      <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="chromium.instance16723;chromium.instance1828;chromium.instance19732;chromium.instance2257;chromium.instance2497;chromium.instance2751;firefox.instance2313;firefox.instance2314;firefox.instance2353;firefox.instance2384;firefox.instance2409;firefox.instance2467;firefox.instance2477;firefox.instance2501;firefox.instance2593;firefox.instance2599;firefox.instance2624;firefox.instance2716;firefox.instance2866;firefox.instance2869;firefox.instance2951;firefox.instance3282;firefox.instance3941;firefox.instance5667;parole;spotify"/>
-      <property name="show-notifications" type="bool" value="true"/>
-    </property>
-    <property name="plugin-11" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
-      <property name="expand" type="bool" value="false"/>
-    </property>
-    <property name="plugin-12" type="string" value="clock">
-      <property name="digital-format" type="string" value="%d %b, %H:%M"/>
-      <property name="mode" type="uint" value="2"/>
-    </property>
-    <property name="plugin-16" type="string" value="systemload"/>
-    <property name="plugin-8" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
-      <property name="expand" type="bool" value="false"/>
-    </property>
-    <property name="plugin-25" type="string" value="separator">
-      <property name="style" type="uint" value="1"/>
-    </property>
-    <property name="plugin-27" type="string" value="statusnotifier">
+    <property name="plugin-5" type="string" value="systray">
+      <property name="menu-is-primary" type="bool" value="true"/>
+      <property name="show-frame" type="bool" value="false"/>
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="size-max" type="uint" value="22"/>
+      <property name="symbolic-icons" type="bool" value="true"/>
       <property name="known-items" type="array">
-        <value type="string" value="dropbox-client-2041"/>
-        <value type="string" value="dropbox-client-2102"/>
-        <value type="string" value="dropbox-client-2005"/>
-        <value type="string" value="dropbox-client-2014"/>
-        <value type="string" value="dropbox-client-193366"/>
-        <value type="string" value="dropbox-client-1998"/>
-        <value type="string" value="dropbox-client-2334"/>
-        <value type="string" value="dropbox-client-1790"/>
-        <value type="string" value="dropbox-client-1751"/>
-        <value type="string" value="dropbox-client-2002"/>
-        <value type="string" value="dropbox-client-2040"/>
-        <value type="string" value="remmina-icon"/>
-        <value type="string" value="dropbox-client-1418"/>
-        <value type="string" value="dropbox-client-1798"/>
-        <value type="string" value="dropbox-client-2020"/>
-        <value type="string" value="dropbox-client-2863"/>
-        <value type="string" value="dropbox-client-2017"/>
-        <value type="string" value="dropbox-client-2166"/>
-        <value type="string" value="dropbox-client-2142"/>
-        <value type="string" value="dropbox-client-1895"/>
-        <value type="string" value="dropbox-client-2209"/>
-        <value type="string" value="dropbox-client-1974"/>
-        <value type="string" value="dropbox-client-1957"/>
-        <value type="string" value="dropbox-client-2029"/>
-        <value type="string" value="dropbox-client-2038"/>
-        <value type="string" value="dropbox-client-2188"/>
-        <value type="string" value="dropbox-client-1877"/>
-        <value type="string" value="dropbox-client-11866"/>
-        <value type="string" value="dropbox-client-1365"/>
-        <value type="string" value="dropbox-client-1397"/>
-        <value type="string" value="dropbox-client-1995"/>
-        <value type="string" value="dropbox-client-2073"/>
-        <value type="string" value="dropbox-client-1986"/>
-        <value type="string" value="dropbox-client-1904"/>
-        <value type="string" value="dropbox-client-1938"/>
-        <value type="string" value="dropbox-client-2034"/>
-        <value type="string" value="dropbox-client-2536"/>
-        <value type="string" value="dropbox-client-2089"/>
-        <value type="string" value="dropbox-client-1952"/>
-        <value type="string" value="dropbox-client-2010"/>
-        <value type="string" value="dropbox-client-1891"/>
-        <value type="string" value="zoom"/>
-        <value type="string" value="dropbox-client-2082"/>
-        <value type="string" value="dropbox-client-2612"/>
-        <value type="string" value="dropbox-client-102664"/>
-        <value type="string" value="dropbox-client-2160"/>
-        <value type="string" value="dropbox-client-2067"/>
-        <value type="string" value="dropbox-client-2061"/>
-        <value type="string" value="dropbox-client-1409"/>
-        <value type="string" value="dropbox-client-1924"/>
-        <value type="string" value="dropbox-client-1999"/>
-        <value type="string" value="dropbox-client-1825"/>
-        <value type="string" value="dropbox-client-2109"/>
-        <value type="string" value="dropbox-client-2064"/>
-        <value type="string" value="dropbox-client-2099"/>
-        <value type="string" value="dropbox-client-2105"/>
-        <value type="string" value="dropbox-client-1978"/>
-        <value type="string" value="dropbox-client-187420"/>
-        <value type="string" value="Slack1"/>
-        <value type="string" value="blueman"/>
+        <value type="string" value="dropbox-client-2181"/>
+        <value type="string" value="dropbox-client-1578"/>
+        <value type="string" value="dropbox-client-10458"/>
+        <value type="string" value="dropbox-client-9592"/>
         <value type="string" value="nm-applet"/>
       </property>
-      <property name="symbolic-icons" type="bool" value="true"/>
-      <property name="icon-size" type="int" value="19"/>
-      <property name="square-icons" type="bool" value="false"/>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="thunar"/>
+        <value type="string" value="evolution-alarm-notify"/>
+      </property>
     </property>
-    <property name="plugin-2" type="string" value="windowmenu"/>
+    <property name="plugin-6" type="string" value="notification-plugin"/>
+    <property name="plugin-7" type="string" value="indicator">
+      <property name="blacklist" type="array">
+        <value type="string" value="libappmenu.so"/>
+      </property>
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="known-indicators" type="array">
+        <value type="string" value="libayatana-application.so"/>
+      </property>
+    </property>
+    <property name="plugin-8" type="string" value="power-manager-plugin"/>
+    <property name="plugin-9" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="enable-mpris" type="bool" value="true"/>
+      <property name="enable-wnck" type="bool" value="true"/>
+      <property name="mixer-command" type="string" value="pavucontrol"/>
+      <property name="mpris-players" type="string" value="parole;rhythmbox"/>
+      <property name="show-notifications" type="bool" value="true"/>
+    </property>
+    <property name="plugin-10" type="string" value="clock">
+      <property name="digital-format" type="string" value=" %d %b, %H:%M "/>
+    </property>
   </property>
   <property name="configver" type="int" value="2"/>
 </channel>
