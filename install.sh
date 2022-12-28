@@ -7,7 +7,11 @@ install_linux () {
         vim \
         curl \
         evolution \
-        python3
+        python3 \
+        usb-creator-gtk
+
+    # Snap stuff
+    snap install qalculate
 
     # Dropbox
     wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - \
@@ -24,7 +28,8 @@ install_macos () {
     # Homebrew stuff
     brew install \
         nvm \
-        rust
+        rust \
+        qalculate-gtk
 }
 
 install () {
