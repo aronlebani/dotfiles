@@ -8,7 +8,8 @@ install_linux () {
         curl \
         evolution \
         python3 \
-        usb-creator-gtk
+        usb-creator-gtk \
+        gnome-tweaks
 
     # Snap stuff
     snap install qalculate
