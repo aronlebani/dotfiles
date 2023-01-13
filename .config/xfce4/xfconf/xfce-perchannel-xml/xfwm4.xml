@@ -10,13 +10,13 @@
     <property name="button_spacing" type="empty"/>
     <property name="click_to_focus" type="empty"/>
     <property name="cycle_apps_only" type="empty"/>
-    <property name="cycle_draw_frame" type="empty"/>
+    <property name="cycle_draw_frame" type="bool" value="true"/>
     <property name="cycle_preview" type="empty"/>
     <property name="double_click_distance" type="empty"/>
     <property name="double_click_time" type="empty"/>
     <property name="focus_delay" type="empty"/>
     <property name="focus_new" type="empty"/>
-    <property name="frame_opacity" type="int" value="100"/>
+    <property name="frame_opacity" type="empty"/>
     <property name="full_width_title" type="empty"/>
     <property name="maximized_offset" type="empty"/>
     <property name="mousewheel_rollup" type="empty"/>
@@ -38,9 +38,9 @@
     <property name="snap_to_border" type="empty"/>
     <property name="snap_to_windows" type="empty"/>
     <property name="snap_width" type="empty"/>
-    <property name="theme" type="string" value="Adwaita-dark-xfwm4"/>
+    <property name="theme" type="string" value="Numix-Taller"/>
     <property name="title_alignment" type="empty"/>
-    <property name="title_font" type="string" value="Noto Sans Bold 7"/>
+    <property name="title_font" type="string" value="Noto Sans Bold 10"/>
     <property name="title_horizontal_offset" type="empty"/>
     <property name="title_shadow_active" type="empty"/>
     <property name="title_shadow_inactive" type="empty"/>
@@ -48,7 +48,7 @@
     <property name="title_vertical_offset_inactive" type="empty"/>
     <property name="urgent_blink" type="empty"/>
     <property name="use_compositing" type="empty"/>
-    <property name="workspace_count" type="empty"/>
+    <property name="workspace_count" type="int" value="2"/>
     <property name="wrap_resistance" type="empty"/>
     <property name="wrap_windows" type="empty"/>
     <property name="wrap_workspaces" type="empty"/>
@@ -83,6 +83,7 @@
     <property name="zoom_pointer" type="bool" value="true"/>
     <property name="workspace_names" type="array">
       <value type="string" value="Workspace 1"/>
+      <value type="string" value="Workspace 2"/>
     </property>
   </property>
 </channel>

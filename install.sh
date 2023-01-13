@@ -9,7 +9,10 @@ install_linux () {
         evolution \
         python3 \
         usb-creator-gtk \
-        gnome-tweaks
+        gnome-tweaks \
+        build-essential \
+        htop \
+        gparted
 
     # Snap stuff
     snap install qalculate

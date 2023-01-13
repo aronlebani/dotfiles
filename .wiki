@@ -1,2 +1,2 @@
 editor="vim"
-path="/home/aron/Dropbox/Wiki/"
+path="/home/aron/Seafile/Wiki/"

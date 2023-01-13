@@ -22,7 +22,7 @@ alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 
 # For work
-alias bc-server="cd ~/Repositories/server && /Users/aron/.dotnet/dotnet run --project ./App/App.csproj --launch-profile AppAllHosts"
+alias bc-server="cd ~/Repositories/server && /usr/bin/dotnet run --project ./App/App.csproj --launch-profile AppAllHosts"
 alias bc-front="cd ~/Repositories/front && nvm use 14.13 && npm run dev"
 
 # Include private bin in PATH
