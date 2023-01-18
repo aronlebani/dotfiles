@@ -38,7 +38,7 @@
     <property name="snap_to_border" type="empty"/>
     <property name="snap_to_windows" type="empty"/>
     <property name="snap_width" type="empty"/>
-    <property name="theme" type="string" value="Numix-Taller"/>
+    <property name="theme" type="string" value="Adwaita-dark-xfwm4"/>
     <property name="title_alignment" type="empty"/>
     <property name="title_font" type="string" value="Noto Sans Bold 10"/>
     <property name="title_horizontal_offset" type="empty"/>
@@ -50,7 +50,7 @@
     <property name="use_compositing" type="empty"/>
     <property name="workspace_count" type="int" value="2"/>
     <property name="wrap_resistance" type="empty"/>
-    <property name="wrap_windows" type="empty"/>
+    <property name="wrap_windows" type="bool" value="false"/>
     <property name="wrap_workspaces" type="empty"/>
     <property name="borderless_maximize" type="bool" value="true"/>
     <property name="cycle_raise" type="bool" value="false"/>

@@ -1,6 +1,6 @@
 [Configuration]
-ColorForeground=#b7b7b7
-ColorBackground=#000000000000
+ColorForeground=#dededddddada
+ColorBackground=#28282a293636
 ColorCursor=#0f4999
 ColorSelection=#163b59
 ColorSelectionUseDefault=FALSE

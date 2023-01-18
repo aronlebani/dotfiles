@@ -44,6 +44,6 @@
     <property name="WindowScalingFactor" type="int" value="1"/>
   </property>
   <property name="Xfce" type="empty">
-    <property name="SyncThemes" type="bool" value="true"/>
+    <property name="SyncThemes" type="bool" value="false"/>
   </property>
 </channel>
