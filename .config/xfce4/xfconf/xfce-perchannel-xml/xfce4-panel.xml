@@ -12,7 +12,6 @@
         <value type="int" value="3"/>
         <value type="int" value="4"/>
         <value type="int" value="5"/>
-        <value type="int" value="12"/>
         <value type="int" value="13"/>
         <value type="int" value="6"/>
         <value type="int" value="8"/>
@@ -27,12 +26,14 @@
       <property name="mode" type="uint" value="0"/>
       <property name="autohide-behavior" type="uint" value="0"/>
       <property name="background-rgba" type="array">
-        <value type="double" value="0.15686274509803921"/>
-        <value type="double" value="0.16470588235294115"/>
-        <value type="double" value="0.21176470588235294"/>
+        <value type="double" value="0.074509803921568626"/>
+        <value type="double" value="0.13725490196078433"/>
+        <value type="double" value="0.16078431372549021"/>
         <value type="double" value="1"/>
       </property>
       <property name="icon-size" type="uint" value="0"/>
+      <property name="enter-opacity" type="uint" value="100"/>
+      <property name="leave-opacity" type="uint" value="100"/>
     </property>
     <property name="dark-mode" type="bool" value="true"/>
   </property>
@@ -57,6 +58,7 @@
       <property name="size-max" type="uint" value="22"/>
       <property name="symbolic-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="gpick"/>
         <value type="string" value="task manager"/>
         <value type="string" value="evolution-alarm-notify"/>
       </property>
@@ -67,6 +69,7 @@
       <property name="hidden-items" type="array">
       </property>
       <property name="single-row" type="bool" value="false"/>
+      <property name="icon-size" type="int" value="0"/>
     </property>
     <property name="plugin-6" type="string" value="notification-plugin"/>
     <property name="plugin-8" type="string" value="power-manager-plugin"/>
@@ -75,7 +78,7 @@
       <property name="enable-mpris" type="bool" value="true"/>
       <property name="enable-wnck" type="bool" value="true"/>
       <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="firefox.instance3023;firefox.instance48245;firefox.instance58026;parole;rhythmbox;spotify"/>
+      <property name="mpris-players" type="string" value="firefox.instance27231;firefox.instance3023;firefox.instance3788;firefox.instance4117;firefox.instance4179;firefox.instance48245;firefox.instance58026;parole;rhythmbox;spotify"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
     <property name="plugin-10" type="string" value="clock">
@@ -83,12 +86,6 @@
       <property name="digital-time-format" type="string" value=" %d %b, %H:%M "/>
       <property name="digital-layout" type="uint" value="3"/>
       <property name="digital-time-font" type="string" value="Sans 12"/>
-    </property>
-    <property name="plugin-12" type="string" value="statusnotifier">
-      <property name="known-items" type="array">
-        <value type="string" value="nm-applet"/>
-      </property>
-      <property name="menu-is-primary" type="bool" value="false"/>
     </property>
     <property name="plugin-13" type="string" value="indicator">
       <property name="known-indicators" type="array">

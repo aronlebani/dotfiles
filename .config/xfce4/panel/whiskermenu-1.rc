@@ -1,5 +1,5 @@
 favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop,xfhelp4.desktop
-recent=thunar.desktop,datagrip_datagrip.desktop,google-chrome.desktop,xfce4-file-manager.desktop,gimp_gimp.desktop,xfce4-color-settings.desktop,seafile.desktop,spotify_spotify.desktop,org.gnome.Evolution.desktop,firefox_firefox.desktop
+recent=xfce4-file-manager.desktop,firefox_firefox.desktop,syntevo-smartgit.desktop,datagrip_datagrip.desktop,spotify_spotify.desktop,gpick.desktop,org.gnome.Evolution.desktop,ardour.desktop,thunar.desktop,seafile.desktop
 button-icon=xubuntu-logo-menu
 button-single-row=false
 show-button-title=false
@@ -24,7 +24,7 @@ stay-on-focus-out=false
 profile-shape=0
 confirm-session-command=true
 menu-width=450
-menu-height=500
+menu-height=498
 menu-opacity=100
 command-settings=xfce4-settings-manager
 show-command-settings=true

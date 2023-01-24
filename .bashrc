@@ -14,35 +14,20 @@ export VISUAL=vim
 export EDITOR=vim
 export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
-export NVM_DIR="$HOME/.nvm"     # Nvm
+export NVM_DIR="$HOME/.nvm"
 
 alias lah="ls -lah"
 alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
+alias bc-server="/usr/bin/dotnet run --project ./App/App.csproj --launch-profile AppAllHosts"
+alias bc-front="nvm use 14.13 && npm run dev"
 
-# For work
-alias bc-server="cd ~/Repositories/server && /usr/bin/dotnet run --project ./App/App.csproj --launch-profile AppAllHosts"
-alias bc-front="cd ~/Repositories/front && nvm use 14.13 && npm run dev"
-
-# Include private bin in PATH
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# Load ~/.bash_prompt
-if [ -f "$HOME/.bash_prompt" ]; then
-    . "$HOME/.bash_prompt"
-fi
-
-# Nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Rust
-if [ -f "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -f "$HOME/.bash_prompt" ] && \. "$HOME/.bash_prompt"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+[ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
 # OS specific
 case "$(uname -s)" in
