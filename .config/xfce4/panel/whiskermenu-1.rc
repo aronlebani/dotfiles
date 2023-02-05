@@ -1,5 +1,5 @@
 favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop,xfhelp4.desktop
-recent=xfce4-file-manager.desktop,firefox_firefox.desktop,syntevo-smartgit.desktop,datagrip_datagrip.desktop,spotify_spotify.desktop,gpick.desktop,org.gnome.Evolution.desktop,ardour.desktop,thunar.desktop,seafile.desktop
+recent=xfce4-file-manager.desktop,spotify_spotify.desktop,firefox_firefox.desktop,xfce4-mail-reader.desktop,syntevo-smartgit.desktop,xfce-settings-manager.desktop,slack_slack.desktop,datagrip_datagrip.desktop,xfce-display-settings.desktop,org.xfce.mousepad.desktop
 button-icon=xubuntu-logo-menu
 button-single-row=false
 show-button-title=false

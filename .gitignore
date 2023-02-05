@@ -30,3 +30,7 @@
 !.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml
 !.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 !.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
+!.themes/
+!.themes/simple-dark/
+!.themes/simple-dark/xfwm4/
+!.themes/simple-dark/xfwm4/*

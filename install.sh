@@ -12,7 +12,8 @@ install_linux () {
         gnome-tweaks \
         build-essential \
         htop \
-        gparted
+        gparted \
+        ardour
 
     # Snap stuff
     snap install qalculate

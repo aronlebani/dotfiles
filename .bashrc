@@ -17,7 +17,7 @@ export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with
 export NVM_DIR="$HOME/.nvm"
 
 alias lah="ls -lah"
-alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public}"
+alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public,packages,bin,logs}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 alias bc-server="/usr/bin/dotnet run --project ./App/App.csproj --launch-profile AppAllHosts"

@@ -1,0 +1,8 @@
+# Adwaita-dark theme by Amit Kulkarni
+
+active_text_color=#eeeeec
+inactive_text_color=#949796
+button_offset=6
+button_spacing=6
+maximized_offset=4
+show_app_icon=false
