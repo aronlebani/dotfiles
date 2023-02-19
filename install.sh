@@ -13,12 +13,21 @@ install_linux () {
         build-essential \
         htop \
         gparted \
-        ardour
+        ardour \
+        mousepad \
+        gimp \
+        gpick \
+        qalc \
+        sqlite \
+        freecad \
+        fritzing
 
     # Snap stuff
-    snap install qalculate
+    snap install spotify \
+        arduino
 
     # Dropbox
+    # TODO - replace with Seafile
     wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - \
         && .dropbox-dist/dropboxd \
         && curl -o "$HOME/bin/dropbox.py" https://linux.dropbox.com/packages/dropbox.py \
