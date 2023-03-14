@@ -13,14 +13,18 @@ install_linux () {
         build-essential \
         htop \
         gparted \
-        ardour \
         mousepad \
         gimp \
         gpick \
         qalc \
         sqlite \
         freecad \
-        fritzing
+        fritzing \
+        redshift \
+        ardour \
+        guitarix \
+        qjackctl \
+        newsboat
 
     # Snap stuff
     snap install spotify \

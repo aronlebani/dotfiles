@@ -162,8 +162,9 @@
          end="0"
          start="0"
          usecurrent="1"
-         rx="2049.36"
-         ry="1955.31" />
+         rx="1718.02"
+         ry="2001.26"
+         arc_type="0" />
       <eventcontext
          id="star"
          magnitude="5"
@@ -208,8 +209,8 @@
        usepressure="1"
        usetilt="0"
        keep_selected="1"
-       abs_width="1"
-       unit="mm">
+       abs_width="0"
+       unit="px">
       <group
          id="preset">
         <group
@@ -314,7 +315,7 @@
        id="lpetool"
        mode="drag"
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;"
-       unit="mm"
+       unit="px"
        show_bbox="1" />
     <eventcontext
        id="text"
@@ -949,12 +950,12 @@
      org.inkscape.effect.filter.Duochrome.tab="co11tab" />
   <group
      id="desktop"
-     style="stroke-width:15.11811024;stroke-linecap:round;stroke-linejoin:round;-inkscape-font-specification:'Shrikhand, Normal';font-family:Shrikhand;font-size:213.33333333px;text-anchor:middle;text-align:center;fill:#ffffff">
+     style="stroke-width:0;stroke-linecap:round;stroke-linejoin:round;-inkscape-font-specification:'Shrikhand, Normal';font-family:Shrikhand;font-size:186.66666667px;text-anchor:middle;text-align:center;fill:none;stroke:#c600ff;direction:rtl;writing-mode:tb-rl">
     <group
-       width="2093"
-       height="1404"
-       x="239"
-       y="78"
+       width="1920"
+       height="1200"
+       x="0"
+       y="361"
        maximized="0"
        fullscreen="0"
        id="geometry" />

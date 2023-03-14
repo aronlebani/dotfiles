@@ -47,3 +47,5 @@
 !.themes/simple-dark/xfwm4/*
 !.fonts/
 !.fonts/*
+!.newsboat/
+!.newsboat/config

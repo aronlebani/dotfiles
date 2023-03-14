@@ -11,10 +11,11 @@
         <value type="int" value="2"/>
         <value type="int" value="3"/>
         <value type="int" value="4"/>
+        <value type="int" value="12"/>
         <value type="int" value="5"/>
-        <value type="int" value="13"/>
-        <value type="int" value="8"/>
+        <value type="int" value="6"/>
         <value type="int" value="9"/>
+        <value type="int" value="8"/>
         <value type="int" value="7"/>
         <value type="int" value="10"/>
       </property>
@@ -50,35 +51,13 @@
       <property name="style" type="uint" value="0"/>
       <property name="expand" type="bool" value="true"/>
     </property>
-    <property name="plugin-5" type="string" value="systray">
-      <property name="menu-is-primary" type="bool" value="true"/>
-      <property name="show-frame" type="bool" value="false"/>
-      <property name="square-icons" type="bool" value="true"/>
-      <property name="size-max" type="uint" value="22"/>
-      <property name="symbolic-icons" type="bool" value="true"/>
-      <property name="known-legacy-items" type="array">
-        <value type="string" value="reminders"/>
-        <value type="string" value="gpick"/>
-        <value type="string" value="task manager"/>
-        <value type="string" value="evolution-alarm-notify"/>
-      </property>
-      <property name="known-items" type="array">
-        <value type="string" value="Slack1"/>
-        <value type="string" value="nm-applet"/>
-        <value type="string" value="Seafile Client"/>
-      </property>
-      <property name="hidden-items" type="array">
-      </property>
-      <property name="single-row" type="bool" value="false"/>
-      <property name="icon-size" type="int" value="0"/>
-    </property>
     <property name="plugin-8" type="string" value="power-manager-plugin"/>
     <property name="plugin-9" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
       <property name="enable-mpris" type="bool" value="true"/>
       <property name="enable-wnck" type="bool" value="true"/>
       <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="chromium.instance37675;firefox.instance27231;firefox.instance3023;firefox.instance3076;firefox.instance3129;firefox.instance3177;firefox.instance3788;firefox.instance4117;firefox.instance4179;firefox.instance4308;firefox.instance4434;firefox.instance48245;firefox.instance4833;firefox.instance4989;firefox.instance5333;firefox.instance58026;parole;rhythmbox;spotify"/>
+      <property name="mpris-players" type="string" value="chromium.instance37675;firefox.instance16639;firefox.instance27231;firefox.instance3023;firefox.instance3076;firefox.instance3129;firefox.instance3177;firefox.instance3289;firefox.instance3597;firefox.instance3689;firefox.instance3788;firefox.instance3925;firefox.instance4117;firefox.instance4179;firefox.instance4308;firefox.instance4434;firefox.instance4731;firefox.instance48245;firefox.instance4833;firefox.instance4926;firefox.instance4930;firefox.instance4989;firefox.instance5116;firefox.instance5184;firefox.instance5333;firefox.instance58026;firefox.instance63770;parole;rhythmbox;spotify"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
     <property name="plugin-10" type="string" value="clock">
@@ -87,16 +66,41 @@
       <property name="digital-layout" type="uint" value="3"/>
       <property name="digital-time-font" type="string" value="Sans 12"/>
     </property>
-    <property name="plugin-13" type="string" value="indicator">
+    <property name="plugin-7" type="string" value="separator">
+      <property name="style" type="uint" value="0"/>
+    </property>
+    <property name="plugin-12" type="string" value="statusnotifier">
+      <property name="known-items" type="array">
+        <value type="string" value="Seafile Client"/>
+        <value type="string" value="Slack1"/>
+        <value type="string" value="redshift"/>
+        <value type="string" value="nm-applet"/>
+      </property>
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="symbolic-icons" type="bool" value="true"/>
+      <property name="hidden-items" type="array">
+      </property>
+      <property name="icon-size" type="int" value="22"/>
+      <property name="single-row" type="bool" value="false"/>
+    </property>
+    <property name="plugin-5" type="string" value="systray">
+      <property name="known-items" type="array">
+        <value type="string" value="Seafile Client"/>
+        <value type="string" value="Slack1"/>
+        <value type="string" value="nm-applet"/>
+        <value type="string" value="redshift"/>
+      </property>
+      <property name="square-icons" type="bool" value="true"/>
+      <property name="known-legacy-items" type="array">
+        <value type="string" value="gpick"/>
+        <value type="string" value="evolution-alarm-notify"/>
+      </property>
+    </property>
+    <property name="plugin-6" type="string" value="indicator">
       <property name="known-indicators" type="array">
         <value type="string" value="libayatana-application.so"/>
       </property>
       <property name="square-icons" type="bool" value="true"/>
-      <property name="align-left" type="bool" value="false"/>
-      <property name="single-row" type="bool" value="false"/>
-    </property>
-    <property name="plugin-7" type="string" value="separator">
-      <property name="style" type="uint" value="0"/>
     </property>
   </property>
   <property name="configver" type="int" value="2"/>
