@@ -12,6 +12,8 @@
 !.vimrc
 !.ideavimrc
 !.wiki
+!.ssh/
+!.ssh/config
 !.config/
 !.config/xfce4/
 !.config/xfce4/helpers.rc

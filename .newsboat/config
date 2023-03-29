@@ -11,8 +11,6 @@ unbind-key J
 unbind-key K
 unbind-key g
 unbind-key ^U
-unbind-key n
-unbind-key p
 
 # Bind keys - vim
 bind-key gg home
@@ -23,8 +21,6 @@ bind-key l open
 bind-key h quit
 bind-key ^U pageup
 bind-key ^D pagedown
-bind-key n next
-bind-key p prev
 
 # Formatting
 feedlist-format "%4i %-11u %t _%T_"

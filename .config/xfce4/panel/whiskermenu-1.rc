@@ -1,5 +1,5 @@
 favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop
-recent=gpick.desktop,xfce4-file-manager.desktop,org.gnome.Evolution.desktop,xfce-settings-manager.desktop,datagrip_datagrip.desktop,spotify_spotify.desktop,slack_slack.desktop,firefox_firefox.desktop,xfce4-mail-reader.desktop,xfce4-web-browser.desktop
+recent=org.gnome.Evolution.desktop,datagrip_datagrip.desktop,spotify_spotify.desktop,firefox_firefox.desktop,slack_slack.desktop,xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce-display-settings.desktop,freecad.desktop,chromium_chromium.desktop
 button-icon=xubuntu-logo-menu
 button-single-row=false
 show-button-title=false
