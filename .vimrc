@@ -1,7 +1,6 @@
 " ---- Plugins ----
 
 call plug#begin()
-Plug 'sainnhe/sonokai'                      " Color theme
 Plug 'liuchengxu/space-vim-dark'            " Color theme
 Plug 'mxw/vim-jsx'                          " JSX syntax
 Plug 'pangloss/vim-javascript'              " JS syntax
@@ -10,16 +9,15 @@ Plug 'fsharp/vim-fsharp'                    " F# syntax
 Plug 'preservim/nerdtree'                   " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'          " Git for nerdtree
 Plug 'airblade/vim-gitgutter'               " Git gutter
-Plug 'ctrlpvim/ctrlp.vim'                   " Fuzzy search
 Plug 'tpope/vim-commentary'                 " Block commenting
 Plug 'vim-airline/vim-airline'              " Status bar
 Plug 'tpope/vim-fugitive'                   " Git plugin
-Plug 'nelstrom/vim-visual-star-search'      " Search by entire selected text
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }   " Prettier
 Plug 'tyru/open-browser.vim'                " Use gx to open url in browser or smart search
 Plug 'dense-analysis/ale'                   " Linter
 Plug 'plasticboy/vim-markdown'              " Markdown
 Plug 'OmniSharp/omnisharp-vim'              " C# stuff
+Plug 'mileszs/ack.vim'                      " Ack for vim
 call plug#end()
 
 " ---- Basics ----
@@ -158,7 +156,7 @@ let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_removed_above_and_below = '-'
-let g:gitgutter_sign_modified_removed = '-'
+let g:gitgutter_sign_modified_removed = '~'
 
 " vim-prettier
 let g:prettier#autoformat_require_pragma = 1    " Only format files with @format or @prettier
@@ -169,7 +167,11 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 " vim-markdown
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_folding_level = 2
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_follow_anchor = 1
+
+" ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif

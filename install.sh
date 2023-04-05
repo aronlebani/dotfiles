@@ -24,7 +24,8 @@ install_linux () {
         ardour \
         guitarix \
         qjackctl \
-        newsboat
+        newsboat \
+        ag
 
     # Snap stuff
     snap install spotify \

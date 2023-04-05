@@ -1,9 +1,7 @@
 # ~/.bash_login: executed by the command interpreter for login shells.
 
-# If running bash, source .bashrc if it exists
 if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
 	    . "$HOME/.bashrc"
     fi
 fi
-. "$HOME/.cargo/env"
