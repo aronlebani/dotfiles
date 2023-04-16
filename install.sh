@@ -8,36 +8,25 @@ install_linux () {
         curl \
         evolution \
         python3 \
-        usb-creator-gtk \
         gnome-tweaks \
         build-essential \
-        htop \
-        gparted \
-        mousepad \
-        gimp \
-        gpick \
         qalc \
         sqlite \
-        freecad \
-        fritzing \
         redshift \
-        ardour \
-        guitarix \
-        qjackctl \
         newsboat \
         ag
 
     # Snap stuff
     snap install spotify \
-        arduino
+        dbeaver \
+        libreoffice
+}
 
-    # Dropbox
-    # TODO - replace with Seafile
-    wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf - \
-        && .dropbox-dist/dropboxd \
-        && curl -o "$HOME/bin/dropbox.py" https://linux.dropbox.com/packages/dropbox.py \
-        && "$HOME/bin/dropbox.py exclude add ./Dropbox/Archive ./Dropbox/Camera Uploads" \
-        && "$HOME/bin/dropbox.py autostart"
+install_seafile () {
+    wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null
+    apt update
+    sudo apt install -y seafile-gui
 }
 
 install_macos () {
@@ -87,3 +76,4 @@ case "$(uname -s)" in
 esac
 
 install
+install_seafile
