@@ -209,8 +209,8 @@
        usepressure="1"
        usetilt="0"
        keep_selected="1"
-       abs_width="0"
-       unit="px">
+       abs_width="1"
+       unit="mm">
       <group
          id="preset">
         <group
@@ -315,7 +315,7 @@
        id="lpetool"
        mode="drag"
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;"
-       unit="px"
+       unit="mm"
        show_bbox="1" />
     <eventcontext
        id="text"
@@ -599,7 +599,7 @@
     <group
        id="open"
        enable_preview="1"
-       path="" />
+       path="/home/aron/Seafile/Projects/lebaniamps.com/Logo/" />
     <group
        id="import"
        enable_preview="1"
@@ -952,10 +952,10 @@
      id="desktop"
      style="stroke-width:0;stroke-linecap:round;stroke-linejoin:round;-inkscape-font-specification:'Shrikhand, Normal';font-family:Shrikhand;font-size:186.66666667px;text-anchor:middle;text-align:center;fill:none;stroke:#c600ff;direction:rtl;writing-mode:tb-rl">
     <group
-       width="1920"
-       height="1200"
-       x="0"
-       y="361"
+       width="2093"
+       height="1404"
+       x="261"
+       y="76"
        maximized="0"
        fullscreen="0"
        id="geometry" />
@@ -1058,7 +1058,7 @@
   <group
      id="theme"
      defaultPreferDarkTheme="0"
-     defaultGtkTheme="Adwaita-dark"
+     defaultGtkTheme="Adwaita"
      defaultIconTheme="elementary-xfce"
      symbolicIcons="0"
      preferDarkTheme="0"

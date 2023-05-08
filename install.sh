@@ -1,14 +1,21 @@
 #!/bin/bash
 
+install_full () {
+    snap install arduino \
+        guitarix \
+        libreoffice \
+        freecad \
+        fritzing \
+        ardour
+}
+
 install_linux () {
-    # Apt stuff
     apt update && apt install -y \
         git \
         vim \
         curl \
         evolution \
         python3 \
-        gnome-tweaks \
         build-essential \
         qalc \
         sqlite \
@@ -16,13 +23,11 @@ install_linux () {
         newsboat \
         ag
 
-    # Snap stuff
-    snap install spotify \
-        dbeaver \
-        libreoffice
-}
+    snap install \
+        spotify \
+        dbeaver
 
-install_seafile () {
+    # Install seafile
     wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null
     apt update
@@ -30,50 +35,55 @@ install_seafile () {
 }
 
 install_macos () {
-    # Homebrew
+    # Install homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    # Homebrew stuff
     brew install \
         nvm \
         rust \
         qalculate-gtk
 }
 
-install () {
-    # Rust
+install_essential () {
+    # Install rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-    # Wiki
+    # Install wiki
     cd "$HOME/Repositories" \
         && git clone https://github.com/aronlebani/wiki.git \
         && cd wiki \
         && cargo build \
         && ./install.sh
 
-    # Vimplug
+    # Install vimplug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    # Nvm
+    # Inastall nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+    # OS specific
+    case "$(uname -s)" in
+        Linux*)
+            install_linux
+            ;;
+        Darwin*)
+            install_macos
+            ;;
+    esac
 }
 
-cd "$HOME"
+admin () {
+    mkdir -p "$HOME/Repositories"
+    mkdir -p "$HOME/bin"
 
-mkdir -p "$HOME/Repositories"
-mkdir -p "$HOME/bin"
+    rm -rf "$HOME/Documents" "$HOME/Music" "$HOME/Videos" "$HOME/Templates"
+}
 
-rm -rf "$HOME/Documents" "$HOME/Music" "$HOME/Videos" "$HOME/Templates"
+admin
+install_essential
 
-case "$(uname -s)" in
-    Linux*)
-        install_linux
-        ;;
-    Darwin*)
-        install_macos
-        ;;
-esac
-
-install
-install_seafile
+if [ $1 = "--full" ]
+then
+    install_full
+fi

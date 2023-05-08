@@ -7,6 +7,7 @@
   <property name="do-fadeout" type="empty"/>
   <property name="applications" type="empty">
     <property name="known_applications" type="array">
+      <value type="string" value="blueman"/>
       <value type="string" value="datagrip_datagrip"/>
       <value type="string" value="io.snapcraft.SessionAgent"/>
       <value type="string" value="nm-applet"/>

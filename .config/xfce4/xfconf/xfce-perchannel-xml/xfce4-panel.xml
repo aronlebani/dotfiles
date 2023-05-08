@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <channel name="xfce4-panel" version="1.0">
-  <property name="panels" type="uint" value="1">
+  <property name="panels" type="array">
+    <value type="int" value="0"/>
     <property name="panel-0" type="empty">
       <property name="position" type="string" value="p=6;x=0;y=0"/>
       <property name="length" type="uint" value="100"/>
@@ -16,24 +17,26 @@
         <value type="int" value="8"/>
         <value type="int" value="7"/>
         <value type="int" value="10"/>
+        <value type="int" value="5"/>
       </property>
-      <property name="background-style" type="uint" value="1"/>
+      <property name="background-style" type="uint" value="0"/>
       <property name="size" type="uint" value="35"/>
       <property name="length-adjust" type="bool" value="true"/>
       <property name="span-monitors" type="bool" value="false"/>
       <property name="mode" type="uint" value="0"/>
       <property name="autohide-behavior" type="uint" value="0"/>
       <property name="background-rgba" type="array">
-        <value type="double" value="0.090196078431372534"/>
-        <value type="double" value="0.16470588235294117"/>
-        <value type="double" value="0.19607843137254902"/>
+        <value type="double" value="0.2120222222222222"/>
+        <value type="double" value="0.27978287037037064"/>
+        <value type="double" value="0.67666666666666675"/>
         <value type="double" value="1"/>
       </property>
       <property name="icon-size" type="uint" value="0"/>
       <property name="enter-opacity" type="uint" value="100"/>
       <property name="leave-opacity" type="uint" value="100"/>
+      <property name="nrows" type="uint" value="1"/>
     </property>
-    <property name="dark-mode" type="bool" value="true"/>
+    <property name="dark-mode" type="bool" value="false"/>
   </property>
   <property name="plugins" type="empty">
     <property name="plugin-1" type="string" value="whiskermenu"/>
@@ -43,7 +46,8 @@
     </property>
     <property name="plugin-3" type="string" value="tasklist">
       <property name="show-handle" type="bool" value="false"/>
-      <property name="flat-buttons" type="bool" value="true"/>
+      <property name="flat-buttons" type="bool" value="false"/>
+      <property name="show-labels" type="bool" value="true"/>
     </property>
     <property name="plugin-4" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
@@ -55,7 +59,7 @@
       <property name="enable-mpris" type="bool" value="true"/>
       <property name="enable-wnck" type="bool" value="true"/>
       <property name="mixer-command" type="string" value="pavucontrol"/>
-      <property name="mpris-players" type="string" value="chromium.instance23855;chromium.instance37675;firefox.instance16639;firefox.instance27231;firefox.instance3023;firefox.instance3076;firefox.instance3129;firefox.instance3177;firefox.instance3289;firefox.instance3320;firefox.instance3326;firefox.instance3351;firefox.instance3360;firefox.instance3361;firefox.instance3381;firefox.instance3383;firefox.instance3389;firefox.instance3390;firefox.instance3396;firefox.instance3423;firefox.instance3485;firefox.instance3597;firefox.instance3608;firefox.instance3689;firefox.instance3764;firefox.instance3776;firefox.instance3788;firefox.instance3825;firefox.instance3925;firefox.instance4117;firefox.instance4179;firefox.instance4308;firefox.instance4323;firefox.instance4434;firefox.instance4731;firefox.instance48245;firefox.instance4833;firefox.instance4926;firefox.instance4930;firefox.instance4989;firefox.instance5116;firefox.instance5184;firefox.instance5333;firefox.instance5336;firefox.instance58026;firefox.instance63770;parole;rhythmbox;Spot;spotify"/>
+      <property name="mpris-players" type="string" value="chromium.instance23855;chromium.instance37675;firefox.instance10210;firefox.instance16639;firefox.instance26907;firefox.instance27231;firefox.instance3023;firefox.instance3076;firefox.instance3129;firefox.instance3177;firefox.instance3289;firefox.instance3320;firefox.instance3326;firefox.instance3351;firefox.instance3360;firefox.instance3361;firefox.instance3381;firefox.instance3383;firefox.instance3389;firefox.instance3390;firefox.instance3396;firefox.instance3423;firefox.instance3485;firefox.instance3515;firefox.instance3597;firefox.instance3608;firefox.instance3689;firefox.instance3764;firefox.instance3776;firefox.instance3788;firefox.instance3825;firefox.instance3925;firefox.instance4117;firefox.instance4179;firefox.instance4308;firefox.instance4323;firefox.instance4342;firefox.instance4434;firefox.instance4487;firefox.instance4578;firefox.instance4602;firefox.instance4634;firefox.instance4731;firefox.instance48245;firefox.instance4833;firefox.instance4846;firefox.instance4926;firefox.instance4930;firefox.instance4989;firefox.instance5116;firefox.instance5184;firefox.instance5333;firefox.instance5336;firefox.instance58026;firefox.instance6144;firefox.instance63770;firefox.instance6426;firefox.instance77200;parole;rhythmbox;Spot;spotify"/>
       <property name="show-notifications" type="bool" value="true"/>
     </property>
     <property name="plugin-10" type="string" value="clock">
@@ -72,7 +76,10 @@
         <value type="string" value="libayatana-application.so"/>
       </property>
       <property name="square-icons" type="bool" value="true"/>
+      <property name="align-left" type="bool" value="false"/>
+      <property name="single-row" type="bool" value="false"/>
     </property>
+    <property name="plugin-5" type="string" value="pager"/>
   </property>
   <property name="configver" type="int" value="2"/>
 </channel>

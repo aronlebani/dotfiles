@@ -6,6 +6,7 @@ Plug 'mxw/vim-jsx'                          " JSX syntax
 Plug 'pangloss/vim-javascript'              " JS syntax
 Plug 'othree/html5.vim'                     " HTML syntax
 Plug 'fsharp/vim-fsharp'                    " F# syntax
+Plug 'evanleck/vim-svelte'                  " Svelte
 Plug 'preservim/nerdtree'                   " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'          " Git for nerdtree
 Plug 'airblade/vim-gitgutter'               " Git gutter
@@ -81,6 +82,7 @@ autocmd FileType javascript.jsx setlocal ts=2 sts=2 sw=2
 autocmd FileType scss setlocal ts=2 sts=2 sw=2
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+autocmd FileType svelte setlocal ts=2 sts=2 sw=2
 autocmd FileType type call Type()
 autocmd FileType markdown setlocal wrap     " Wrap text       
 autocmd FileType gitcommit setlocal spell
