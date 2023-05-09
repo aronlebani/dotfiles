@@ -1,5 +1,5 @@
 favorites=xfce4-web-browser.desktop,xfce4-mail-reader.desktop,xfce4-file-manager.desktop,xfce4-terminal-emulator.desktop
-recent=xfce4-file-manager.desktop,slack_slack.desktop,rider_rider.desktop,sqlitebrowser_sqlitebrowser.desktop,xfce4-mail-reader.desktop,xfce4-web-browser.desktop,gpick.desktop,org.inkscape.Inkscape.desktop,PrusaSlicer.desktop,spotify_spotify.desktop
+recent=xfce4-file-manager.desktop,xfce4-mail-reader.desktop,slack_slack.desktop,xfce4-web-browser.desktop,rider_rider.desktop,sqlitebrowser_sqlitebrowser.desktop,gpick.desktop,org.inkscape.Inkscape.desktop,PrusaSlicer.desktop,spotify_spotify.desktop
 button-icon=xubuntu-logo-menu
 button-single-row=false
 show-button-title=false

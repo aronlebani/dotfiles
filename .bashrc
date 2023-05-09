@@ -16,23 +16,20 @@ export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 export NVM_DIR="$HOME/.nvm"
 
-alias lah="ls -lah"
+alias la="ls -lah"
 alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public,packages,bin,logs}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
-alias bc-server="/usr/bin/dotnet run --project ./App/App.csproj --launch-profile AppAllHosts"
-alias bc-front="nvm use 14.13 && npm run dev"
 
 [ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
 [ -f "$HOME/.bash_prompt" ] && \. "$HOME/.bash_prompt"
+[ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-[ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
 
-# OS specific
 case "$(uname -s)" in
     Linux*)
-        alias ls="ls --color=auto"
+        alias ls="ls -gGh --group-directories-first --color=auto"
         ;;
     Darwin*)
         export BASH_SILENCE_DEPRECATION_WARNING=1

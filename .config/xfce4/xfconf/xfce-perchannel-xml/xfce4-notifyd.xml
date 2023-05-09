@@ -8,7 +8,6 @@
   <property name="applications" type="empty">
     <property name="known_applications" type="array">
       <value type="string" value="blueman"/>
-      <value type="string" value="datagrip_datagrip"/>
       <value type="string" value="io.snapcraft.SessionAgent"/>
       <value type="string" value="nm-applet"/>
       <value type="string" value="org.gnome.Evolution"/>
@@ -22,7 +21,6 @@
       <value type="string" value="Spotify"/>
       <value type="string" value="spotify_spotify"/>
       <value type="string" value="thunar-volman"/>
-      <value type="string" value="Thunderbird"/>
       <value type="string" value="Xfce volume control"/>
       <value type="string" value="Xfce4-notifyd settings"/>
       <value type="string" value="xfce4-power-manager"/>

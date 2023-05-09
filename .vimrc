@@ -13,7 +13,7 @@ Plug 'airblade/vim-gitgutter'               " Git gutter
 Plug 'tpope/vim-commentary'                 " Block commenting
 Plug 'vim-airline/vim-airline'              " Status bar
 Plug 'tpope/vim-fugitive'                   " Git plugin
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }   " Prettier
+Plug 'prettier/vim-prettier'                " Prettier
 Plug 'tyru/open-browser.vim'                " Use gx to open url in browser or smart search
 Plug 'dense-analysis/ale'                   " Linter
 Plug 'plasticboy/vim-markdown'              " Markdown

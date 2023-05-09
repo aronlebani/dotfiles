@@ -40,8 +40,4 @@ function parse_git_dirty {
 	fi
 }
 
-function username_host {
-    echo "\u @ \h : ";
-}
-
 export PS1="${WHITE}[\t]${RESET} ${CYAN}\w${RESET}${ORANGE}\$(git_info)${RESET}\n${WHITE}\$${RESET} "
