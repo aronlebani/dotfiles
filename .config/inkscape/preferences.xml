@@ -125,8 +125,8 @@
          id="rect"
          style="fill:blue;"
          usecurrent="1"
-         width="4091.09"
-         height="4153.95" />
+         width="58440.6"
+         height="59338.6" />
       <eventcontext
          id="3dbox"
          style="stroke:none;stroke-linejoin:round;"
@@ -162,8 +162,8 @@
          end="0"
          start="0"
          usecurrent="1"
-         rx="1718.02"
-         ry="2001.26"
+         rx="24541.6"
+         ry="28587.7"
          arc_type="0" />
       <eventcontext
          id="star"
@@ -209,8 +209,8 @@
        usepressure="1"
        usetilt="0"
        keep_selected="1"
-       abs_width="1"
-       unit="mm">
+       abs_width="0"
+       unit="px">
       <group
          id="preset">
         <group
@@ -315,7 +315,7 @@
        id="lpetool"
        mode="drag"
        style="fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:none;"
-       unit="mm"
+       unit="px"
        show_bbox="1" />
     <eventcontext
        id="text"
@@ -579,7 +579,7 @@
        path="">
       <group
          id="exportarea"
-         value="drawing" />
+         value="selection" />
       <group
          id="defaultxdpi" />
     </group>
@@ -588,7 +588,7 @@
        default="org.inkscape.output.svg.inkscape"
        append_extension="1"
        enable_preview="1"
-       path="/home/aron/Seafile/Projects/Amp/Logo"
+       path="/home/aron/Repositories/front/assets/pagination"
        use_current_dir="1" />
     <group
        id="save_copy"
@@ -599,7 +599,7 @@
     <group
        id="open"
        enable_preview="1"
-       path="/home/aron/Seafile/Projects/lebaniamps.com/Logo/" />
+       path="/home/aron/Repositories/front/assets/pagination/" />
     <group
        id="import"
        enable_preview="1"
@@ -952,10 +952,10 @@
      id="desktop"
      style="stroke-width:0;stroke-linecap:round;stroke-linejoin:round;-inkscape-font-specification:'Shrikhand, Normal';font-family:Shrikhand;font-size:186.66666667px;text-anchor:middle;text-align:center;fill:none;stroke:#c600ff;direction:rtl;writing-mode:tb-rl">
     <group
-       width="2093"
-       height="1404"
-       x="261"
-       y="76"
+       width="1920"
+       height="1200"
+       x="138"
+       y="194"
        maximized="0"
        fullscreen="0"
        id="geometry" />

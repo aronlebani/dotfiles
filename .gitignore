@@ -37,10 +37,6 @@
 !.config/ardour6/config
 !.config/inkscape/
 !.config/inkscape/preferences.xml
-!.themes/
-!.themes/simple-dark/
-!.themes/simple-dark/xfwm4/
-!.themes/simple-dark/xfwm4/*
 !.fonts/
 !.fonts/*
 !.newsboat/

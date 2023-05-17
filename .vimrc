@@ -2,22 +2,21 @@
 
 call plug#begin()
 Plug 'liuchengxu/space-vim-dark'            " Color theme
-Plug 'mxw/vim-jsx'                          " JSX syntax
-Plug 'pangloss/vim-javascript'              " JS syntax
-Plug 'othree/html5.vim'                     " HTML syntax
-Plug 'fsharp/vim-fsharp'                    " F# syntax
-Plug 'evanleck/vim-svelte'                  " Svelte
+Plug 'mxw/vim-jsx'                          " JSX lang
+Plug 'pangloss/vim-javascript'              " JS lang
+Plug 'othree/html5.vim'                     " HTML lang
+Plug 'fsharp/vim-fsharp'                    " F# lang
+Plug 'OmniSharp/omnisharp-vim'              " C# lang
+Plug 'evanleck/vim-svelte'                  " Svelte lang
+Plug 'plasticboy/vim-markdown'              " Markdown lang
 Plug 'preservim/nerdtree'                   " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'          " Git for nerdtree
 Plug 'airblade/vim-gitgutter'               " Git gutter
 Plug 'tpope/vim-commentary'                 " Block commenting
 Plug 'vim-airline/vim-airline'              " Status bar
-Plug 'tpope/vim-fugitive'                   " Git plugin
 Plug 'prettier/vim-prettier'                " Prettier
 Plug 'tyru/open-browser.vim'                " Use gx to open url in browser or smart search
 Plug 'dense-analysis/ale'                   " Linter
-Plug 'plasticboy/vim-markdown'              " Markdown
-Plug 'OmniSharp/omnisharp-vim'              " C# stuff
 Plug 'mileszs/ack.vim'                      " Ack for vim
 call plug#end()
 
