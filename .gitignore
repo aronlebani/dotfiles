@@ -19,6 +19,8 @@
 !.config/xfce4/helpers.rc
 !.config/xfce4/terminal/
 !.config/xfce4/terminal/terminalrc
+!.config/xfce4/panel/
+!.config/xfce4/panel/whiskermenu-1.rc
 !.config/xfce4/xfconf/
 !.config/xfce4/xfconf/xfce-perchannel-xml/
 !.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-appfinder.xml
@@ -37,7 +39,5 @@
 !.config/ardour6/config
 !.config/inkscape/
 !.config/inkscape/preferences.xml
-!.fonts/
-!.fonts/*
 !.newsboat/
 !.newsboat/config

@@ -6,7 +6,8 @@ install_full () {
         libreoffice \
         freecad \
         fritzing \
-        ardour
+        ardour \
+        usb-creator-gtk
 }
 
 install_linux () {
@@ -32,6 +33,10 @@ install_linux () {
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null
     apt update
     sudo apt install -y seafile-gui
+
+    # Install theme
+    mkdir -p $HOME/.themes
+    git clone https://github.com/elmodos/numix-taller.git $HOME/.themes
 }
 
 install_macos () {
