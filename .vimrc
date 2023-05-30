@@ -55,6 +55,7 @@ map <C-t> :terminal<CR>
 tnoremap <C-b> <C-w>N
 nnoremap ff :noh<CR><CR>
 nnoremap gr :call ExecuteCommand()<CR>
+inoremap <F5> ## [<C-R>=strftime("%F")<C-M>]
 
 " ---- Autocomplete braces ----
 
