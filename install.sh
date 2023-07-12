@@ -26,7 +26,9 @@ install_linux () {
         silversearcher-ag \
         xclip \
         pass \
-        pass-extensions-otp
+        pass-extensions-otp \
+        bluez*
+        blueman
 
     snap install \
         spotify \
@@ -36,15 +38,18 @@ install_linux () {
     wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null
     apt update
-    sudo apt install -y seafile-gui
+    apt install -y seafile-gui
 
     # Install theme
     git clone https://github.com/elmodos/numix-taller.git $HOME/.themes
 
+    # Symlink newsboat feeds
+    ln -s ~/Seafile/Wiki/storage/rss.txt ~/.newsboat/urls
+
     # Temporary - upgrade to xfce 4.18
-    sudo add-apt-repository ppa:xubuntu-dev/staging
-    sudo apt update
-    sudo apt dist-upgrade
+    add-apt-repository ppa:xubuntu-dev/staging
+    apt update
+    apt dist-upgrade
 }
 
 install_macos () {
@@ -74,8 +79,6 @@ install_essential () {
 
     # Inastall nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-
-    # Symlink newsboat feeds
 
     # OS specific
     case "$(uname -s)" in

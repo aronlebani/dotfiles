@@ -8,6 +8,8 @@
   <property name="applications" type="empty">
     <property name="known_applications" type="array">
       <value type="string" value="/snap/firefox/2356"/>
+      <value type="string" value="blueman"/>
+      <value type="string" value="nm-applet"/>
       <value type="string" value="org.gnome.Evolution"/>
       <value type="string" value="Seafile"/>
       <value type="string" value="Slack"/>
