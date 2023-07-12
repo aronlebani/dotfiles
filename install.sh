@@ -22,7 +22,9 @@ install_linux () {
         sqlite \
         redshift \
         newsboat \
-        ag
+        ag \
+        xclip \
+        pass
 
     snap install \
         spotify \
@@ -81,6 +83,7 @@ install_essential () {
 admin () {
     mkdir -p "$HOME/Repositories"
     mkdir -p "$HOME/bin"
+    mkdir -p "$HOME/.themes"
 
     rm -rf "$HOME/Documents" "$HOME/Music" "$HOME/Videos" "$HOME/Templates"
 }

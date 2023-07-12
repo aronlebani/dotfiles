@@ -16,9 +16,11 @@
     <property name="inactivity-sleep-mode-on-ac" type="empty"/>
     <property name="inactivity-sleep-mode-on-battery" type="empty"/>
     <property name="show-tray-icon" type="bool" value="false"/>
-    <property name="brightness-switch-restore-on-exit" type="int" value="1"/>
+    <property name="brightness-switch-restore-on-exit" type="int" value="-1"/>
     <property name="brightness-switch" type="int" value="0"/>
     <property name="inactivity-on-ac" type="uint" value="14"/>
     <property name="show-presentation-indicator" type="bool" value="false"/>
+    <property name="presentation-mode" type="bool" value="true"/>
+    <property name="heartbeat-command" type="string" value=""/>
   </property>
 </channel>
