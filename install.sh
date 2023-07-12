@@ -7,7 +7,8 @@ install_full () {
         freecad \
         fritzing \
         ardour \
-        usb-creator-gtk
+        usb-creator-gtk \
+        neofetch
 }
 
 install_linux () {
@@ -22,9 +23,10 @@ install_linux () {
         sqlite \
         redshift \
         newsboat \
-        ag \
+        silversearcher-ag \
         xclip \
-        pass
+        pass \
+        pass-extensions-otp
 
     snap install \
         spotify \
@@ -37,8 +39,12 @@ install_linux () {
     sudo apt install -y seafile-gui
 
     # Install theme
-    mkdir -p $HOME/.themes
     git clone https://github.com/elmodos/numix-taller.git $HOME/.themes
+
+    # Temporary - upgrade to xfce 4.18
+    sudo add-apt-repository ppa:xubuntu-dev/staging
+    sudo apt update
+    sudo apt dist-upgrade
 }
 
 install_macos () {
@@ -69,6 +75,8 @@ install_essential () {
     # Inastall nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
+    # Symlink newsboat feeds
+
     # OS specific
     case "$(uname -s)" in
         Linux*)
@@ -85,7 +93,12 @@ admin () {
     mkdir -p "$HOME/bin"
     mkdir -p "$HOME/.themes"
 
-    rm -rf "$HOME/Documents" "$HOME/Music" "$HOME/Videos" "$HOME/Templates"
+    rm -rf "$HOME/Documents" \
+        "$HOME/Music" \
+        "$HOME/Videos" \
+        "$HOME/Templates" \
+        "$HOME/Pictures" \
+        "$HOME/Public"
 }
 
 admin

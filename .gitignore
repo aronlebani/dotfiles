@@ -31,8 +31,6 @@
 !.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml
 !.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 !.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
-!.config/gtk-2.0/
-!.config/gtk-2.0/*
 !.config/gtk-3.0/
 !.config/gtk-3.0/*
 !.config/ardour6/
