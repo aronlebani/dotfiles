@@ -8,7 +8,8 @@ install_full () {
         fritzing \
         ardour \
         usb-creator-gtk \
-        neofetch
+        neofetch \
+        ristretto
 }
 
 install_linux () {
@@ -27,8 +28,9 @@ install_linux () {
         xclip \
         pass \
         pass-extensions-otp \
-        bluez*
-        blueman
+        bluez* \
+        blueman \
+        ledger
 
     snap install \
         spotify \
@@ -104,6 +106,12 @@ admin () {
         "$HOME/Public"
 }
 
+human_things () {
+    echo "To do:"
+    echo "-[ ] Set up email signature"
+    echo "-[ ] Sign into accounts"
+}
+
 admin
 install_essential
 
@@ -111,3 +119,5 @@ if [ $1 = "--full" ]
 then
     install_full
 fi
+
+human_things

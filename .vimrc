@@ -14,7 +14,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'          " Git for nerdtree
 Plug 'airblade/vim-gitgutter'               " Git gutter
 Plug 'tpope/vim-commentary'                 " Block commenting
 Plug 'vim-airline/vim-airline'              " Status bar
-Plug 'prettier/vim-prettier'                " Prettier
 Plug 'tyru/open-browser.vim'                " Use gx to open url in browser or smart search
 Plug 'dense-analysis/ale'                   " Linter
 Plug 'mileszs/ack.vim'                      " Ack for vim
@@ -160,9 +159,6 @@ let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_removed_above_and_below = '-'
 let g:gitgutter_sign_modified_removed = '~'
 
-" vim-prettier
-let g:prettier#autoformat_require_pragma = 1    " Only format files with @format or @prettier
-
 " open-browser
 let g:netrw_nogx = 1    " Disable netrw's gx mapping
 nmap gx <Plug>(openbrowser-smart-search)
@@ -177,3 +173,11 @@ let g:vim_markdown_follow_anchor = 1
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" Ale
+let g:ale_fixers = {
+    \ 'javascript': ['prettier'],
+    \ 'scss': ['prettier'],
+    \ 'sql': ['pgformatter'],
+    \ 'rust': ['rustfmt'],
+    \}

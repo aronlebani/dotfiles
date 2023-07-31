@@ -54,4 +54,5 @@
   <property name="hide-category-pane" type="bool" value="false"/>
   <property name="single-window" type="bool" value="true"/>
   <property name="hide-window-decorations" type="bool" value="false"/>
+  <property name="remember-category" type="bool" value="false"/>
 </channel>
