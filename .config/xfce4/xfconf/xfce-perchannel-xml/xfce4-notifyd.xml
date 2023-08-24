@@ -12,6 +12,7 @@
       <value type="string" value="io.snapcraft.SessionAgent"/>
       <value type="string" value="nm-applet"/>
       <value type="string" value="org.gnome.Evolution"/>
+      <value type="string" value="org.gnome.Evolution-alarm-notify"/>
       <value type="string" value="rider_rider"/>
       <value type="string" value="Seafile"/>
       <value type="string" value="Slack"/>

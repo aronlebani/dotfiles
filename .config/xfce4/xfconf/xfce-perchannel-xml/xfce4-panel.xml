@@ -20,7 +20,7 @@
         <value type="int" value="16"/>
       </property>
       <property name="background-style" type="uint" value="1"/>
-      <property name="size" type="uint" value="40"/>
+      <property name="size" type="uint" value="38"/>
       <property name="length-adjust" type="bool" value="true"/>
       <property name="span-monitors" type="bool" value="false"/>
       <property name="mode" type="uint" value="0"/>
@@ -36,7 +36,7 @@
       <property name="leave-opacity" type="uint" value="100"/>
       <property name="enable-struts" type="bool" value="true"/>
     </property>
-    <property name="dark-mode" type="bool" value="false"/>
+    <property name="dark-mode" type="bool" value="true"/>
   </property>
   <property name="plugins" type="empty">
     <property name="plugin-2" type="string" value="separator">
@@ -56,6 +56,7 @@
         <value type="string" value="nm-applet"/>
       </property>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="evolution-alarm-notify"/>
         <value type="string" value="network"/>
         <value type="string" value="bluetooth active &lt;b&gt;1 active connection&lt;/b&gt;"/>
         <value type="string" value="xfce4-power-manager"/>
