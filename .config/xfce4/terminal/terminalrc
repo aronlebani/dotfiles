@@ -40,4 +40,5 @@ ScrollingBar=TERMINAL_SCROLLBAR_NONE
 FontName=DejaVu Sans Mono 12
 TitleMode=TERMINAL_TITLE_HIDE
 OverlayScrolling=TRUE
+FontUseSystem=TRUE
 

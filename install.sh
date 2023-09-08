@@ -1,6 +1,8 @@
 #!/bin/bash
 
 install_full () {
+    apt install neofetch
+
     snap install arduino \
         guitarix \
         libreoffice \
@@ -8,7 +10,6 @@ install_full () {
         fritzing \
         ardour \
         usb-creator-gtk \
-        neofetch \
         ristretto
 }
 
@@ -37,7 +38,6 @@ install_linux () {
         dbeaver
 
     # Install seafile
-    wget https://linux-clients.seafile.com/seafile.asc -O /usr/share/keyrings/seafile-keyring.asc
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null
     apt update
     apt install -y seafile-gui
