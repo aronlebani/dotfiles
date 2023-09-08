@@ -28,7 +28,7 @@ install_linux () {
         silversearcher-ag \
         xclip \
         pass \
-        pass-extensions-otp \
+        pass-extension-otp \
         bluez* \
         blueman \
         ledger
