@@ -10,6 +10,7 @@ export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 export NVM_DIR="$HOME/.nvm"
 
+alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
 alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public,packages,bin,logs}"
 alias fuck='sudo $(history -p \!\!)'
@@ -19,18 +20,9 @@ alias copy="xclip -sel clip"
 
 [ -f "$HOME/.bash_prompt" ] && \. "$HOME/.bash_prompt"
 [ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -f "$HOME/.asdf/asdf.sh" ] && \. "$HOME/.asdf/asdf.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 [ -f /usr/share/bash-completion/completions/git ] && \. /usr/share/bash-completion/completions/git
 [ -f /usr/share/bash-completion/completions/pass ] && \. /usr/share/bash-completion/completions/pass
-
-case "$(uname -s)" in
-    Linux*)
-        alias ls="ls --group-directories-first --color=auto"
-        ;;
-    Darwin*)
-        export BASH_SILENCE_DEPRECATION_WARNING=1
-        export CLICOLOR=1
-        ;;
-esac
+[ -f "$HOME/.asdf/completions/asdf.bash" ] && \. "$HOME/.asdf/completions/asdf.bash"

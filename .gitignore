@@ -12,6 +12,7 @@
 !.gitignore_global
 !.vimrc
 !.wiki
+!.tool-versions
 !.ssh/
 !.ssh/config
 !.config/

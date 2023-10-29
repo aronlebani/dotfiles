@@ -19,6 +19,7 @@ Plug 'OmniSharp/omnisharp-vim'              " C# lang
 Plug 'evanleck/vim-svelte'                  " Svelte lang
 Plug 'plasticboy/vim-markdown'              " Markdown lang
 Plug 'rust-lang/rust.vim'                   " Rust lang
+Plug 'elixir-editors/vim-elixir'            " Elixir
 call plug#end()
 
 " ---- Basics ----

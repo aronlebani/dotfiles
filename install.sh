@@ -79,8 +79,18 @@ install_essential () {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    # Inastall nvm
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+    # Install runtimes
+    sudo apt install -y libssl-dev automake autoconf libncurses5-dev
+
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
+
+    asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+    asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+    asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+
+    asdf install erlang latest
+    asdf install elixir latest
+    asdf install nodejs latest
 
     # OS specific
     case "$(uname -s)" in
