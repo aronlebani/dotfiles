@@ -19,6 +19,8 @@ Plug        'evanleck/vim-svelte'                  " Svelte lang
 Plug        'plasticboy/vim-markdown'              " Markdown lang
 Plug        'rust-lang/rust.vim'                   " Rust lang
 Plug        'elixir-editors/vim-elixir'            " Elixir
+Plug        'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  " Golang
+Plug        'neovimhaskell/haskell-vim'            " Haskell
 call        plug#end()
 
 " ---- Basics ----
@@ -183,11 +185,45 @@ endif
 
 " Ale
 let         g:ale_linters = {
-            \ 'javascript': ['eslint'],
-            \}
+                \ 'javascript': ['eslint'],
+            \ }
 let         g:ale_fixers = {
-            \ 'javascript': ['prettier'],
-            \ 'scss': ['prettier'],
-            \ 'sql': ['pgformatter'],
-            \ 'rust': ['rustfmt'],
-            \}
+                \ 'javascript': ['prettier'],
+                \ 'scss': ['prettier'],
+                \ 'sql': ['pgformatter'],
+                \ 'rust': ['rustfmt'],
+            \ }
+
+" vim-go
+let         g:tagbar_type_go = {
+            \ 'ctagstype' : 'go',
+            \ 'kinds' : [
+                \ 'p:package',
+                \ 'i:imports:1',
+                \ 'c:constants',
+                \ 'v:variables',
+                \ 't:types',
+                \ 'n:interfaces',
+                \ 'w:fields',
+                \ 'e:embedded',
+                \ 'm:methods',
+                \ 'r:constructor',
+                \ 'f:functions'
+            \ ],
+            \ 'sro' : '.',
+            \ 'kind2scope' : {
+                \ 't' : 'ctype',
+                \ 'n' : 'ntype'
+            \ },
+            \ 'scope2kind' : {
+                \ 'ctype' : 't',
+                \ 'ntype' : 'n'
+            \ },
+            \ 'ctagsbin' : 'gotags',
+            \ 'ctagsargs' : '-sort -silent'
+            \ }
+let         g:go_highlight_structs = 1
+let         g:go_highlight_methods = 1
+let         g:go_highlight_functions = 1
+let         g:go_highlight_operators = 1
+let         g:go_highlight_build_constraints = 1

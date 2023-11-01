@@ -8,7 +8,6 @@ export VISUAL=vim
 export EDITOR=vim
 export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
-export NVM_DIR="$HOME/.nvm"
 
 alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
@@ -26,3 +25,5 @@ alias copy="xclip -sel clip"
 [ -f /usr/share/bash-completion/completions/git ] && \. /usr/share/bash-completion/completions/git
 [ -f /usr/share/bash-completion/completions/pass ] && \. /usr/share/bash-completion/completions/pass
 [ -f "$HOME/.asdf/completions/asdf.bash" ] && \. "$HOME/.asdf/completions/asdf.bash"
+
+export PATH=$PATH:/usr/local/go/bin

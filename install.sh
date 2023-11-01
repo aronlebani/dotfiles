@@ -68,6 +68,11 @@ install_essential () {
     # Install rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+    # Install ocaml
+    bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
+    opam init
+    opam install dune
+
     # Install wiki
     cd "$HOME/Repositories" \
         && git clone https://github.com/aronlebani/wiki.git \
