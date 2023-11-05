@@ -1,16 +1,26 @@
 #!/bin/bash
 
 install_full () {
-    apt install neofetch
+    apt install -y \
+        neofetch \
+        python3 \
+        sqlite \
+        redshift \
+        usb-creator-gtk \
+        ristretto \
+        bluez* \
+        blueman \
+        ledger 
 
-    snap install arduino \
+    snap install \
+        arduino \
         guitarix \
         libreoffice \
         freecad \
         fritzing \
         ardour \
-        usb-creator-gtk \
-        ristretto
+        spotify \
+        dbeaver
 }
 
 install_linux () {
@@ -19,31 +29,18 @@ install_linux () {
         vim \
         curl \
         evolution \
-        python3 \
         build-essential \
         qalc \
-        sqlite \
-        redshift \
         newsboat \
         silversearcher-ag \
         xclip \
         pass \
         pass-extension-otp \
-        bluez* \
-        blueman \
-        ledger
-
-    snap install \
-        spotify \
-        dbeaver
 
     # Install seafile
     echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null
     apt update
     apt install -y seafile-gui
-
-    # Install theme
-    git clone https://github.com/elmodos/numix-taller.git $HOME/.themes
 
     # Symlink newsboat feeds
     ln -s ~/Seafile/Wiki/storage/rss.txt ~/.newsboat/urls

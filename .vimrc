@@ -1,26 +1,27 @@
 " ---- Plugins ----
 
 call        plug#begin()
-Plug        'liuchengxu/space-vim-dark'            " Color theme
-Plug        'preservim/nerdtree'                   " File browser
-Plug        'Xuyuanp/nerdtree-git-plugin'          " Git for nerdtree
-Plug        'airblade/vim-gitgutter'               " Git gutter
-Plug        'tpope/vim-commentary'                 " Block commenting
-Plug        'vim-airline/vim-airline'              " Status bar
-Plug        'tyru/open-browser.vim'                " Use gx to open url in browser or smart search
-Plug        'dense-analysis/ale'                   " Linter
-Plug        'mileszs/ack.vim'                      " Ack for vim
-Plug        'mxw/vim-jsx'                          " JSX lang
-Plug        'pangloss/vim-javascript'              " JS lang
-Plug        'othree/html5.vim'                     " HTML lang
-Plug        'fsharp/vim-fsharp'                    " F# lang
-Plug        'OmniSharp/omnisharp-vim'              " C# lang
-Plug        'evanleck/vim-svelte'                  " Svelte lang
-Plug        'plasticboy/vim-markdown'              " Markdown lang
-Plug        'rust-lang/rust.vim'                   " Rust lang
-Plug        'elixir-editors/vim-elixir'            " Elixir
-Plug        'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  " Golang
-Plug        'neovimhaskell/haskell-vim'            " Haskell
+Plug        'liuchengxu/space-vim-dark'             " Color theme
+Plug        'tomasiser/vim-code-dark'
+Plug        'preservim/nerdtree'                    " File browser
+Plug        'Xuyuanp/nerdtree-git-plugin'           " Git for nerdtree
+Plug        'airblade/vim-gitgutter'                " Git gutter
+Plug        'tpope/vim-commentary'                  " Block commenting
+Plug        'vim-airline/vim-airline'               " Status bar
+Plug        'tyru/open-browser.vim'                 " Use gx to open url in browser or smart search
+Plug        'dense-analysis/ale'                    " Linter
+Plug        'mileszs/ack.vim'                       " Ack for vim
+Plug        'mxw/vim-jsx'                           " JSX lang
+Plug        'pangloss/vim-javascript'               " JS lang
+Plug        'othree/html5.vim'                      " HTML lang
+Plug        'fsharp/vim-fsharp'                     " F# lang
+Plug        'OmniSharp/omnisharp-vim'               " C# lang
+Plug        'evanleck/vim-svelte'                   " Svelte lang
+Plug        'plasticboy/vim-markdown'               " Markdown lang
+Plug        'rust-lang/rust.vim'                    " Rust lang
+Plug        'elixir-editors/vim-elixir'             " Elixir
+Plug        'fatih/vim-go', { 'do': ':GoUpdateBinaries' }   " Golang
+Plug        'neovimhaskell/haskell-vim'             " Haskell
 call        plug#end()
 
 " ---- Basics ----
@@ -43,12 +44,8 @@ autocmd     InsertEnter,InsertLeave * set cul!      " Toggle cursor line in inse
 " ---- Colour scheme ----
 
 set         termguicolors
-hi          Normal ctermbg=NONE guibg=NONE
-hi          LineNr ctermbg=NONE guibg=NONE
-hi          SignColumn ctermbg=NONE guibg=NONE
-set         background=dark
 syntax      on
-colorscheme space-vim-dark
+colorscheme codedark
 
 " ---- Key maps ----
 
