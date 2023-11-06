@@ -1,0 +1,53 @@
+#!/usr/bin/elixir
+
+defmodule Main do
+  defp usage do
+    IO.puts "Usage: gitcheck <path>"
+  end
+
+  defp git? path do
+    case File.ls(path) do
+      {:ok, files} -> Enum.member?(files, ".git")
+      _ -> false
+    end
+  end
+
+  defp unstagedChanges path do
+    case System.cmd("cd " <> path <> " && git diff-index --quiet HEAD", []) do
+      {_, 0} -> IO.puts(path <> " has uncommitted changes\n")
+      _ -> nil
+    end
+  end
+
+  defp list path do
+    IO.puts path
+    files = case File.ls(path) do
+      {:ok, files} -> files
+      _ -> []
+    end
+    IO.puts files
+    files
+  end
+
+  defp crawl path do
+    case File.exists?(path) do
+      false -> nil
+      true -> case File.dir?(path) do
+        false -> nil
+        true -> case git?(path) do
+          false -> Enum.map(list(path), fn x -> crawl(path <> "/" <> x) end)
+          true -> unstagedChanges(path)
+        end
+      end
+    end
+  end
+
+  def main do
+    case System.argv do
+      [path] -> crawl(path)
+      _ -> usage()
+    end
+  end
+end
+
+Main.main
