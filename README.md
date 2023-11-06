@@ -1,18 +1,22 @@
 # dotfiles
 
-> .files for happier hacking
+> dotfiles for happier hacking
 
-## Software
+This respository uses the "reverse gitignore" approach, inspired by
+[this blog post](https://drewdevault.com/2019/12/30/dotfiles.html). It uses a git repository in the
+`$HOME` directory to avoid the need to symlink files or sync files back and forth between the
+repository and `$HOME`. To prevent tracking private files, the `.gitignore` file is set up to ignore
+_everything_ using a `*` entry. The files that we want to track are then opted-in using
+`!<filename>` entries.
 
-- bash
-- vim
-- git
-- xfce
+## Installation
 
-## Steps
-
-1. Install `git` with `sudo apt install -y git`
-2. Clone repository
+1. If setting up a fresh OS installation, you may need to install `git` and `vim`.
+```sh
+sudo apt install -y git vim
+```
+2. It's not possible to clone into an existing non-empty directory, so instead set up a new git
+repository add the remote.
 ```sh
 cd ~
 git init
@@ -20,10 +24,4 @@ git remote add origin https://github.com/aronlebani/dotfiles.git
 git fetch
 git checkout -f main
 ```
-3. Run `sudo ./install.sh`
-4. Run `:PlugInstall` in vim
-5. Happy coding!
-
-## Warning
-
-The `install.sh` file hasn't been tested!
+3. Happy hacking!

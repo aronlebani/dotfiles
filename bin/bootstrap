@@ -89,9 +89,9 @@ install_essential () {
 admin () {
     mkdir -p "$HOME/Repositories"
     mkdir -p "$HOME/bin"
-    mkdir -p "$HOME/.themes"
 
-    rm -rf "$HOME/Documents" \
+    rm -rf \
+        "$HOME/Documents" \
         "$HOME/Music" \
         "$HOME/Videos" \
         "$HOME/Templates" \
@@ -101,8 +101,9 @@ admin () {
 
 human_things () {
     echo "To do:"
-    echo "-[ ] Set up email signature"
-    echo "-[ ] Sign into accounts"
+    echo "* [ ] Run :PlugInstall in vim"
+    echo "* [ ] Sign into firefox, seafile, evolution"
+    echo "* [ ] Set up email signature"
 }
 
 admin

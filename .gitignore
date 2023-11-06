@@ -1,7 +1,6 @@
 *
 !README.md
 !LICENSE
-!install.sh
 !bin/
 !bin/**/*
 !.bashrc
