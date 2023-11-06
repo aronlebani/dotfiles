@@ -2,9 +2,9 @@
 !README.md
 !LICENSE
 !install.sh
+!bin/
+!bin/**/*
 !.bashrc
-!.bash_login
-!.bash_logout
 !.bash_prompt
 !.inputrc
 !.gitconfig
@@ -17,5 +17,3 @@
 !.ssh/config
 !.newsboat/
 !.newsboat/config
-!bin/
-!bin/**/*

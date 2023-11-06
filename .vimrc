@@ -177,8 +177,8 @@ let         g:vim_markdown_toc_autofit = 1
 let         g:vim_markdown_follow_anchor = 1
 
 " ack.vim
-if executable('ag')
-    let     g:ackprg = 'ag --vimgrep'
+if executable('rg')
+    let     g:ackprg = 'rg --vimgrep --no-heading'
 endif
 
 " Ale

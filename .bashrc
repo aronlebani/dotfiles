@@ -11,7 +11,6 @@ export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with
 
 alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
-alias grep="grep --color=auto --exclude-dir={node_modules,.next,.cache,public,packages,bin,logs}"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 

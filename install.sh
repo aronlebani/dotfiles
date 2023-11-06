@@ -29,11 +29,11 @@ install_essential () {
         git \
         vim \
         curl \
-        evolution \
         build-essential \
+        evolution \
         qalc \
         newsboat \
-        silversearcher-ag \
+        ripgrep \
         xclip \
         pass \
         pass-extension-otp \
@@ -55,8 +55,8 @@ install_essential () {
     cd "$HOME/Repositories" \
         && git clone https://github.com/aronlebani/wiki.git \
         && cd wiki \
-        && cargo build \
-        && ./install.sh
+        && cargo build --release \
+        && cp target/release/wiki $HOME/bin
 
     # Install vimplug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -68,12 +68,14 @@ install_essential () {
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.13.1
 
     asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
-    asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+    asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 
     asdf install erlang latest
     asdf install elixir latest
     asdf install nodejs latest
+    asdf install ruby latest
 
     # Symlink newsboat feeds
     ln -s ~/Seafile/Wiki/storage/rss.txt ~/.newsboat/urls
