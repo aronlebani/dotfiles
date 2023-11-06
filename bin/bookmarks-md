@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import sys
 import json
 
 def parse_bookmarks(bdict, header=""):
@@ -16,6 +17,7 @@ def parse_bookmarks(bdict, header=""):
         parse_bookmarks(children, header+'#')
 
 if __name__ == '__main__':
-    bdict = json.load(open('bookmarks-2021-08-19.json', 'r'))
+    filename = sys.argv[1]
+    bdict = json.load(open(filename, 'r'))
     parse_bookmarks(bdict)
 

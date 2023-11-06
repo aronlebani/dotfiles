@@ -22,7 +22,7 @@ status () {
 usage () {
     echo "Usage:"
     echo ""
-    echo "      vpn.sh [OPTION]"
+    echo "      vpn [OPTION]"
     echo ""
     echo "Options:"
     echo ""
