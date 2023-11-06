@@ -23,7 +23,8 @@ install_full () {
         dbeaver
 }
 
-install_linux () {
+install_essential () {
+    # From the repositories
     apt update && apt install -y \
         git \
         vim \
@@ -42,26 +43,6 @@ install_linux () {
     apt update
     apt install -y seafile-gui
 
-    # Symlink newsboat feeds
-    ln -s ~/Seafile/Wiki/storage/rss.txt ~/.newsboat/urls
-
-    # Temporary - upgrade to xfce 4.18
-    add-apt-repository ppa:xubuntu-dev/staging
-    apt update
-    apt dist-upgrade
-}
-
-install_macos () {
-    # Install homebrew
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    brew install \
-        nvm \
-        rust \
-        qalculate-gtk
-}
-
-install_essential () {
     # Install rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
@@ -94,15 +75,13 @@ install_essential () {
     asdf install elixir latest
     asdf install nodejs latest
 
-    # OS specific
-    case "$(uname -s)" in
-        Linux*)
-            install_linux
-            ;;
-        Darwin*)
-            install_macos
-            ;;
-    esac
+    # Symlink newsboat feeds
+    ln -s ~/Seafile/Wiki/storage/rss.txt ~/.newsboat/urls
+
+    # Temporary - upgrade to xfce 4.18
+    # add-apt-repository ppa:xubuntu-dev/staging
+    # apt update
+    # apt dist-upgrade
 }
 
 admin () {

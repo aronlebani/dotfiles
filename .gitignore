@@ -18,3 +18,5 @@
 !.config/
 !.newsboat/
 !.newsboat/config
+!.bin/
+!.bin/*
