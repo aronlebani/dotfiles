@@ -1,0 +1,45 @@
+#!/bin/bash
+
+CMD=$1
+PATH=$2
+
+start () {
+    /usr/bin/openvpn3 session-start --config $PATH
+}
+
+stop () {
+    ACTIVE_SESSIONS=$(/usr/bin/openvpn3 sessions-list | /usr/bin/grep -i 'path' | /usr/bin/awk '{p=index($0, ":");print $2}')
+    echo $ACTIVE_SESSIONS
+    for instance in $ACTIVE_SESSIONS; do
+        /usr/bin/openvpn3 session-manage --disconnect --session-path ${instance}
+    done 
+}
+
+status () {
+    /usr/bin/openvpn3 sessions-list
+}
+
+usage () {
+    echo "Usage:"
+    echo ""
+    echo "      vpn.sh [OPTION]"
+    echo ""
+    echo "Options:"
+    echo ""
+    echo "      --help                  show help"
+    echo "      start <file>.ovpn       start a session"
+    echo "      stop                    stop all sessions"
+    echo "      status                  show session status"
+}
+
+if [ $CMD = "start" ]; then
+    start
+elif [ $CMD = "stop" ]; then
+    stop
+elif [ $CMD = "status" ]; then
+    status
+elif [ $CMD = "--help" ]; then
+    usage
+else
+    usage
+fi

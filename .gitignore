@@ -15,8 +15,7 @@
 !.tool-versions
 !.ssh/
 !.ssh/config
-!.config/
 !.newsboat/
 !.newsboat/config
-!.bin/
-!.bin/*
+!bin/
+!bin/**/*

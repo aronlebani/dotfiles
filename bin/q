@@ -1,0 +1,146 @@
+#!/usr/bin/ruby
+
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: q.rb [options]"
+
+  opts.on("-t TAGS", "--tags=TAGS", "Query by tag names") do |t|
+    options[:tags] = t.split(" ")
+  end
+
+  opts.on("-q QUERY", "--query=QUERY", "Query by keywords") do |q|
+    options[:query] = q.split(" ")
+  end
+
+  opts.on("-c", "--check", "Query todo items") do |c|
+    options[:todo] = c
+  end
+
+  opts.on("-a", "--anchor", "Query link items") do |a|
+    options[:anchor] = a
+  end
+
+  opts.on("-l", "--list", "List all tags") do |l|
+    options[:list] = l
+  end
+
+  opts.on("-v", "--validate", "Perform validation of tags") do |v|
+    options[:validate] = v
+  end
+end.parse!
+
+def get_re(options)
+  re_str = ""
+
+  if options[:tags] != nil then
+    options[:tags].each do |tag|
+      re_str = re_str + "(?=.*_#{tag}[^_]*_)"
+    end
+  end
+
+  if options[:query] != nil then
+    options[:query].each do |query|
+      re_str = re_str + "(?=.*#{query}*)"
+    end
+  end
+
+  if options[:anchor] != nil && options[:anchor] then
+    re_str = re_str +  "(?=.*\[.*\]\(.*\))"
+  end
+
+  if options[:todo] != nil && options[:todo] then
+    re_str = Regexp.escape("- [ ]") + re_str
+  end
+
+  re_str = re_str + ".*"
+
+  return /#{re_str}/i
+end
+
+def colorize(str, color_code)
+  return "\e[#{color_code}m#{str}\e[0m"
+end
+
+def colorize_green(str)
+  colorize(str, 32)
+end
+
+def colorize_blue(str)
+  colorize(str, 34)
+end
+
+def query(options)
+  re = get_re(options)
+
+  Dir.glob("**/**").each do |file|
+    next if File.directory?(file)
+    next if File.extname(file) != ".md"
+
+    File.open(file, "r") do |content|
+      content.readlines.each_with_index do |line, line_no|
+        if line.match?(re)
+          puts "#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}"
+        end
+      end
+    end
+  end
+end
+
+def list()
+  tags = []
+  re = /_tag:[^_]*_/
+  std = [
+    "_todo_",
+    "_bkmk_",
+    "_idea_",
+    "_ref_",
+    "_prj:<name>_",
+    "_due:<DD-MM-YYYY>_",
+    "_sch:<context|project|waiting|someday>_",
+    "_tag:<name>_",
+    "",
+  ]
+
+  Dir.glob("**/**").each do |file|
+    next if File.directory?(file)
+    next if File.extname(file) != ".md"
+
+    File.open(file, "r") do |content|
+      content.readlines.each_with_index do |line, line_no|
+        if line.match(re) then
+          tags = tags.push(line.match(re).to_s)
+        end
+      end
+    end
+  end
+
+  puts std.push(tags.uniq.sort).uniq
+end
+
+def validate()
+  tags = []
+  re = /_[^_]*_/
+
+  Dir.glob("**/**").each do |file|
+    next if File.directory?(file)
+    next if File.extname(file) != ".md"
+
+    File.open(file, "r") do |content|
+      content.readlines.each_with_index do |line, line_no|
+        tags = tags.push(line.match(re).to_s)
+      end
+    end
+  end
+
+  puts tags.uniq.sort
+end
+
+if options[:list] then
+  list
+elsif options[:validate] then
+  validate
+else
+  query(options)
+end

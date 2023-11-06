@@ -1,0 +1,6 @@
+#!/bin/sh
+
+for file in $(find . -name "*.scss")
+do
+    mv ${file} ${file%.scss}.module.scss
+done

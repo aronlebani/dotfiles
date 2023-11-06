@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+
+import json
+
+def parse_bookmarks(bdict, header=""):
+    if 'children' not in bdict.keys():
+        try:
+            print('-', '[' + bdict['title'] + ']', '(' + bdict['uri'] + ')')
+        except:
+            pass
+        return
+
+    print(header, bdict['title'])
+
+    for children in bdict['children']:
+        parse_bookmarks(children, header+'#')
+
+if __name__ == '__main__':
+    bdict = json.load(open('bookmarks-2021-08-19.json', 'r'))
+    parse_bookmarks(bdict)
+
