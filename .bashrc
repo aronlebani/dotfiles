@@ -18,11 +18,9 @@ alias copy="xclip -sel clip"
 
 [ -f "$HOME/.bash_prompt" ] && \. "$HOME/.bash_prompt"
 [ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
-[ -f "$HOME/.asdf/asdf.sh" ] && \. "$HOME/.asdf/asdf.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 [ -f /usr/share/bash-completion/completions/git ] && \. /usr/share/bash-completion/completions/git
 [ -f /usr/share/bash-completion/completions/pass ] && \. /usr/share/bash-completion/completions/pass
-[ -f "$HOME/.asdf/completions/asdf.bash" ] && \. "$HOME/.asdf/completions/asdf.bash"
 
 export PATH=$PATH:/usr/local/go/bin
