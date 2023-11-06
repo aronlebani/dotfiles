@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# A wrapper for openvpn3. Because the openvpn3 interface sucks.
+
 CMD=$1
 PATH=$2
 

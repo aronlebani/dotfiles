@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+# Converts a json bookmarks export to markdown format.
+#
+# Usage: bookmarks2md <file>
+
 import sys
 import json
 

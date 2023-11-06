@@ -1,50 +1,94 @@
 #!/usr/bin/elixir
 
-defmodule Main do
-  defp usage do
-    IO.puts "Usage: gitcheck <path>"
+# Recursively checks if any git repositories have unpublished changes.
+#
+# Usage: gitcheck <start-path>
+#
+# Does not check nested repositories. If it finds a git repository, it will stop searching down that
+# path.
+
+defmodule Git do
+  defp dirty? status do
+    status |> String.contains?("modified:")
   end
 
-  defp git? path do
+  defp ahead? status do
+    status |> String.contains?("Your branch is ahead of")
+  end
+
+  defp newfile? status do
+    status |> String.contains?("new file:")
+  end
+
+  defp renamed? status do
+    status |> String.contains?("renamed:")
+  end
+
+  defp deleted? status do
+    status |> String.contains?("deleted:")
+  end
+
+  defp untracked? status do
+    status |> String.contains?("Untracked files")
+  end
+
+  def repository? path do
     case File.ls(path) do
       {:ok, files} -> Enum.member?(files, ".git")
       _ -> false
     end
   end
 
-  defp unstagedChanges path do
-    case System.cmd("cd " <> path <> " && git diff-index --quiet HEAD", []) do
-      {_, 0} -> IO.puts(path <> " has uncommitted changes\n")
+  def status path do
+    case File.cd(path) do
+      :ok ->
+        case System.cmd("git", ["status"]) do
+          {out, 0} -> out
+          _ -> nil
+        end
       _ -> nil
     end
   end
 
-  defp list path do
-    IO.puts path
-    files = case File.ls(path) do
+  def changes? status do
+    dirty?(status) or
+    untracked?(status) or
+    ahead?(status) or
+    newfile?(status) or
+    renamed?(status) or
+    deleted?(status)
+  end
+end
+
+defmodule Crawler do
+  defp ls path do
+    case File.ls(path) do
       {:ok, files} -> files
       _ -> []
     end
-    IO.puts files
-    files
   end
 
-  defp crawl path do
-    case File.exists?(path) do
-      false -> nil
-      true -> case File.dir?(path) do
-        false -> nil
-        true -> case git?(path) do
-          false -> Enum.map(list(path), fn x -> crawl(path <> "/" <> x) end)
-          true -> unstagedChanges(path)
+  def crawl path do
+    if File.exists?(path) and File.dir?(path) do
+      if Git.repository?(path) do
+        if Git.status(path) |> Git.changes? do
+          IO.puts(path <> " *")
         end
+      else
+        ls(path) |> Enum.map(fn x -> crawl(path <> "/" <> x) end)
       end
     end
+  end
+end
+
+defmodule Main do
+  defp usage do
+    IO.puts "Usage: gitcheck <start-path>"
   end
 
   def main do
     case System.argv do
-      [path] -> crawl(path)
+      [path] -> Crawler.crawl(path)
       _ -> usage()
     end
   end

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Recursively converts *.scss files to *.module.scss in the current directory.
+
 for file in $(find . -name "*.scss")
 do
     mv ${file} ${file%.scss}.module.scss
