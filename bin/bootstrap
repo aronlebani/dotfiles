@@ -48,17 +48,21 @@ install_essential () {
         pass-extension-otp \
 
     # Install seafile
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null
-    apt update
-    apt install -y seafile-gui
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/seafile-keyring.asc] https://linux-clients.seafile.com/seafile-deb/$(lsb_release -cs)/ stable main" | sudo tee /etc/apt/sources.list.d/seafile.list > /dev/null \
+        && apt update \
+        && apt install -y seafile-gui
 
     # Install rust
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+    # Install golang
+    curl -OL https://go.dev/dl/go1.21.3.linux-amd64.tar.gz \
+        && tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
+
     # Install ocaml
-    bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
-    opam init
-    opam install dune
+    bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)" \
+        && opam init \
+        && opam install dune
 
     # Install wiki
     cd "$HOME/Repositories" \
@@ -98,6 +102,7 @@ human_things () {
     echo "* [ ] Run :PlugInstall in vim"
     echo "* [ ] Sign into firefox, seafile, evolution"
     echo "* [ ] Set up email signature"
+    echo "* [ ] Set up Seafile to start on boot"
 }
 
 admin
