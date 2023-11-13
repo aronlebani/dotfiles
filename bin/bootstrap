@@ -86,7 +86,6 @@ install_essential () {
 
 admin () {
     mkdir -p "$HOME/Repositories"
-    mkdir -p "$HOME/bin"
 
     rm -rf \
         "$HOME/Documents" \
