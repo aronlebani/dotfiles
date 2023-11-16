@@ -3,8 +3,9 @@
 ; Recursively checks if any git repositories have unpublished changes.
 ;
 ; Usage: gitcheck <start-path>
+; Example: gitcheck ~
 
-(load "path.lisp")
+(load (merge-pathnames "path.lisp" *load-truename*))
 
 (defun git-changes? (path)
   ; Checks for changes in the git repository.
@@ -15,7 +16,7 @@
   (some
     (lambda (x) (search ".git" x :start2 (- (length x) 5)))
     (mapcar #'namestring (path-list path))))
-      
+
 (defun git-status (path)
   ; Runs `git status --porcelain` on the pathname and returns the result.
   (with-output-to-string (out)
