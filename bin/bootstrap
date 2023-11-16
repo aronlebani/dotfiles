@@ -58,10 +58,12 @@ install_essential () {
     curl -OL https://go.dev/dl/go1.21.3.linux-amd64.tar.gz \
         && tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
 
-    # Install ocaml
-    bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)" \
-        && opam init \
-        && opam install dune
+    # Install quicklisp package manager
+    curl -o /tmp/ql.lisp http://beta.quicklisp.org/quicklisp.lisp
+    sbcl --no-sysinit --no-userinit --load /tmp/ql.lisp \
+       --eval '(quicklisp-quickstart:install :path "~/.quicklisp")' \
+       --quit
+    git clone https://github.com/jini-zh/sbcl-readline ~/.quicklisp/local-projects
 
     # Install vimplug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

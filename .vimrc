@@ -90,7 +90,8 @@ autocmd     FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd     FileType html setlocal ts=2 sts=2 sw=2
 autocmd     FileType svelte setlocal ts=2 sts=2 sw=2
 autocmd     FileType type call Type()
-autocmd     FileType markdown setlocal wrap     " Wrap text       
+autocmd     FileType markdown setlocal wrap
+autocmd     FileType markdown colorscheme plain
 autocmd     FileType gitcommit setlocal spell
 autocmd     FileType lisp colorscheme plain-cterm
 
