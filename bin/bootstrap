@@ -37,9 +37,8 @@ install_essential () {
         curl \
         build-essential \
         evolution \
-        python3 \
         ruby \
-        elixir \
+        sbcl \
         qalc \
         newsboat \
         ripgrep \
@@ -63,13 +62,6 @@ install_essential () {
     bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)" \
         && opam init \
         && opam install dune
-
-    # Install wiki
-    cd "$HOME/Repositories" \
-        && git clone https://github.com/aronlebani/wiki.git \
-        && cd wiki \
-        && cargo build --release \
-        && cp target/release/wiki $HOME/bin
 
     # Install vimplug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

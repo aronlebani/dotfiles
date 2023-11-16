@@ -10,7 +10,6 @@
 !.gitignore
 !.gitignore_global
 !.vimrc
-!.wiki
 !.sqliterc
 !.ssh/
 !.ssh/config

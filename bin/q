@@ -1,12 +1,16 @@
 #!/usr/bin/ruby
 
-# CLI interface for querying markdown notes.
+# Recursively query markdown notes.
+#
+# Usage: q [options]
+# Help: q --help
 
 require 'optparse'
 
 options = {}
+
 OptionParser.new do |opts|
-  opts.banner = "Usage: q.rb [options]"
+  opts.banner = "Usage: q [options]"
 
   opts.on("-t TAGS", "--tags=TAGS", "Query by tag names") do |t|
     options[:tags] = t.split(" ")
@@ -94,10 +98,10 @@ def list()
   tags = []
   re = /_tag:[^_]*_/
   std = [
-    "_todo_",
     "_bkmk_",
     "_idea_",
     "_ref_",
+    "_reading_",
     "_prj:<name>_",
     "_due:<DD-MM-YYYY>_",
     "_sch:<context|project|waiting|someday>_",

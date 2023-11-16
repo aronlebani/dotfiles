@@ -1,2 +1,0 @@
-editor="vim"
-path="/home/aron/Seafile/Wiki/"
