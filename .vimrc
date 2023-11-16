@@ -3,6 +3,8 @@
 call        plug#begin()
 Plug        'liuchengxu/space-vim-dark'             " Color theme
 Plug        'tomasiser/vim-code-dark'
+Plug        'pbrisbin/vim-colors-off'
+Plug        'andreypopp/vim-colors-plain'
 Plug        'preservim/nerdtree'                    " File browser
 Plug        'Xuyuanp/nerdtree-git-plugin'           " Git for nerdtree
 Plug        'airblade/vim-gitgutter'                " Git gutter
@@ -90,138 +92,121 @@ autocmd     FileType svelte setlocal ts=2 sts=2 sw=2
 autocmd     FileType type call Type()
 autocmd     FileType markdown setlocal wrap     " Wrap text       
 autocmd     FileType gitcommit setlocal spell
+autocmd     FileType lisp colorscheme plain-cterm
 
 " ---- Functions ----
 
 " Execute shell command between backticks
 function ExecuteCommand()
-    let     l:save_clipboard = &clipboard
-    set     clipboard= " Avoid clobbering the selection and clipboard registers.
-    let     l:save_reg = getreg('"')
-    let     l:save_regmode = getregtype('"')
+    let l:save_clipboard = &clipboard
+    set clipboard= " Avoid clobbering the selection and clipboard registers.
+    let l:save_reg = getreg('"')
+    let l:save_regmode = getregtype('"')
     normal! yi`
-    let     l:text = @@ " Your text object contents are here.
-    call    setreg('"', l:save_reg, l:save_regmode)
-    let     &clipboard = l:save_clipboard
-    silent  execute "!" . l:text
+    let l:text = @@ " Your text object contents are here.
+    call setreg('"', l:save_reg, l:save_regmode)
+    let &clipboard = l:save_clipboard
+    silent execute "!" . l:text
     redraw!
 endfunction
 
 " Typewriter mode
 function Type()
-    set     insertmode
+    set insertmode
 
     " Disable the normal-mode escape (in insertmode)
-    imap    <c-l> <nop>
+    imap <c-l> <nop>
 
     " Disable the one-func insert-mode escape
-    imap    <c-o> <nop>
+    imap <c-o> <nop>
 
     " Disable the direction keys
-    imap    <left> <nop>
-    imap    <right> <nop>
-    imap    <up> <nop>
-    imap    <down> <nop>
+    imap <left> <nop>
+    imap <right> <nop>
+    imap <up> <nop>
+    imap <down> <nop>
 
     " Disable the various forms of deletion
-    imap    <c-u> <nop>
-    imap    <c-w> <nop>
-    imap    <BS> <nop>
-    imap    <c-h> <nop>
+    imap <c-u> <nop>
+    imap <c-w> <nop>
+    imap <BS> <nop>
+    imap <c-h> <nop>
 
-    imap    <c-q> <cmd>:confirm q<CR>
-    imap    <c-s> <cmd>:update<CR>
+    imap <c-q> <cmd>:confirm q<CR>
+    imap <c-s> <cmd>:update<CR>
 endfunction
 
 " ---- Plugin specific settings ----
 
 " space-vim-dark
-let         g:space_vim_dark_background = 233
+let g:space_vim_dark_background = 233
 
 " NERDTree
-map         <C-n> :NERDTreeToggle<CR>
-autocmd     bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let         NERDTreeShowHidden=1
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let NERDTreeShowHidden=1
 
 " nerdtree-git-plugin
-let         g:NERDTreeGitStatusIndicatorMapCustom = {
-            \ 'Modified'  :'~',
-            \ 'Staged'    :'+',
-            \ 'Untracked' :'+',
-            \ 'Ignored'   :'*',
-            \ 'Deleted'   :'-',
-            \ 'Renamed'   :'>',
-            \ 'Unmerged'  :'═',
-            \ 'Dirty'     :'~',
-            \ 'Clean'     :' ',
-            \ 'Unknown'   :'?',
-            \ }
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ 'Modified'  :'~',
+    \ 'Staged'    :'+',
+    \ 'Untracked' :'+',
+    \ 'Ignored'   :'*',
+    \ 'Deleted'   :'-',
+    \ 'Renamed'   :'>',
+    \ 'Unmerged'  :'═',
+    \ 'Dirty'     :'~',
+    \ 'Clean'     :' ',
+    \ 'Unknown'   :'?',
+    \ }
 
 " vim-gitgutter
-let         g:gitgutter_sign_column_always = 1  " Always show gutter
-let         g:gitgutter_sign_added = '+'
-let         g:gitgutter_sign_modified = '~'
-let         g:gitgutter_sign_removed = '-'
-let         g:gitgutter_sign_removed_first_line = '-'
-let         g:gitgutter_sign_removed_above_and_below = '-'
-let         g:gitgutter_sign_modified_removed = '~'
+let g:gitgutter_sign_column_always = 1  " Always show gutter
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+let g:gitgutter_sign_removed_above_and_below = '-'
+let g:gitgutter_sign_modified_removed = '~'
 
 " open-browser
-let         g:netrw_nogx = 1    " Disable netrw's gx mapping
-nmap        gx <Plug>(openbrowser-smart-search)
-vmap        gx <Plug>(openbrowser-smart-search)
+let  g:netrw_nogx = 1    " Disable netrw's gx mapping
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " vim-markdown
-let         g:vim_markdown_folding_disabled = 1
-let         g:vim_markdown_toc_autofit = 1
-let         g:vim_markdown_follow_anchor = 1
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_follow_anchor = 1
 
 " ack.vim
 if executable('rg')
-    let     g:ackprg = 'rg --vimgrep --no-heading'
+    let g:ackprg = 'rg --vimgrep --no-heading'
 endif
 
 " Ale
-let         g:ale_linters = {
-                \ 'javascript': ['eslint'],
-            \ }
-let         g:ale_fixers = {
-                \ 'javascript': ['prettier'],
-                \ 'scss': ['prettier'],
-                \ 'sql': ['pgformatter'],
-                \ 'rust': ['rustfmt'],
-            \ }
+let g:ale_linters = {
+    \ 'javascript': ['eslint'],
+    \ }
+let g:ale_fixers = {
+    \ 'javascript': ['prettier'],
+    \ 'scss': ['prettier'],
+    \ 'sql': ['pgformatter'],
+    \ 'rust': ['rustfmt'],
+    \ }
 
 " vim-go
-let         g:tagbar_type_go = {
-            \ 'ctagstype' : 'go',
-            \ 'kinds' : [
-                \ 'p:package',
-                \ 'i:imports:1',
-                \ 'c:constants',
-                \ 'v:variables',
-                \ 't:types',
-                \ 'n:interfaces',
-                \ 'w:fields',
-                \ 'e:embedded',
-                \ 'm:methods',
-                \ 'r:constructor',
-                \ 'f:functions'
-            \ ],
-            \ 'sro' : '.',
-            \ 'kind2scope' : {
-                \ 't' : 'ctype',
-                \ 'n' : 'ntype'
-            \ },
-            \ 'scope2kind' : {
-                \ 'ctype' : 't',
-                \ 'ntype' : 'n'
-            \ },
-            \ 'ctagsbin' : 'gotags',
-            \ 'ctagsargs' : '-sort -silent'
-            \ }
-let         g:go_highlight_structs = 1
-let         g:go_highlight_methods = 1
-let         g:go_highlight_functions = 1
-let         g:go_highlight_operators = 1
-let         g:go_highlight_build_constraints = 1
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds' : ['p:package', 'i:imports:1', 'c:constants', 'v:variables', 't:types', 'n:interfaces', 'w:fields', 'e:embedded', 'm:methods', 'r:constructor', 'f:functions'],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {'t' : 'ctype', 'n' : 'ntype'},
+    \ 'scope2kind' : {'ctype' : 't', 'ntype' : 'n'},
+    \ 'ctagsbin' : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+    \ }
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1

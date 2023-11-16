@@ -16,3 +16,5 @@
 !.ssh/config
 !.newsboat/
 !.newsboat/config
+!.vim/
+!.vim/scripts.vim

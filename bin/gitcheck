@@ -1,97 +1,33 @@
-#!/usr/bin/elixir
+#!/usr/bin/sbcl --script
 
-# Recursively checks if any git repositories have unpublished changes.
-#
-# Usage: gitcheck <start-path>
-#
-# Does not check nested repositories. If it finds a git repository, it will stop searching down that
-# path.
+; Recursively checks if any git repositories have unpublished changes.
+;
+; Usage: gitcheck <start-path>
 
-defmodule Git do
-  defp dirty? status do
-    status |> String.contains?("modified:")
-  end
+(load "path.lisp")
 
-  defp ahead? status do
-    status |> String.contains?("Your branch is ahead of")
-  end
+(defun git-changes? (path)
+  ; Checks for changes in the git repository.
+  (> (length (git-status path)) 0))
 
-  defp newfile? status do
-    status |> String.contains?("new file:")
-  end
+(defun git-repository? (path)
+  ; Checks if the pathname is the root of a git repository.
+  (some
+    (lambda (x) (search ".git" x :start2 (- (length x) 5)))
+    (mapcar #'namestring (path-list path))))
+      
+(defun git-status (path)
+  ; Runs `git status --porcelain` on the pathname and returns the result.
+  (with-output-to-string (out)
+    (run-program
+      "/usr/bin/git"
+      (list "status" "--porcelain")
+      :output out
+      :directory path)))
 
-  defp renamed? status do
-    status |> String.contains?("renamed:")
-  end
-
-  defp deleted? status do
-    status |> String.contains?("deleted:")
-  end
-
-  defp untracked? status do
-    status |> String.contains?("Untracked files")
-  end
-
-  def repository? path do
-    case File.ls(path) do
-      {:ok, files} -> Enum.member?(files, ".git")
-      _ -> false
-    end
-  end
-
-  def status path do
-    case File.cd(path) do
-      :ok ->
-        case System.cmd("git", ["status"]) do
-          {out, 0} -> out
-          _ -> nil
-        end
-      _ -> nil
-    end
-  end
-
-  def changes? status do
-    dirty?(status) or
-    untracked?(status) or
-    ahead?(status) or
-    newfile?(status) or
-    renamed?(status) or
-    deleted?(status)
-  end
-end
-
-defmodule Crawler do
-  defp ls path do
-    case File.ls(path) do
-      {:ok, files} -> files
-      _ -> []
-    end
-  end
-
-  def crawl path do
-    if File.exists?(path) and File.dir?(path) do
-      if Git.repository?(path) do
-        if Git.status(path) |> Git.changes? do
-          IO.puts(path <> " *")
-        end
-      else
-        ls(path) |> Enum.map(fn x -> crawl(path <> "/" <> x) end)
-      end
-    end
-  end
-end
-
-defmodule Main do
-  defp usage do
-    IO.puts "Usage: gitcheck <start-path>"
-  end
-
-  def main do
-    case System.argv do
-      [path] -> Crawler.crawl(path)
-      _ -> usage()
-    end
-  end
-end
-
-Main.main
+(walk-directory
+  (nth 1 *posix-argv*)
+  :directory-fn
+    (lambda (x) (write-line (namestring x)) (write-line (git-status x)))
+  :test
+    (lambda (x) (and (git-repository? x) (git-changes? x))))
