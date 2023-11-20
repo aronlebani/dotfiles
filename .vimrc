@@ -3,8 +3,7 @@
 call        plug#begin()
 Plug        'liuchengxu/space-vim-dark'             " Color theme
 Plug        'tomasiser/vim-code-dark'
-Plug        'pbrisbin/vim-colors-off'
-Plug        'andreypopp/vim-colors-plain'
+Plug        'aronlebani/vim-colors-plain'
 Plug        'preservim/nerdtree'                    " File browser
 Plug        'Xuyuanp/nerdtree-git-plugin'           " Git for nerdtree
 Plug        'airblade/vim-gitgutter'                " Git gutter
@@ -91,7 +90,6 @@ autocmd     FileType html setlocal ts=2 sts=2 sw=2
 autocmd     FileType svelte setlocal ts=2 sts=2 sw=2
 autocmd     FileType type call Type()
 autocmd     FileType markdown setlocal wrap
-autocmd     FileType markdown colorscheme plain
 autocmd     FileType gitcommit setlocal spell
 autocmd     FileType lisp colorscheme plain-cterm
 
