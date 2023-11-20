@@ -1,6 +1,58 @@
 #!/bin/bash
 
 # Recursively converts HEIC files to JPEG in the current directory. The new files will have the
-# same name as the original files.
+# same name as the original files. Requires the `libheif-examples` package which can be installed
+# with apt.
+#
+# Usage: heic2jpg [OPTION]
+# Example: heic2jpg --convert
 
-find . -type f -iname "*.heic" -exec heif-convert -q 100 {} {}.jpg \;
+heic_convert ()
+{
+    [ ! -f "$1.jpg" ] && heif-convert -q 100 "$1" "$1.jpg"
+}
+
+export -f heic_convert
+
+convert ()
+{
+    find . -type f -iname "*.heic" -exec bash -c 'heic_convert "$0"' {} \;
+}
+
+delete ()
+{
+    find . -type f -iname "*.heic" -delete
+}
+
+count ()
+{
+    echo "HEIC file count: $(find . -type f -iname "*.heic" | wc -l)"
+    echo "Converted count: $(find . -type f -iname "*.heic.jpg" | wc -l)"
+}
+
+usage ()
+{
+    echo "Usage:"
+    echo ""
+    echo "      heic2jpg [OPTION]"
+    echo ""
+    echo "Options:"
+    echo ""
+    echo "      -h | --help     show help"
+    echo "      -c | --convert  recursively convert all .HEIC files in the current directory to JPG"
+    echo "      -d | --delete   recursively delete all .HEIC files in the current directory"
+    echo "      --count         show count of converted files"
+    exit 1
+}
+
+for arg in "$@"
+do
+    shift
+    case "$arg" in
+        -h | --help ) usage ;;
+        -c | --convert ) convert ;;
+        -d | --delete ) delete ;;
+        --count ) count ;;
+        * ) usage ;;
+    esac
+done

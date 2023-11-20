@@ -5,11 +5,13 @@
 CMD=$1
 PATH=$2
 
-start () {
+start ()
+{
     /usr/bin/openvpn3 session-start --config $PATH
 }
 
-stop () {
+stop ()
+{
     ACTIVE_SESSIONS=$(/usr/bin/openvpn3 sessions-list | /usr/bin/grep -i 'path' | /usr/bin/awk '{p=index($0, ":");print $2}')
     echo $ACTIVE_SESSIONS
     for instance in $ACTIVE_SESSIONS; do
@@ -17,11 +19,13 @@ stop () {
     done 
 }
 
-status () {
+status ()
+{
     /usr/bin/openvpn3 sessions-list
 }
 
-usage () {
+usage ()
+{
     echo "Usage:"
     echo ""
     echo "      vpn [OPTION]"

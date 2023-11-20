@@ -9,18 +9,15 @@ export EDITOR=vim
 export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 
+[ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
+[ -d $HOME/.cargo/bin ] && export PATH=$HOME/.cargo/bin:$PATH
+[ -d /usr/local/go/bin ] && export PATH=/usr/local/go/bin:$PATH
+
 alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
-
-[ -f "$HOME/.bash_prompt" ] && \. "$HOME/.bash_prompt"
-[ -f "$HOME/.cargo/env" ] && \. "$HOME/.cargo/env"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-[ -f /usr/share/bash-completion/completions/git ] && \. /usr/share/bash-completion/completions/git
-[ -f /usr/share/bash-completion/completions/pass ] && \. /usr/share/bash-completion/completions/pass
-
-export PATH=$PATH:/usr/local/go/bin
+[ -f $HOME/.bash_prompt ] && source $HOME/.bash_prompt
+[ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
+[ -f /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass

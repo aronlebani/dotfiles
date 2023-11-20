@@ -6,7 +6,8 @@
 # WARNING: This hasn't been tested. At this stage I'm just using it as a reference to manually do
 # the config and software installation.
 
-install_full () {
+install_full ()
+{
     apt install -y \
         neofetch \
         python3 \
@@ -29,7 +30,8 @@ install_full () {
         dbeaver
 }
 
-install_essential () {
+install_essential ()
+{
     # From the repositories
     apt update && apt install -y \
         git \
@@ -69,8 +71,9 @@ install_essential () {
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-    # Symlink newsboat feeds
-    ln -s ~/Seafile/Wiki/storage/rss.txt ~/.newsboat/urls
+    # Symlink newsboat data and feeds
+    ln -s ~/Seafile/Wiki/data/rss.txt ~/.config/newsboat/urls
+    ln -s ~/Seafile/Wiki/data/cache.db ~/.local/share/newsboat/cache.db
 
     # Temporary - upgrade to xfce 4.18
     # add-apt-repository ppa:xubuntu-dev/staging
@@ -78,7 +81,8 @@ install_essential () {
     # apt dist-upgrade
 }
 
-admin () {
+admin ()
+{
     mkdir -p "$HOME/Repositories"
 
     rm -rf \
@@ -90,7 +94,8 @@ admin () {
         "$HOME/Public"
 }
 
-human_things () {
+human_things ()
+{
     echo "To do:"
     echo "* [ ] Run :PlugInstall in vim"
     echo "* [ ] Sign into firefox, seafile, evolution"
