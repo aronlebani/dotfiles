@@ -23,6 +23,7 @@ Plug        'rust-lang/rust.vim'                    " Rust lang
 Plug        'elixir-editors/vim-elixir'             " Elixir
 Plug        'fatih/vim-go', { 'do': ':GoUpdateBinaries' }   " Golang
 Plug        'neovimhaskell/haskell-vim'             " Haskell
+Plug        'kovisoft/slimv'                        " Slime integration
 call        plug#end()
 
 " ---- Basics ----
@@ -91,7 +92,7 @@ autocmd     FileType svelte setlocal ts=2 sts=2 sw=2
 autocmd     FileType type call Type()
 autocmd     FileType markdown setlocal wrap
 autocmd     FileType gitcommit setlocal spell
-autocmd     FileType lisp colorscheme plain-cterm
+autocmd     FileType lisp colorscheme plain
 
 " ---- Functions ----
 
@@ -209,3 +210,6 @@ let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" Slimv
+let g:slimv_swank_cmd = '! xterm -e sbcl --load /home/aron/.vim/slimv/slime/start-swank.lisp &'
