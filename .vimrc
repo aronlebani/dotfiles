@@ -80,7 +80,7 @@ set         smarttab
 
 set         wrap!
 
-" ---- Tab settings by language ----
+" ---- Settings by language ----
 
 autocmd     FileType javascript setlocal ts=2 sts=2 sw=2
 autocmd     FileType javascript.jsx setlocal ts=2 sts=2 sw=2
@@ -89,6 +89,7 @@ autocmd     FileType json setlocal ts=2 sts=2 sw=2
 autocmd     FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd     FileType html setlocal ts=2 sts=2 sw=2
 autocmd     FileType svelte setlocal ts=2 sts=2 sw=2
+autocmd     FileType ruby setlocal ts=4 sts=4 sw=4
 autocmd     FileType type call Type()
 autocmd     FileType markdown setlocal wrap
 autocmd     FileType gitcommit setlocal spell
