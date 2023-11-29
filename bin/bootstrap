@@ -65,7 +65,6 @@ install_essential ()
     sbcl --no-sysinit --no-userinit --load /tmp/ql.lisp \
        --eval '(quicklisp-quickstart:install :path "~/.quicklisp")' \
        --quit
-    git clone https://github.com/jini-zh/sbcl-readline ~/.quicklisp/local-projects
 
     # Install vimplug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \

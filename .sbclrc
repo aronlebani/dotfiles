@@ -1,10 +1,12 @@
+;; Quicklisp
 #-quicklisp
 (let ((quicklisp-init (merge-pathnames ".quicklisp/setup.lisp" (user-homedir-pathname))))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
+;; Install packages
+(ql:quickload "sbcl-readline")
+
+;; Config
 (setf sb-impl::*default-external-format* :utf-8)
-
 (setf *print-case* :downcase)
-
-(asdf:load-system "sbcl-readline")
