@@ -57,7 +57,7 @@ def get_re(options)
     end
 
     if options[:todo] != nil && options[:todo] then
-        re_str = Regexp.escape("- [ ]") + re_str
+        re_str = re_str + "(?=(\\*|\\-) \\[\s\\])"
     end
 
     re_str = re_str + ".*"
