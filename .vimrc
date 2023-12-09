@@ -47,7 +47,7 @@ autocmd     InsertEnter,InsertLeave * set cul!      " Toggle cursor line in inse
 
 set         termguicolors
 syntax      on
-colorscheme codedark
+colorscheme plain
 
 " ---- Key maps ----
 
