@@ -5,7 +5,7 @@
 # Usage: q [options]
 # Help: q --help
 
-require 'optparse'
+require "optparse"
 
 options = {}
 

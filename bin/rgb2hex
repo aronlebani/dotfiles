@@ -1,0 +1,8 @@
+#!/usr/bin/ruby
+
+# Usage: rgb2hex 255,255,255
+
+sanitized = ARGV[0].gsub(/(^rgb)*\(/, "").gsub(/\)/, "")
+out = sanitized.split(",").map { |x| x.to_i.to_s(16) }.join
+
+puts "\##{out}"
