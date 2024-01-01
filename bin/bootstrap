@@ -17,6 +17,7 @@ install_full ()
         ristretto \
         bluez* \
         blueman \
+        qalc \
         ledger 
 
     snap install \
@@ -41,7 +42,6 @@ install_essential ()
         evolution \
         ruby \
         sbcl \
-        qalc \
         newsboat \
         ripgrep \
         xclip \

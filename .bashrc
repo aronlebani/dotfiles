@@ -19,6 +19,7 @@ alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 alias wiki="cd $HOME/Seafile/Wiki && vim ."
 alias news="newsboat"
+alias swank="sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"
 
 [ -f $HOME/.bash_prompt ] && source $HOME/.bash_prompt
 [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
