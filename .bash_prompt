@@ -27,4 +27,4 @@ _git_dirty ()
     fi
 }
 
-export PS1="${_WHITE}[\t]${_RESET} ${_CYAN}\w${_RESET}${_RED}\$(_git_info)${_RESET}\n${_WHITE}\$${_RESET} "
+export PS1="[\t]${_RESET} ${_CYAN}\w${_RESET}${_RED}\$(_git_info)${_RESET}\n\$${_RESET} "
