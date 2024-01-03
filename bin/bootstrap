@@ -74,6 +74,9 @@ install_essential ()
     ln -s ~/Seafile/Wiki/data/rss.txt ~/.config/newsboat/urls
     ln -s ~/Seafile/Wiki/data/cache.db ~/.local/share/newsboat/cache.db
 
+    # Symlink qutebrowser bookmarks
+    ln -s ~/Seafile/Wiki/data/quickmarks ~/.config/qutebrowser/quickmarks
+
     # Temporary - upgrade to xfce 4.18
     # add-apt-repository ppa:xubuntu-dev/staging
     # apt update
