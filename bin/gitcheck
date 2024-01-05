@@ -5,7 +5,7 @@
 ; Usage: gitcheck <start-path>
 ; Example: gitcheck ~
 
-(load (merge-pathnames "util.lisp" *load-truename*))
+(load "~/lib/util.lisp")
 
 (defun git-changes? (path)
   ; Checks for changes in the git repository.

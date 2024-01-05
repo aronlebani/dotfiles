@@ -1,5 +1,5 @@
 # General
-browser "firefox %u"
+browser "qutebrowser %u"
 
 # Unbind keys
 unbind-key ENTER

@@ -1,35 +1,29 @@
 " ---- Plugins ----
 
 call        plug#begin()
-Plug        'liuchengxu/space-vim-dark'             " Color theme
-Plug        'tomasiser/vim-code-dark'
-Plug        'aronlebani/vim-colors-plain'
 Plug        'preservim/nerdtree'                    " File browser
 Plug        'Xuyuanp/nerdtree-git-plugin'           " Git for nerdtree
 Plug        'airblade/vim-gitgutter'                " Git gutter
 Plug        'tpope/vim-commentary'                  " Block commenting
 Plug        'vim-airline/vim-airline'               " Status bar
-Plug        'tyru/open-browser.vim'                 " Use gx to open url in browser or smart search
 Plug        'dense-analysis/ale'                    " Linter
 Plug        'mileszs/ack.vim'                       " Ack for vim
-Plug        'mxw/vim-jsx'                           " JSX lang
+Plug        'kovisoft/slimv'                        " Slime integration
+" Syntax highlighting
 Plug        'pangloss/vim-javascript'               " JS lang
-Plug        'othree/html5.vim'                      " HTML lang
-Plug        'fsharp/vim-fsharp'                     " F# lang
-Plug        'OmniSharp/omnisharp-vim'               " C# lang
-Plug        'evanleck/vim-svelte'                   " Svelte lang
+Plug        'mxw/vim-jsx'                           " JSX lang
 Plug        'plasticboy/vim-markdown'               " Markdown lang
 Plug        'rust-lang/rust.vim'                    " Rust lang
-Plug        'elixir-editors/vim-elixir'             " Elixir
 Plug        'fatih/vim-go', { 'do': ':GoUpdateBinaries' }   " Golang
-Plug        'neovimhaskell/haskell-vim'             " Haskell
-Plug        'kovisoft/slimv'                        " Slime integration
+" Colour themes
+Plug        'liuchengxu/space-vim-dark'
+Plug        'tomasiser/vim-code-dark'
+Plug        'aronlebani/vim-colors-plain'
 call        plug#end()
 
 " ---- Basics ----
 
 set         nocompatible
-:filetype   on	                                    " Turn on filetype detection
 set         showmatch	                            " Show matching brackets
 set         backspace=2	                            " Makes backspace behave as expected
 set         hlsearch	                            " Highlighting for search
@@ -41,7 +35,12 @@ set         autoread                                " Reload externally modified
 set         ignorecase                              " Required for smartcase to work
 set         smartcase                               " Case sensitive if uppercase, else case insensitive
 set         so=999                                  " Keep cursor vertically centered where possible
-autocmd     InsertEnter,InsertLeave * set cul!      " Toggle cursor line in insert mode
+set         wrap!                                   " Text wrapping
+set         tabstop=4                               " Tabs
+set         softtabstop=4
+set         shiftwidth=4
+set         expandtab
+set         smarttab
 
 " ---- Colour scheme ----
 
@@ -51,34 +50,23 @@ colorscheme plain
 
 " ---- Key maps ----
 
-inoremap    jj <Esc>
-nnoremap    <C-J> <C-W><C-J>
-nnoremap    <C-K> <C-W><C-K>
-nnoremap    <C-L> <C-W><C-L>
-nnoremap    <C-H> <C-W><C-H>
-map         <C-t> :terminal<CR>
-tnoremap    <C-b> <C-w>N
-nnoremap    ff :noh<CR><CR>
-nnoremap    gr :call ExecuteCommand()<CR>
-inoremap    <F5> ## <C-R>=strftime("%F")<C-M>
+inoremap    jj <esc>
+nnoremap    <c-j> <c-w><c-j>
+nnoremap    <c-k> <c-w><c-k>
+nnoremap    <c-l> <c-w><c-l>
+nnoremap    <c-h> <c-w><c-h>
+nnoremap    ff :noh<cr><cr>
+nnoremap    gr :call ExecuteCommand()<cr>
+inoremap    ,now ## <c-r>=strftime("%F")<c-m>
+nnoremap    cc :center<cr>
+map         <c-t> :terminal<cr>
+map         <c-n> :NERDTreeToggle<cr>
 
 " ---- Autocomplete braces ----
 
-inoremap    {<CR> {<CR>}<Esc>ko
-inoremap    [<CR> [<CR>]<Esc>ko
-inoremap    (<CR> (<CR>)<Esc>ko
-
-" ---- Tab width ----
-
-set         tabstop=4
-set         softtabstop=4
-set         shiftwidth=4
-set         expandtab
-set         smarttab
-
-" ---- Text wrapping ----
-
-set         wrap!
+inoremap    {<cr> {<cr>}<esc>ko
+inoremap    [<cr> [<cr>]<esc>ko
+inoremap    (<cr> (<cr>)<esc>ko
 
 " ---- Settings by language ----
 
@@ -142,7 +130,6 @@ endfunction
 let g:space_vim_dark_background = 233
 
 " NERDTree
-map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let NERDTreeShowHidden=1
 
@@ -168,11 +155,6 @@ let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
 let g:gitgutter_sign_removed_above_and_below = '-'
 let g:gitgutter_sign_modified_removed = '~'
-
-" open-browser
-let  g:netrw_nogx = 1    " Disable netrw's gx mapping
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1

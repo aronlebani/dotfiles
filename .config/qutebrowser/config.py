@@ -31,6 +31,16 @@ c.url.searchengines = {
     "clhs": "http://www.xach.com/clhs?q={}",
 }
 
+## Privacy and security
+
+# Note, these all support ULR patterns, so it is possible to adjust them on a site-by-site basis.
+
+c.content.blocking.enabled = True   # Enable the add blocker
+c.content.cookies.accept = "no-3rdparty"
+c.content.headers.do_not_track = True
+c.content.javascript.enabled = True
+c.content.notifications.enabled = False
+
 ## Load this config instead of config from UI
 
 config.load_autoconfig(False)

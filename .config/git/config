@@ -8,6 +8,7 @@
 	recurseSubmodules = check
 [core]
     editor = vim
+    excludesFile = "~/.config/git/.gitignore_global"
 [pull]
     rebase = true
 [init]
