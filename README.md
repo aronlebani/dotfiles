@@ -15,11 +15,11 @@ The repository contains configuration files for the following software, plus a f
 ends. The `bin` directory contains useful executables which, if necessary, can shadow system
 binaries by putting `$HOME/bin` at the head of `$PATH`. The `lib` directory contains library code.
 
-Browser - [qutebrowser](https://qutebrowser.org/)
-Source control - [git](https://git-scm.com/)
-Editor - [vim](https://www.vim.org/)
-RSS reader - [newsboat](https://newsboat.org/)
-Shell - [bash](https://www.gnu.org/software/bash/)
+* Browser - [qutebrowser](https://qutebrowser.org/)
+* Source control - [git](https://git-scm.com/)
+* Editor - [vim](https://www.vim.org/)
+* RSS reader - [newsboat](https://newsboat.org/)
+* Shell - [bash](https://www.gnu.org/software/bash/)
 
 ## Installation
 
