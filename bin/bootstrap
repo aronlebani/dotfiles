@@ -112,6 +112,9 @@ human_things ()
     echo "* [ ] Sign into firefox, seafile, evolution"
     echo "* [ ] Set up email signature"
     echo "* [ ] Set up Seafile to start on boot"
+    echo "* [ ] Give me sudo permissions"
+    echo "          su -"
+    echo "          sudo usermod -aG sudo aron"
 }
 
 admin
