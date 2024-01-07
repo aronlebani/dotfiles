@@ -29,6 +29,7 @@ c.url.searchengines = {
     "wayback": "http://web.archive.org/web/*/{}",
     "wikipedia": "https://en.wikipedia.org/w.index.php?fulltext=1&search={}",
     "clhs": "http://www.xach.com/clhs?q={}",
+    "so": "https://stackoverflow.com/search?q={}",
 }
 
 ## Privacy and security
