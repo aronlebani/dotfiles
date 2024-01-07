@@ -7,6 +7,7 @@
 !.config/
 !.config/autostart
 !.config/autostart/set-display.desktop
+!.config/autostart/seafile.desktop
 !.config/newsboat
 !.config/newsboat/config
 !.config/qutebrowser

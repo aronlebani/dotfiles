@@ -109,9 +109,8 @@ human_things ()
 {
     echo "To do:"
     echo "* [ ] Run :PlugInstall in vim"
-    echo "* [ ] Sign into firefox, seafile, evolution"
+    echo "* [ ] Sign into seafile, evolution"
     echo "* [ ] Set up email signature"
-    echo "* [ ] Set up Seafile to start on boot"
     echo "* [ ] Give me sudo permissions"
     echo "          su -"
     echo "          sudo usermod -aG sudo aron"
