@@ -42,6 +42,30 @@ c.content.headers.do_not_track = True
 c.content.javascript.enabled = True
 c.content.notifications.enabled = False
 
+# Visual
+
+black = "#000000"
+red = "#aa0000"
+green = "#44aa44"
+yellow = "#aa5500"
+blue = "#0039aa"
+magenta = "#aa22aa"
+cyan = "#1a92aa"
+grey = "#aaaaaa"
+
+c.tabs.position = "bottom"
+c.tabs.indicator.width = 0
+c.statusbar.position = "bottom"
+c.colors.completion.odd.bg = black
+c.colors.completion.even.bg = black
+c.colors.completion.category.bg = blue
+c.colors.completion.match.fg = yellow
+c.colors.completion.item.selected.bg = cyan
+c.colors.completion.item.selected.border.bottom = cyan 
+c.colors.completion.item.selected.border.top = cyan
+c.colors.completion.item.selected.match.fg = yellow
+c.completion.height = 300
+
 ## Load this config instead of config from UI
 
 config.load_autoconfig(False)
