@@ -44,7 +44,6 @@ set         smarttab
 
 " ---- Colour scheme ----
 
-set         termguicolors
 syntax      on
 colorscheme plain
 
@@ -195,3 +194,5 @@ let g:go_highlight_build_constraints = 1
 
 " Slimv
 let g:slimv_swank_cmd = '! xterm -e sbcl --load /home/aron/.vim/slimv/slime/start-swank.lisp &'
+let g:slimv_lisp = '/usr/bin/sbcl'
+let g:slimv_impl = 'sbcl'

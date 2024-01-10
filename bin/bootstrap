@@ -79,6 +79,15 @@ install_essential ()
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+    # Need to build vim from source for python support, since the version in
+    # the repositories doesn't have it. Instructions can be found here
+    # https://github.com/vim/vim/blob/124371c5a149a8c0c75c04b6c90ac11e71a0aa97/src/INSTALL.
+}
+
+admin ()
+{
+    mkdir -p "$HOME/src"
+
     # Symlink newsboat data and feeds
     ln -s ~/Seafile/Wiki/data/rss.txt ~/.config/newsboat/urls
     ln -s ~/Seafile/Wiki/data/cache.db ~/.local/share/newsboat/cache.db
@@ -86,16 +95,7 @@ install_essential ()
     # Symlink qutebrowser bookmarks
     ln -s ~/Seafile/Wiki/data/quickmarks ~/.config/qutebrowser/quickmarks
 
-    # Temporary - upgrade to xfce 4.18
-    # add-apt-repository ppa:xubuntu-dev/staging
-    # apt update
-    # apt dist-upgrade
-}
-
-admin ()
-{
-    mkdir -p "$HOME/src"
-
+    # Remove unused directories
     rm -rf \
         "$HOME/Documents" \
         "$HOME/Music" \
@@ -108,6 +108,7 @@ admin ()
 human_things ()
 {
     echo "To do:"
+    echo "* [ ] Import gpg keys"
     echo "* [ ] Run :PlugInstall in vim"
     echo "* [ ] Sign into seafile, evolution"
     echo "* [ ] Set up email signature"
