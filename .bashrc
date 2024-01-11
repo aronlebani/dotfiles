@@ -22,6 +22,7 @@ alias copy="xclip -sel clip"
 alias wiki="cd $HOME/Seafile/Wiki && vim ."
 alias news="newsboat"
 alias swank="sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"
+alias scratch="vim ~/src/scratch.lisp"
 
 [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
 [ -f /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass

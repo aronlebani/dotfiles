@@ -7,7 +7,7 @@ Plug        'airblade/vim-gitgutter'                " Git gutter
 Plug        'tpope/vim-commentary'                  " Block commenting
 Plug        'vim-airline/vim-airline'               " Status bar
 Plug        'dense-analysis/ale'                    " Linter
-Plug        'mileszs/ack.vim'                       " Ack for vim
+Plug        'mileszs/ack.vim'                       " Grep wrapper
 Plug        'kovisoft/slimv'                        " Slime integration
 " Syntax highlighting
 Plug        'pangloss/vim-javascript'               " JS lang
@@ -143,8 +143,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Unmerged'  :'═',
     \ 'Dirty'     :'~',
     \ 'Clean'     :' ',
-    \ 'Unknown'   :'?',
-    \ }
+    \ 'Unknown'   :'?' }
 
 " vim-gitgutter
 let g:gitgutter_sign_column_always = 1  " Always show gutter
@@ -161,20 +160,16 @@ let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_follow_anchor = 1
 
 " ack.vim
-if executable('rg')
-    let g:ackprg = 'rg --vimgrep --no-heading'
-endif
+let g:ackprg = 'rg --vimgrep --no-heading'
 
 " Ale
 let g:ale_linters = {
-    \ 'javascript': ['eslint'],
-    \ }
+    \ 'javascript': ['eslint'] }
 let g:ale_fixers = {
     \ 'javascript': ['prettier'],
     \ 'scss': ['prettier'],
     \ 'sql': ['pgformatter'],
-    \ 'rust': ['rustfmt'],
-    \ }
+    \ 'rust': ['rustfmt'] }
 
 " vim-go
 let g:tagbar_type_go = {
@@ -184,8 +179,7 @@ let g:tagbar_type_go = {
     \ 'kind2scope' : {'t' : 'ctype', 'n' : 'ntype'},
     \ 'scope2kind' : {'ctype' : 't', 'ntype' : 'n'},
     \ 'ctagsbin' : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-    \ }
+    \ 'ctagsargs' : '-sort -silent' }
 let g:go_highlight_structs = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_functions = 1
@@ -193,6 +187,6 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 " Slimv
-let g:slimv_swank_cmd = '! xterm -e sbcl --load /home/aron/.vim/slimv/slime/start-swank.lisp &'
+let g:slimv_swank_cmd = '! xterm -e sbcl --load /home/aron/.vim/plugged/slimv/slime/start-swank.lisp &'
 let g:slimv_lisp = '/usr/bin/sbcl'
 let g:slimv_impl = 'sbcl'

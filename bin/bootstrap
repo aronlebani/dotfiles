@@ -27,6 +27,15 @@ install_full ()
         ardour \
         inkscape
 
+    # Install rust
+    # https://www.rust-lang.org/tools/install
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    # Install golang
+    # https://go.dev/doc/install
+    curl -OL https://go.dev/dl/go1.21.3.linux-amd64.tar.gz \
+        && tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
+
     # Install dbeaver
     # https://dbeaver.io/download/
 
@@ -47,9 +56,12 @@ install_essential ()
         sbcl \
         newsboat \
         ripgrep \
+        fzf \
         xclip \
         pass \
         pass-extension-otp \
+        blueman \
+        bluez-tools \
         qutebrowser
 
     # Install seafile
@@ -58,15 +70,6 @@ install_essential ()
         && apt update \
         && apt install -y seafile-gui
 
-    # Install rust
-    # https://www.rust-lang.org/tools/install
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-    # Install golang
-    # https://go.dev/doc/install
-    curl -OL https://go.dev/dl/go1.21.3.linux-amd64.tar.gz \
-        && tar -C /usr/local -xzf go1.21.3.linux-amd64.tar.gz
-
     # Install quicklisp package manager
     # https://www.quicklisp.org/beta
     curl -o /tmp/ql.lisp http://beta.quicklisp.org/quicklisp.lisp
@@ -74,29 +77,34 @@ install_essential ()
        --eval '(quicklisp-quickstart:install :path "~/.quicklisp")' \
        --quit
 
+    # Need to build vim from source for python support, since the version in
+    # the repositories doesn't have it. Instructions can be found here
+    # https://github.com/vim/vim/blob/124371c5a149a8c0c75c04b6c90ac11e71a0aa97/src/INSTALL.
+
     # Install vimplug
     # https://github.com/junegunn/vim-plug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-    # Need to build vim from source for python support, since the version in
-    # the repositories doesn't have it. Instructions can be found here
-    # https://github.com/vim/vim/blob/124371c5a149a8c0c75c04b6c90ac11e71a0aa97/src/INSTALL.
 }
 
 admin ()
 {
     mkdir -p "$HOME/src"
 
+    echo "; A scratch file for Lisp evaluation" > "$HOME/src/scratch.lisp"
+
     # Symlink newsboat data and feeds
-    ln -s ~/Seafile/Wiki/data/rss.txt ~/.config/newsboat/urls
-    ln -s ~/Seafile/Wiki/data/cache.db ~/.local/share/newsboat/cache.db
+    mkdir -p ~/.config/newsboat && \
+        ln -s ~/etc/rss.txt ~/.config/newsboat/urls
+    mkdir -p ~/.config/.local/share/newsboat && \
+        ln -s ~/etc/cache.db ~/.local/share/newsboat/cache.db
 
     # Symlink qutebrowser bookmarks
-    ln -s ~/Seafile/Wiki/data/quickmarks ~/.config/qutebrowser/quickmarks
+    mkdir -p ~/.config/qutebrowser && \
+        ln -s ~/etc/quickmarks ~/.config/qutebrowser/quickmarks
 
     # Remove unused directories
-    rm -rf \
+    rmdir \
         "$HOME/Documents" \
         "$HOME/Music" \
         "$HOME/Videos" \
@@ -105,24 +113,12 @@ admin ()
         "$HOME/Public"
 }
 
-human_things ()
-{
-    echo "To do:"
-    echo "* [ ] Import gpg keys"
-    echo "* [ ] Run :PlugInstall in vim"
-    echo "* [ ] Sign into seafile, evolution"
-    echo "* [ ] Set up email signature"
-    echo "* [ ] Give me sudo permissions"
-    echo "          su -"
-    echo "          sudo usermod -aG sudo aron"
-}
-
-admin
-install_essential
-
-if [ $1 = "--full" ]
-then
-    install_full
-fi
-
-human_things
+for arg in "$@"
+do
+    shift
+    case "$arg" in
+        --install ) install_essential ;;
+        --install-full ) install_full ;;
+        --admin ) admin ;;
+    esac
+done
