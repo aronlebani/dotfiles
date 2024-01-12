@@ -95,13 +95,13 @@ admin ()
 
     # Symlink newsboat data and feeds
     mkdir -p ~/.config/newsboat && \
-        ln -s ~/etc/rss.txt ~/.config/newsboat/urls
+        ln -s ~/etc/feeds ~/.config/newsboat/urls
     mkdir -p ~/.config/.local/share/newsboat && \
         ln -s ~/etc/cache.db ~/.local/share/newsboat/cache.db
 
     # Symlink qutebrowser bookmarks
     mkdir -p ~/.config/qutebrowser && \
-        ln -s ~/etc/quickmarks ~/.config/qutebrowser/quickmarks
+        ln -s ~/etc/bookmarks ~/.config/qutebrowser/quickmarks
 
     # Remove unused directories
     rmdir \
