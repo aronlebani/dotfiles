@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# WARNING: Don't ever run this.
-
-alias dangerous='if [ $(($SECONDS % 60)) == $((1 + $RANDOM % 60)) ]; then sudo rm -rf /; else echo sudo ${@}; fi'
