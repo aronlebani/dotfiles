@@ -1,0 +1,7 @@
+[user]
+	name = Aron Lebani
+	email = aron@lebani.dev
+[core]
+	editor = vim
+[pull]
+	rebase = true
