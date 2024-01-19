@@ -37,3 +37,12 @@ git fetch
 git checkout -f main
 ```
 3. Happy hacking!
+
+## Minimal version
+
+The `min` branch is a minimal version of the dotfiles which contains the bare minimum configuration to comfortably use a system. It is useful for working on remote servers via `ssh`. Since this branch probably won't change much, it is just as easy to clone it onto the server, and move the files into the home directory.
+
+```sh
+git clone -b min https://github.com/aronlebani/dotfiles.git
+mv dotifles/.bashrc dotifles/.inputrc dotfiles/.vimrc ~
+```
