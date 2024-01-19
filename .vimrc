@@ -66,6 +66,9 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType type call Type()
 autocmd FileType markdown setlocal wrap
+autocmd FileType markdown highlight htmlItalic ctermfg=darkcyan cterm=italic
+autocmd FileType markdown highlight mkdItalic ctermfg=darkcyan cterm=italic
+autocmd FileType markdown setlocal spell
 autocmd FileType gitcommit setlocal spell
 
 " ---- Syntax highlighting ----
@@ -113,8 +116,9 @@ highlight Underlined ctermfg=NONE cterm=underline
 highlight Todo ctermbg=yellow cterm=bold
 highlight Directory ctermfg=cyan ctermbg=NONE
 
-highlight Error ctermbg=red ctermfg=NONE cterm=bold
+highlight Error ctermbg=NONE ctermfg=red cterm=underline
 highlight Warning ctermfg=yellow
+highlight SpellBad ctermfg=NONE ctermbg=NONE cterm=underline ctermul=red
 highlight MatchParen ctermfg=NONE ctermbg=yellow
 highlight Search ctermbg=yellow ctermfg=darkgrey
 highlight Cursor ctermbg=NONE ctermfg=NONE cterm=NONE

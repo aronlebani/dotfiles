@@ -1,7 +1,0 @@
-#!/usr/bin/ruby
-
-# Usage: px2rem 32
-
-out = ARGV[0].to_f / 16
-
-puts "#{out}rem"

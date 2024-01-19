@@ -1,6 +1,5 @@
 [Configuration]
 MiscDefaultGeometry=80x24
-FontName=Monospace 10
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
@@ -9,7 +8,7 @@ MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscInheritGeometry=FALSE
 MiscMenubarDefault=TRUE
-MiscMouseAutohide=FALSE
+MiscMouseAutohide=TRUE
 MiscMouseWheelZoom=TRUE
 MiscToolbarDefault=FALSE
 MiscConfirmClose=TRUE

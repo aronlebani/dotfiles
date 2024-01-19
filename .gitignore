@@ -15,9 +15,6 @@
 !.config/git/
 !.config/git/config
 !.config/git/.gitignore_global
-!.config/xfce4/
-!.config/xfce4/terminal
-!.config/xfce4/terminal/terminalrc
 !.ssh/
 !.ssh/config
 !.vim/

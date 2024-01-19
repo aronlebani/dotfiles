@@ -48,9 +48,9 @@ install_essential ()
     # From the repositories
     apt update && apt install -y \
         git \
-        vim \
         curl \
         build-essential \
+        tree \
         evolution \
         ruby \
         sbcl \
