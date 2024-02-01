@@ -19,8 +19,10 @@ alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
-alias wiki="cd $HOME/Seafile/Wiki && vim ."
 alias news="newsboat"
+alias todo="vim $HOME/notes/todo.md"
+alias memo="vim $HOME/notes/memo.md"
+alias notes="vim $HOME/notes"
 alias swank="sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"
 alias scratch="vim ~/src/scratch.lisp"
 
@@ -58,4 +60,4 @@ _git_dirty ()
     fi
 }
 
-export PS1="[\t]${_RESET} ${_CYAN}\w${_RESET}${_RED}\$(_git_info)${_RESET}\n\$${_RESET} "
+export PS1="[\t]${_RESET} ${_BLUE}\w${_RESET}${_RED}\$(_git_info)${_RESET}\n\$${_RESET} "

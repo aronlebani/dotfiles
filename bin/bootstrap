@@ -15,8 +15,6 @@ install_full ()
         redshift \
         usb-creator-gtk \
         ristretto \
-        bluez* \
-        blueman \
         qalc \
         ledger \
         arduino
@@ -25,7 +23,13 @@ install_full ()
         freecad \
         fritzing \
         ardour \
-        inkscape
+        inkscape \
+		pandoc \
+        blueman \
+        bluez-tools \
+		# Linters
+		tidy \
+		rubocop
 
     # Install rust
     # https://www.rust-lang.org/tools/install
@@ -60,8 +64,6 @@ install_essential ()
         xclip \
         pass \
         pass-extension-otp \
-        blueman \
-        bluez-tools \
         qutebrowser
 
     # Install seafile

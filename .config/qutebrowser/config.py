@@ -30,6 +30,7 @@ c.url.searchengines = {
     "wikipedia": "https://en.wikipedia.org/w.index.php?fulltext=1&search={}",
     "clhs": "http://www.xach.com/clhs?q={}",
     "so": "https://stackoverflow.com/search?q={}",
+    "esp": "https://spanishdict.com/translate/{}",
 }
 
 ## Privacy and security

@@ -6,6 +6,8 @@
 #
 # Usage: heic2jpg [OPTION]
 # Example: heic2jpg --convert
+#
+# Dependencies: libheif-examples
 
 heic_convert ()
 {
@@ -24,6 +26,12 @@ delete ()
     find . -type f -iname "*.heic" -delete
 }
 
+delete_mov ()
+{
+
+    find . -type f -iname "*.mov" -delete
+}
+
 count ()
 {
     echo "HEIC file count: $(find . -type f -iname "*.heic" | wc -l)"
@@ -38,10 +46,11 @@ usage ()
     echo ""
     echo "Options:"
     echo ""
-    echo "      -h | --help     show help"
-    echo "      -c | --convert  recursively convert all .HEIC files in the current directory to JPG"
-    echo "      -d | --delete   recursively delete all .HEIC files in the current directory"
-    echo "      --count         show count of converted files"
+    echo "      -h | --help			show help"
+    echo "      -c | --convert		recursively convert all .HEIC files in the current directory to JPG"
+    echo "      -d | --delete		recursively delete all .HEIC files in the current directory"
+    echo "      -m | --delete-mov   recursively delete all .MOV files in the current directory"
+    echo "      --count				show count of converted files"
     exit 1
 }
 
@@ -52,6 +61,7 @@ do
         -h | --help ) usage ;;
         -c | --convert ) convert ;;
         -d | --delete ) delete ;;
+        -m | --delete-mov ) delete_mov ;;
         --count ) count ;;
         * ) usage ;;
     esac
