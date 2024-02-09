@@ -27,12 +27,12 @@ feedlist-format "%4i %-11u %t _%T_"
 articlelist-format "%4i %D  %?T?%-20T  ?%t"
 
 highlight article "^(Feed|Title|Author|Link|Links|Date):" default default bold 
-highlight all "https?://[^ ]+" color39 default underline
-highlight all "_.+_" color36
-highlight feedlist "^...." yellow default bold
-highlight feedlist "\\([0-9]+/[0-9]+\\)" cyan default bold
-highlight articlelist "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [0-9][0-9]" cyan default bold
-highlight articlelist "^...." yellow default bold
+highlight all "https?://[^ ]+" color29 default underline
+highlight all "_.+_" color29
+highlight feedlist "^...." default default bold
+highlight feedlist "\\([0-9]+/[0-9]+\\)" blue default bold
+highlight articlelist "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [0-9][0-9]" blue default bold
+highlight articlelist "^...." default default bold
 
 color listfocus color36 default
 color listfocus_unread color36 default bold

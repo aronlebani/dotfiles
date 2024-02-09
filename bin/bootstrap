@@ -57,6 +57,7 @@ install_essential ()
         tree \
         evolution \
         ruby \
+		ruby-dev \
         sbcl \
         newsboat \
         ripgrep \
