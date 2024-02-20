@@ -38,3 +38,10 @@ set skip-completed-text on
 set input-meta on
 set output-meta on
 set convert-meta off
+
+# Vi mode
+set editing-mode vi
+$if mode=vi
+	set keymap vi-insert
+	"jj": vi-movement-mode
+$endif
