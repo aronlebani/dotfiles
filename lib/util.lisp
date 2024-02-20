@@ -22,6 +22,20 @@
                                     (list values)))
                    ,function)))
 
+;;; Calculations
+
+(defun rgb->hex (r g b &key pretty?)
+  (let ((out `(,(format nil "~X" r) ,(format nil "~X" r) ,(format nil "~X" r))))
+    (if pretty?
+        (format nil "#~X~X~X" (first out) (second out) (third out))
+        out)))
+
+(defun px->rem (px &key pretty?)
+  (let ((out (float (/ px 16))))
+    (if pretty?
+        (format nil "~arem" out) 
+        out)))
+
 ;;; Pathname
 
 (defun exists? (value)

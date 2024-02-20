@@ -15,7 +15,6 @@ install_full ()
         redshift \
         usb-creator-gtk \
         ristretto \
-        qalc \
         ledger \
         arduino
         guitarix \
@@ -27,6 +26,7 @@ install_full ()
 		pandoc \
         blueman \
         bluez-tools \
+		orpie \
 		# Linters
 		tidy \
 		rubocop
@@ -61,7 +61,6 @@ install_essential ()
         sbcl \
         newsboat \
         ripgrep \
-        fzf \
         xclip \
         pass \
         pass-extension-otp \
@@ -94,7 +93,8 @@ admin ()
 {
     mkdir -p "$HOME/src"
 
-    echo "; A scratch file for Lisp evaluation" > "$HOME/src/scratch.lisp"
+	echo -e ";; A scratch file for Lisp evaluation\n\n(load \"~/lib/util.lisp\")" \
+		> "$HOME/src/scratch.lisp"
 
     # Symlink newsboat data and feeds
     mkdir -p ~/.config/newsboat && \
