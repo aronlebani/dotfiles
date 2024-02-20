@@ -51,9 +51,6 @@ tnoremap <c-l> <c-w><c-l>
 tnoremap <c-h> <c-w><c-h>
 noremap  <c-t> :terminal<cr>
 tnoremap <c-b> <c-\><c-n>
-inoremap {<cr> {<cr>}<esc>ko
-inoremap [<cr> [<cr>]<esc>ko
-" inoremap (<cr> (<cr>)<esc>ko
 nnoremap ;o :copen<cr>
 nnoremap ;c :center<cr>
 nnoremap ;h :noh<cr><cr>
@@ -100,9 +97,11 @@ highlight Search ctermbg=lightmagenta ctermfg=NONE
 highlight Visual ctermbg=lightmagenta ctermfg=NONE
 highlight Cursor ctermbg=NONE ctermfg=NONE cterm=NONE
 highlight VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE
-highlight LineNr ctermbg=NONE ctermfg=NONE
-highlight ColorColumn ctermbg=darkgrey
+highlight LineNr ctermbg=NONE ctermfg=darkgrey
+highlight ColorColumn ctermbg=grey
 highlight SignColumn ctermbg=NONE
+highlight StatusLine ctermfg=white ctermbg=darkblue cterm=bold
+highlight StatusLineNC ctermfg=white ctermbg=grey cterm=bold
 
 " ---- Plugin settings ----
 
@@ -119,3 +118,5 @@ let g:ale_set_highlights = 0
 let g:slimv_swank_cmd = '! xterm -e sbcl --load /home/aron/.vim/plugged/slimv/slime/start-swank.lisp &'
 let g:slimv_lisp = '/usr/bin/sbcl'
 let g:slimv_impl = 'sbcl'
+let g:slimv_repl_split = 3
+let g:slimv_package = 1
