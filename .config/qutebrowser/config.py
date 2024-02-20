@@ -17,8 +17,8 @@ c.aliases.update({ "opengraph": "jseval --url javascript: (function(){if(window.
 
 ## Start page
 
-c.url.start_pages = ["about:blank"]
-c.url.default_page = "about:blank"
+c.url.start_pages = ["https://lebani.dev/quicklinks.html"]
+c.url.default_page = "https://lebani.dev/quicklinks.html"
 
 ## Search engines
 
