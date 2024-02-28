@@ -26,7 +26,6 @@ set colorcolumn=100
 set autoread
 set ignorecase
 set smartcase
-set so=999
 set nowrap
 set tabstop=4
 set softtabstop=4

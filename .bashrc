@@ -10,6 +10,7 @@ export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
+export SBCL_HOME=/usr/lib/sbcl/
 
 [ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
 [ -d $HOME/.cargo/bin ] && export PATH=$HOME/.cargo/bin:$PATH
