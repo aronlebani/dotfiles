@@ -1,24 +1,24 @@
 #!/usr/bin/sbcl --script
 
-; Recursively checks if any git repositories have unpublished changes.
-;
-; Usage: gitcheck <start-path>
-; Example: gitcheck ~
+;;;; Recursively checks if any git repositories have unpublished changes.
+;;;;
+;;;; Usage: gitcheck <start-path>
+;;;; Example: gitcheck ~
 
-(load "~/lib/util.lisp")
+(load "~/lib/path.lisp")
 
 (defun git-changes? (path)
-  ; Checks for changes in the git repository.
+  "Checks for changes in the git repository"
   (> (length (git-status path)) 0))
 
 (defun git-repository? (path)
-  ; Checks if the pathname is the root of a git repository.
+  "Checks if the pathname is the root of a git repository"
   (some
     (lambda (x) (search ".git" x :start2 (- (length x) 5)))
     (mapcar #'namestring (path-list path))))
 
 (defun git-status (path)
-  ; Runs `git status --porcelain` on the pathname and returns the result.
+  "Runs `git status --porcelain` on the pathname and returns the result"
   (with-output-to-string (out)
     (run-program
       "/usr/bin/git"
