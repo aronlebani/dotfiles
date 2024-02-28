@@ -31,13 +31,13 @@
 (defun clone (url path &key dry-run)
   (format t "cloning ~a into ~a~a" url path #\linefeed)
   (when (not dry-run)
-    (with-output-to-string (out) :element-type
+    (with-output-to-string (err)
       (run-program
         "/usr/bin/git"
         `("clone" ,url)
-        :output out
+        :error err
         :directory path)
-      (when (search "already exists" (get-output-stream-string out))
+      (when (search "already exists" (get-output-stream-string err))
         (format t "...repository already exists~a" #\linefeed)))))
 
 (defun main (cmd)
