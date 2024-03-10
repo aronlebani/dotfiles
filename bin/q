@@ -1,148 +1,111 @@
 #!/usr/bin/ruby
 
+# frozen_string_literal: true
+
 # Recursively query markdown notes.
 #
 # Usage: q [options]
 # Help: q --help
+#
+# Aron Lebani <aron@lebani.dev>
+# 2024
 
-require "optparse"
-
-options = {}
-
-OptionParser.new do |opts|
-    opts.banner = "Usage: q [options]"
-
-    opts.on("-t TAGS", "--tags=TAGS", "Query by tag names") do |t|
-        options[:tags] = t.split(" ")
-    end
-
-    opts.on("-q QUERY", "--query=QUERY", "Query by keywords") do |q|
-        options[:query] = q.split(" ")
-    end
-
-    opts.on("-c", "--check", "Query todo items") do |c|
-        options[:todo] = c
-    end
-
-    opts.on("-a", "--anchor", "Query link items") do |a|
-        options[:anchor] = a
-    end
-
-    opts.on("-l", "--list", "List all tags") do |l|
-        options[:list] = l
-    end
-
-    opts.on("-v", "--validate", "Perform validation of tags") do |v|
-        options[:validate] = v
-    end
-end.parse!
+require 'optparse'
 
 def get_re(options)
-    re_str = ""
+  re_str = ''
 
-    if options[:tags] != nil then
-        options[:tags].each do |tag|
-            re_str = re_str + "(?=.*_#{tag}[^_]*_)"
-        end
-    end
+  options[:tags]&.each do |tag|
+    re_str = "#{re_str}(?=.*_#{tag}[^_]*_)"
+  end
 
-    if options[:query] != nil then
-        options[:query].each do |query|
-            re_str = re_str + "(?=.*#{query}*)"
-        end
-    end
+  options[:query]&.each do |query|
+    re_str = "#{re_str}(?=.*#{query}*)"
+  end
 
-    if options[:anchor] != nil && options[:anchor] then
-        re_str = re_str +  "(?=.*\[.*\]\(.*\))"
-    end
+  re_str = "#{re_str}(?=.*\[.*\]\(.*\))" if options[:anchor]
+  re_str = "#{re_str}(?=(\\*|\\-) \\[\s\\])" if options[:todo]
+  re_str = "#{re_str}.*"
 
-    if options[:todo] != nil && options[:todo] then
-        re_str = re_str + "(?=(\\*|\\-) \\[\s\\])"
-    end
-
-    re_str = re_str + ".*"
-
-    /#{re_str}/i
+  /#{re_str}/i
 end
 
 def colorize(str, color_code)
-    "\e[#{color_code}m#{str}\e[0m"
+  "\e[#{color_code}m#{str}\e[0m"
 end
 
 def colorize_green(str)
-    colorize(str, 32)
+  colorize str, 32
 end
 
 def colorize_blue(str)
-    colorize(str, 34)
+  colorize str, 34
+end
+
+def walk(&func)
+  Dir.glob('**/**').each do |file|
+    next if File.directory?(file)
+    next if File.extname(file) != '.md'
+
+    File.open(file, 'r') do |content|
+      content.readlines.each_with_index do |line, line_no|
+        func.call file, line, line_no
+      end
+    end
+  end
 end
 
 def query(options)
-    re = get_re(options)
+  re = get_re options
 
-    Dir.glob("**/**").each do |file|
-        next if File.directory?(file)
-        next if File.extname(file) != ".md"
-
-        File.open(file, "r") do |content|
-            content.readlines.each_with_index do |line, line_no|
-                if line.match?(re)
-                    puts "#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}"
-                end
-            end
-        end
-    end
+  walk do |file, line, line_no|
+    puts "#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}" if line.match? re
+  end
 end
 
-def list()
-    tags = []
-    re = /(\n|\s)_(tag|prj):[^_]*_(\n|\s)/
-    std = [
-        "_prj:<name>_",
-        "_due:<DD-MM-YYYY>_",
-        "_sch:<context|project|waiting|someday>_",
-        "_tag:<name>_",
-        "",
-    ]
+def list
+  tags = []
+  re = /(\n|\s)_[^_]*_(\n|\s)/
 
-    Dir.glob("**/**").each do |file|
-        next if File.directory?(file)
-        next if File.extname(file) != ".md"
+  walk do |_, line, _|
+    tags.push line.match(re).to_s.strip if line.match? re
+  end
 
-        File.open(file, "r") do |content|
-            content.readlines.each_with_index do |line, line_no|
-                if line.match(re) then
-                    tags = tags.push(line.match(re).to_s.strip)
-                end
-            end
-        end
-    end
-
-    puts std.push(tags.uniq.sort).uniq
+  puts tags.uniq.sort
 end
 
-def validate()
-    tags = []
-    re = /(\n|\s)_[^_]*_(\n|\s)/
+def main
+  options = {}
 
-    Dir.glob("**/**").each do |file|
-        next if File.directory?(file)
-        next if File.extname(file) != ".md"
+  OptionParser.new do |opts|
+    opts.banner = 'Usage: q [options]'
 
-        File.open(file, "r") do |content|
-            content.readlines.each_with_index do |line, line_no|
-                tags = tags.push(line.match(re).to_s.strip)
-            end
-        end
+    opts.on '-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax' do |t|
+      options[:tags] = t.split ' '
     end
 
-    puts tags.uniq.sort
-end
+    opts.on '-q QUERY', '--query=QUERY', 'Query by keywords' do |q|
+      options[:query] = q.split ' '
+    end
 
-if options[:list] then
+    opts.on '-c', '--check', 'Query markdown todo items' do |c|
+      options[:todo] = c
+    end
+
+    opts.on '-a', '--anchor', 'Query markdown links' do |a|
+      options[:anchor] = a
+    end
+
+    opts.on '-l', '--list', 'List all tags' do |l|
+      options[:list] = l
+    end
+  end.parse!
+
+  if options[:list]
     list
-elsif options[:validate] then
-    validate
-else
-    query(options)
+  else
+    query options
+  end
 end
+
+main if __FILE__ == $PROGRAM_NAME
