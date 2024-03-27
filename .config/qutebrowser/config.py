@@ -27,7 +27,7 @@ c.url.searchengines = {
     "ecosia": "https://ecosia.org/search?q={}",
     "mdn": "https://developer.mozilla.org/en-US/search?q={}",
     "wayback": "http://web.archive.org/web/*/{}",
-    "wikipedia": "https://en.wikipedia.org/w.index.php?fulltext=1&search={}",
+    "wikipedia": "https://en.wikipedia.org/w/index.php?title=Special:Search&search={}",
     "clhs": "http://www.xach.com/clhs?q={}",
     "so": "https://stackoverflow.com/search?q={}",
     "esp": "https://spanishdict.com/translate/{}",
