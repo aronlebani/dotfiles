@@ -5,6 +5,7 @@ set nocompatible
 call plug#begin()
 " Plugins
 Plug 'dense-analysis/ale'
+Plug 'tpope/vim-fugitive'
 Plug 'kovisoft/slimv'
 " Syntax
 Plug 'pangloss/vim-javascript'
@@ -67,8 +68,8 @@ autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
-autocmd FileType markdown highlight htmlItalic ctermfg=blue cterm=italic
-autocmd FileType markdown highlight mkdItalic ctermfg=blue cterm=italic
+autocmd FileType markdown highlight htmlItalic ctermfg=cyan cterm=italic
+autocmd FileType markdown highlight mkdItalic ctermfg=cyan cterm=italic
 autocmd FileType markdown setlocal spell
 autocmd FileType markdown set colorcolumn=""
 autocmd FileType gitcommit setlocal spell
@@ -78,10 +79,10 @@ autocmd FileType gitcommit setlocal spell
 colorscheme default
 
 highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
-highlight Statement ctermfg=29 cterm=bold
-highlight PreProc ctermfg=29 term=bold
-highlight Constant ctermfg=darkblue
-highlight Directory ctermfg=darkblue ctermbg=NONE
+highlight Statement ctermfg=NONE cterm=bold
+highlight PreProc ctermfg=NONE term=bold
+highlight Constant ctermfg=darkcyan
+highlight Directory ctermfg=darkcyan ctermbg=NONE
 highlight Identifier ctermfg=NONE cterm=NONE
 highlight Type ctermfg=NONE
 highlight Special ctermfg=NONE
@@ -91,7 +92,7 @@ highlight Todo ctermbg=yellow cterm=bold
 highlight Error ctermbg=NONE ctermfg=red cterm=underline
 highlight Warning ctermfg=yellow
 highlight SpellBad ctermfg=NONE ctermbg=NONE cterm=underline ctermul=red
-highlight MatchParen ctermfg=NONE ctermbg=blue
+highlight MatchParen ctermfg=NONE ctermbg=cyan
 highlight Search ctermbg=lightmagenta ctermfg=NONE
 highlight Visual ctermbg=lightmagenta ctermfg=NONE
 highlight Cursor ctermbg=NONE ctermfg=NONE cterm=NONE
@@ -99,8 +100,9 @@ highlight VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE
 highlight LineNr ctermbg=NONE ctermfg=darkgrey
 highlight ColorColumn ctermbg=grey
 highlight SignColumn ctermbg=NONE
-highlight StatusLine ctermfg=white ctermbg=darkblue cterm=bold
+highlight StatusLine ctermfg=white ctermbg=darkcyan cterm=bold
 highlight StatusLineNC ctermfg=white ctermbg=grey cterm=bold
+highlight lispParen ctermfg=darkgrey
 
 " ---- Plugin settings ----
 
@@ -114,8 +116,5 @@ let g:ale_fixers = { 'javascript': ['prettier'], 'scss': ['prettier'], 'rust': [
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_set_highlights = 0
 
-let g:slimv_swank_cmd = '! xterm -e sbcl --load /home/aron/.vim/plugged/slimv/slime/start-swank.lisp &'
-let g:slimv_lisp = '/usr/bin/sbcl'
-let g:slimv_impl = 'sbcl'
 let g:slimv_repl_split = 3
 let g:slimv_package = 1
