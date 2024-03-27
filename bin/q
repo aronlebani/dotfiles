@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 # frozen_string_literal: true
-
+ 
 # Recursively query markdown notes.
 #
 # Usage: q [options]
@@ -42,14 +42,14 @@ def colorize_blue(str)
   colorize str, 34
 end
 
-def walk(&func)
+def walk
   Dir.glob('**/**').each do |file|
     next if File.directory?(file)
     next if File.extname(file) != '.md'
 
     File.open(file, 'r') do |content|
       content.readlines.each_with_index do |line, line_no|
-        func.call file, line, line_no
+        yield file, line, line_no
       end
     end
   end
@@ -108,4 +108,4 @@ def main
   end
 end
 
-main if __FILE__ == $PROGRAM_NAME
+main if __FILE__ == $0
