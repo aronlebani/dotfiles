@@ -25,6 +25,7 @@ alias todo="vim $HOME/notes/todo.md"
 alias memo="vim $HOME/notes/memo.md"
 alias notes="vim $HOME/notes"
 alias swank="sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"
+alias swankrkt="racket /home/aron/src/contrib/swank-racket/server.rkt"
 alias scratch="vim ~/src/scratch.lisp"
 
 [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
