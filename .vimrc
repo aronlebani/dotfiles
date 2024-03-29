@@ -23,7 +23,7 @@ set hlsearch
 set ruler
 set number
 set noswapfile
-set colorcolumn=100
+set colorcolumn=80
 set autoread
 set ignorecase
 set smartcase
@@ -80,7 +80,7 @@ colorscheme default
 
 highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
 highlight Statement ctermfg=NONE cterm=bold
-highlight PreProc ctermfg=NONE term=bold
+highlight PreProc ctermfg=NONE cterm=bold
 highlight Constant ctermfg=darkcyan
 highlight Directory ctermfg=darkcyan ctermbg=NONE
 highlight Identifier ctermfg=NONE cterm=NONE
@@ -93,8 +93,8 @@ highlight Error ctermbg=NONE ctermfg=red cterm=underline
 highlight Warning ctermfg=yellow
 highlight SpellBad ctermfg=NONE ctermbg=NONE cterm=underline ctermul=red
 highlight MatchParen ctermfg=NONE ctermbg=cyan
-highlight Search ctermbg=lightmagenta ctermfg=NONE
-highlight Visual ctermbg=lightmagenta ctermfg=NONE
+highlight Search ctermbg=lightmagenta ctermfg=grey
+highlight Visual ctermbg=lightmagenta ctermfg=grey
 highlight Cursor ctermbg=NONE ctermfg=NONE cterm=NONE
 highlight VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE
 highlight LineNr ctermbg=NONE ctermfg=darkgrey
