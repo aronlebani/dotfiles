@@ -35,7 +35,7 @@
 
 (defun rgb->hex (r g b &key pretty?)
   "Convert an RGB value to hex. If 'pretty?' is 't', the result is pretty-printed."
-  (let ((out `(,(format nil "~X" r) ,(format nil "~X" r) ,(format nil "~X" r))))
+  (let ((out `(,(format nil "~X" r) ,(format nil "~X" g) ,(format nil "~X" b))))
     (if pretty?
         (format nil "#~X~X~X" (first out) (second out) (third out))
         out)))

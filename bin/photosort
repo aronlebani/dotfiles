@@ -33,7 +33,7 @@ for root, dirs, files in os.walk(directory):
         file = root+"/"+name
 
         try:
-            date = [l for l in run("exif "+'"'+file+'"').splitlines()\
+            date = [l for l in run("exif "+'"'+file+'"').splitlines() \
                     if "Dat" in l][0].split("|")[1].split()[0]
 
             if "-" in date:

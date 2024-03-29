@@ -59,7 +59,8 @@ def query(options)
   re = get_re options
 
   walk do |file, line, line_no|
-    puts "#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}" if line.match? re
+    puts "#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}" \
+        if line.match? re
   end
 end
 
@@ -80,7 +81,9 @@ def main
   OptionParser.new do |opts|
     opts.banner = 'Usage: q [options]'
 
-    opts.on '-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax' do |t|
+    opts.on '-t TAGS',
+            '--tags=TAGS',
+            'Query tags, denoted by markdown _italic_ syntax' do |t|
       options[:tags] = t.split ' '
     end
 

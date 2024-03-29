@@ -2,7 +2,7 @@
 ;;;;
 ;;;; A unit testing framework.
 
-(load "./util.lisp")
+(load "~/lib/util.lisp")
 
 (defvar *test-name* nil)
 
