@@ -1,0 +1,25 @@
+#!/bin/sh
+
+path="$(echo $PATH | sed -e 's/:/ /g')"
+count=0
+nonex=0
+
+for directory in $path
+do
+	if [ -d "$directory" ]
+	then
+		for command in $(ls "$directory")
+		do
+			if [ -x "$directory/$command" ]
+			then
+				count="$(( $count + 1 ))"
+			else
+				nonex="$(( nonex + 1 ))"
+			fi
+		done
+	fi
+done
+
+echo "$count commands, and $nonex entries that weren't marked executable"
+
+exit 0
