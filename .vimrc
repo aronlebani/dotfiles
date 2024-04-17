@@ -79,10 +79,10 @@ autocmd FileType gitcommit setlocal spell
 colorscheme default
 
 highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
-highlight Statement ctermfg=NONE cterm=bold
-highlight PreProc ctermfg=NONE cterm=bold
-highlight Constant ctermfg=darkcyan
-highlight Directory ctermfg=darkcyan ctermbg=NONE
+highlight Statement ctermfg=blue cterm=bold
+highlight PreProc ctermfg=blue cterm=bold
+highlight Constant ctermfg=lightgreen
+highlight Directory ctermfg=lightgreen ctermbg=NONE
 highlight Identifier ctermfg=NONE cterm=NONE
 highlight Type ctermfg=NONE
 highlight Special ctermfg=NONE
@@ -100,7 +100,7 @@ highlight VertSplit ctermbg=NONE ctermfg=NONE cterm=NONE
 highlight LineNr ctermbg=NONE ctermfg=darkgrey
 highlight ColorColumn ctermbg=grey
 highlight SignColumn ctermbg=NONE
-highlight StatusLine ctermfg=white ctermbg=darkcyan cterm=bold
+highlight StatusLine ctermfg=white ctermbg=blue cterm=bold
 highlight StatusLineNC ctermfg=white ctermbg=grey cterm=bold
 highlight lispParen ctermfg=darkgrey
 
