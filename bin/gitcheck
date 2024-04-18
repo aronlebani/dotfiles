@@ -1,34 +1,47 @@
-#!/usr/bin/sbcl --script
+#!/bin/bash
 
-;;;; Recursively checks if any git repositories have unpublished changes.
-;;;;
-;;;; Usage: gitcheck <start-path>
-;;;; Example: gitcheck ~
+remote=0
 
-(load "~/lib/path.lisp")
+usage() {
+	echo "Usage: gitcheck [OPTION]"
+	echo "Options:"
+	echo "	-h | --help	show help"
+	echo "	-r | --remote	check if branch is ahead of or behind remote"
+}
 
-(defun git-changes? (path)
-  "Checks for changes in the git repository"
-  (> (length (git-status path)) 0))
+check_status() {
+	[ ! -d .git ] && return
 
-(defun git-repository? (path)
-  "Checks if the pathname is the root of a git repository"
-  (some
-    (lambda (x) (search ".git" x :start2 (- (length x) 5)))
-    (mapcar #'namestring (path-list path))))
+	git status --porcelain
+}
 
-(defun git-status (path)
-  "Runs `git status --porcelain` on the pathname and returns the result"
-  (with-output-to-string (out)
-    (run-program
-      "/usr/bin/git"
-      (list "status" "--porcelain")
-      :output out
-      :directory path)))
+check_remote() {
+	[ ! -d .git ] && return
 
-(walk-directory
-  (nth 1 *posix-argv*)
-  :directory-fn
-    (lambda (x) (write-line (namestring x)) (write-line (git-status x)))
-  :test
-    (lambda (x) (and (git-repository? x) (git-changes? x))))
+	git remote update > /dev/null 2> /dev/null
+
+	branch=$(git rev-parse --abbrev-ref HEAD)
+	ahead=$(git rev-list --count origin/$branch..$branch)
+	behind=$(git rev-list --count $branch..origin/$branch)
+
+	[ "$ahead" != "0" ] || [ "$behind" != "0" ] && \
+		echo "$ahead commits ahead, $behind commits behind"
+}
+
+main() {
+	find "$(pwd)" -type d | while read dir; do
+		[ ! -d "$dir/.git" ] && continue
+
+		echo "$dir"
+		cd $dir
+
+		check_status
+		[ "$remote" -eq 1 ] && check_remote
+	done
+}
+
+case "$1" in
+	-h | --help ) usage ;;
+	-r | --remote ) remote=1; main ;;
+	* ) main ;;
+esac

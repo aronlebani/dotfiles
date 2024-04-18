@@ -1,6 +1,6 @@
 #!/bin/sh
 
-located"$HOME/.locate.db"
+locatedb="$HOME/.locate.db"
 
 if [ $# -eq 0 ]
 then
