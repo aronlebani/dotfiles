@@ -31,35 +31,20 @@ alias scratch="vim ~/src/scratch.lisp"
 [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
 [ -f /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
 
-# Bash prompt configuration
+# Prompt
 
-_RED="\[\033[1;31m\]"
-_GREEN="\[\033[1;32m\]"
-_YELLOW="\[\033[1;33m\]"
-_BLUE="\[\033[1;34m\]"
-_MAGENTA="\[\033[1;35m\]"
-_CYAN="\[\033[1;36m\]"
-_WHITE="\[\033[37;1m\]"
-_NORMAL="\[\033[0m\]"
-_RESET="\[\033[m\]"
+_red="\[\033[1;31m\]"
+_blue="\[\033[1;34m\]"
+_reset="\[\033[m\]"
 
-_git_info ()
-{
-	BRANCH=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-
-	if [ ! "${BRANCH}" == "" ]
-	then
-		STATUS=$(_git_dirty)
-		echo " > ${BRANCH}${STATUS}"
-	fi
+_git_dirty() {
+    [ -n "$(git status --porcelain)" ] && echo "*"
 }
 
-_git_dirty ()
-{
-    if [[ $(git status --porcelain) ]]
-    then
-        echo "*"
-    fi
+_git_info() {
+	branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+
+	[ -n "$branch" ] && echo " $branch$(_git_dirty)"
 }
 
-export PS1="[\t]${_RESET} ${_BLUE}\w${_RESET}${_RED}\$(_git_info)${_RESET}\n\$${_RESET} "
+export PS1="[\t]$_reset $_blue\w$_reset$_red\$(_git_info)$_reset\n\$$_reset "
