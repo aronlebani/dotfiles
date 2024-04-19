@@ -11,8 +11,10 @@ export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export SBCL_HOME=/usr/lib/sbcl/
+export GEM_HOME=$HOME/.ruby/
 
 [ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
+[ -d $HOME/.ruby ] && export PATH=$HOME/.ruby/bin:$PATH
 [ -d $HOME/.cargo/bin ] && export PATH=$HOME/.cargo/bin:$PATH
 [ -d /usr/local/go/bin ] && export PATH=/usr/local/go/bin:$PATH
 
