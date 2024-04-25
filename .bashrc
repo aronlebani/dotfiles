@@ -16,16 +16,17 @@ export GEM_HOME=$HOME/.ruby/
 [ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
 [ -d $HOME/.ruby ] && export PATH=$HOME/.ruby/bin:$PATH
 [ -d $HOME/.cargo/bin ] && export PATH=$HOME/.cargo/bin:$PATH
-[ -d /usr/local/go/bin ] && export PATH=/usr/local/go/bin:$PATH
 
 alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 alias news="newsboat"
-alias todo="vim $HOME/notes/todo.md"
-alias memo="vim $HOME/notes/memo.md"
-alias notes="vim $HOME/notes"
+alias todo="cd $HOME && vim notes/todo.md"
+alias memo="cd $HOME && vim notes/memo.md"
+alias notes="cd $HOME && vim notes"
+alias bookmarks="vim $XDG_CONFIG_HOME/qutebrowser/quickmarks"
+alias feeds="vim $XDG_CONFIG_HOME/newsboat/urls"
 alias swank="sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"
 alias swankrkt="racket /home/aron/src/contrib/swank-racket/server.rkt"
 alias scratch="vim ~/src/scratch.lisp"
