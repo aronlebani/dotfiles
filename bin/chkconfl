@@ -1,0 +1,10 @@
+#!/bin/bash
+
+re=".*sync-conflict.*"
+args=""
+
+if [ "$1" = "--remove" ]; then
+	args="-delete"
+fi
+
+find . -regex $re $args

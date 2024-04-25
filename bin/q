@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 # frozen_string_literal: true
- 
+
 # Recursively query markdown notes.
 #
 # Usage: q [options]
