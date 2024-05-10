@@ -83,9 +83,6 @@ admin ()
 {
     mkdir -p "$HOME/src"
 
-	echo -e ";; A scratch file for Lisp evaluation\n\n(load \"~/lib/util.lisp\")" \
-		> "$HOME/src/scratch.lisp"
-
     # Remove unused directories
     rmdir \
         "$HOME/Documents" \

@@ -51,13 +51,13 @@ tnoremap <c-l> <c-w><c-l>
 tnoremap <c-h> <c-w><c-h>
 noremap  <c-t> :terminal<cr>
 tnoremap <c-b> <c-\><c-n>
-nnoremap ;o :copen<cr>
 nnoremap ;c :center<cr>
 nnoremap ;h :noh<cr><cr>
 nnoremap ;n :bnext<cr>
 nnoremap ;p :bprevious<cr>
 inoremap ;d ## <c-r>=strftime("%F")<c-m>
 nnoremap ;s :echo "hi<".synIDattr(synID(line("."),col("."),1),"name")."> trans<".synIDattr(synID(line("."),col("."),0),"name")."> lo<".synIDattr(synIDtrans(synID(line("."),col("."),1)),"name").">"<cr>
+nnoremap gr yy:!@"<cr>
 
 " ---- Settings by language ----
 
@@ -73,6 +73,9 @@ autocmd FileType markdown highlight mkdItalic ctermfg=blue cterm=italic
 autocmd FileType markdown setlocal spell
 autocmd FileType markdown set colorcolumn=""
 autocmd FileType gitcommit setlocal spell
+
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost l* nested lwindow
 
 " ---- Syntax highlighting ----
 
@@ -102,7 +105,6 @@ highlight ColorColumn ctermbg=grey
 highlight SignColumn ctermbg=NONE
 highlight StatusLine ctermfg=white ctermbg=blue cterm=bold
 highlight StatusLineNC ctermfg=white ctermbg=grey cterm=bold
-" highlight lispParen ctermfg=darkgrey
 
 " ---- Plugin settings ----
 

@@ -9,6 +9,8 @@ repository and `$HOME`. To prevent tracking private files, the `.gitignore` file
 _everything_ using a `*` entry. The files that we want to track are then opted-in using
 `!<filename>` entries.
 
+I only keep config in this repository that works across every system I use. For example, nothing OS or DE related goes in here.
+
 ## Software
 
 The repository contains configuration files for the following software, plus a few other odds and

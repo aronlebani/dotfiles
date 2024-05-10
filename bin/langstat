@@ -1,0 +1,254 @@
+#!/bin/ruby
+
+# frozen_string_literal: true
+
+# Performs statistics on programming languages used in source code
+# files.
+#
+# Usage: langstat glob [options]
+#
+# Aron Lebani <aron@lebani.dev>
+# 2024
+
+# TODO
+# - Order results by percentage
+# - Figure out how to test for binary faster - major bottleneck
+# - Option to skip other
+
+require 'optparse'
+require 'nokogiri'
+require 'open-uri'
+require 'uri'
+
+class File
+  def self.ascii?(filename)
+    !`file --mime '#{filename}'`.include? 'charset=binary'
+  end
+
+  def self.shebang(filename)
+    return if File.empty? filename
+
+    first_line = File.open filename, 'r', &:readline
+
+    return first_line if shebang? first_line
+  end
+
+  def self.shebang?(str)
+    str[0] == '#' and str[1] == '!'
+  end
+end
+
+class DbBuilder
+  def initialize(path)
+    @path = path
+    @wiki_uri = 'https://en.wikipedia.org'
+    @root_stub = '/wiki/List_of_programming_languages'
+  end
+
+  def build
+    File.open(@path, 'w') do |file|
+      parse_root(@root_stub) do |lang_name, lang_href|
+        parse_page(lang_href) do |extensions|
+          file.write "#{lang_name}, #{extensions}\n"
+        end
+      end
+    end
+  end
+
+  private
+
+  def parse_root(stub)
+    uri = "#{@wiki_uri}#{stub}"
+    el_path = 'div#mw-content-text div.div-col ul li a'
+    doc = Nokogiri::HTML.parse(URI.open(uri))
+
+    doc.search(el_path).each do |a|
+      name = a.content
+      href = a['href']
+      yield name, href
+    end
+  end
+
+  def parse_page(stub)
+    uri = "#{@wiki_uri}#{stub}"
+    el_path = 'th.infobox-label'
+    doc = Nokogiri::HTML.parse(URI.open(uri))
+
+    doc.search(el_path).each do |infobox_label|
+      label_a = infobox_label.element_children[0]
+      label_href = label_a && label_a['href']
+
+      if label_href == '/wiki/Filename_extension'
+        extensions = infobox_label.next_sibling.content
+        yield extensions
+      end
+    end
+  end
+end
+
+class Db
+  def initialize(path)
+    @entries = File.open(path, 'r') do |file|
+      file.readlines
+          .filter { |line| !comment?(line) }
+          .map { |line| line.sub("\n", '').split(', ') }
+    end
+  end
+
+  def find(lang)
+    lang_item = @entries.find do |entry|
+      entry.find do |candidate|
+        candidate == lang
+      end
+    end
+
+    return canonical lang_item if lang_item
+  end
+
+  private
+
+  def comment?(line)
+    line.start_with? '#'
+  end
+
+  def canonical(entry)
+    entry[0]
+  end
+end
+
+class Lang
+  def self.derive(filename)
+    ext = ext_lang filename
+    she = shebang_lang File.shebang filename
+
+    return ext if ext
+    return she if she
+
+    filename_lang filename
+  end
+
+  def self.shebang_lang(shebang)
+    return unless shebang
+
+    basename = File.basename shebang
+    splits = basename.split
+
+    # example: #!/usr/bin/env python
+    return splits[1] if splits[0] == 'env'
+
+    # example: #!/usr/bin/bash
+    # example: #!/usr/bin/sbcl --script
+    splits[0]
+  end
+
+  def self.ext_lang(filename)
+    ext = File.extname filename
+
+    return ext.sub '.', '' unless ext.empty?
+  end
+
+  def self.filename_lang(filename)
+    File.basename filename
+  end
+end
+
+def puts_dir(path, langs, total)
+  langs = langs.map do |key, value|
+    percentage = value / total.to_f * 100
+    "#{key}: #{value} (#{percentage.round}%)"
+  end
+
+  puts "#{path} #{langs.join ', '} [total: #{total}]"
+end
+
+def puts_file(path, lang, count)
+  puts "#{path} #{lang}: #{count}" if lang
+end
+
+def stat_dir(path, db)
+  langs = {}
+  total = 0
+
+  Dir.glob("#{path}/**/**").each do |child_path|
+    next unless File.file? child_path
+    next unless File.ascii? child_path
+
+    lang = db.find Lang.derive child_path
+    lang ||= 'other'
+    line_count = File.open(child_path, 'r').count
+    total += line_count
+
+    if langs.key? lang
+      langs[lang] += line_count
+    else
+      langs[lang] = line_count
+    end
+  end
+
+  puts_dir path, langs, total
+end
+
+def stat_file(path, db)
+  return unless File.ascii? path
+
+  lang = db.find Lang.derive path
+  line_count = File.open(path, 'r').count
+
+  puts_file path, lang, line_count
+end
+
+def db_path(options)
+  if options[:db]
+    options[:db]
+  elsif File.exist? "#{Dir.home}/.config/langs"
+    "#{Dir.home}/.config/langs"
+  elsif File.exist? "#{Dir.home}/etc/langs"
+    "#{Dir.home}/etc/langs"
+  end
+end
+
+def main_db_builder(path)
+  builder = DbBuilder.new path
+  builder.build
+end
+
+def main(path, options)
+  db = Db.new db_path options
+
+  glob = path
+  glob = "#{path}/**" if options[:subdir]
+  glob = "#{path}/**/**" if options[:recurse]
+
+  Dir.glob(glob).each do |path|
+    if File.file? path
+      stat_file path, db
+    elsif File.directory? path
+      stat_dir path, db
+    end
+  end
+end
+
+if __FILE__ == $0
+  parser = OptionParser.new do |opts|
+    opts.banner = 'Usage: langstat [options] directory'
+    opts.on '-d DB', '--db=DB', 'language database file'
+    opts.on '-s', '--subdir', 'groups summary by sub-directories'
+    opts.on '-r', '--recurse', 'recurses infinitely'
+    opts.on '--make-db', 'make language database file'
+    opts.on '-h', '--help', 'prints this help'
+  end
+
+  options = {}
+  parser.parse! into: options
+
+  unless ARGV[0]
+    puts parser.help
+    exit 1
+  end
+
+  if options[:"make-db"]
+    main_db_builder ARGV[0]
+  else
+    main ARGV[0], options
+  end
+end

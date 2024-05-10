@@ -31,6 +31,17 @@
                                     (list values)))
                    ,function)))
 
+;;; Aliasing
+
+(defmacro defalias (new-name prev-name)
+  "Define a function alias
+
+   Examples:
+
+   (defalias ls directory-files)"
+  `(defmacro ,new-name (&rest args)
+     `(,',prev-name ,@args)))
+
 ;;; Calculations
 
 (defun rgb->hex (r g b &key pretty?)

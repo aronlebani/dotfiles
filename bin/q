@@ -15,16 +15,16 @@ require 'optparse'
 def get_re(options)
   re_str = ''
 
-  options[:tags]&.each do |tag|
+  options[:tags]&.split(' ')&.each do |tag|
     re_str = "#{re_str}(?=.*_#{tag}[^_]*_)"
   end
 
-  options[:query]&.each do |query|
+  options[:query]&.split(' ')&.each do |query|
     re_str = "#{re_str}(?=.*#{query}*)"
   end
 
   re_str = "#{re_str}(?=.*\[.*\]\(.*\))" if options[:anchor]
-  re_str = "#{re_str}(?=(\\*|\\-) \\[\s\\])" if options[:todo]
+  re_str = "#{re_str}(?=(\\*|\\-) \\[\s|-\\])" if options[:check]
   re_str = "#{re_str}.*"
 
   /#{re_str}/i
@@ -42,7 +42,7 @@ def colorize_blue(str)
   colorize str, 34
 end
 
-def walk
+def walk_md_files
   Dir.glob('**/**').each do |file|
     next if File.directory?(file)
     next if File.extname(file) != '.md'
@@ -58,7 +58,7 @@ end
 def query(options)
   re = get_re options
 
-  walk do |file, line, line_no|
+  walk_md_files do |file, line, line_no|
     puts "#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}" \
         if line.match? re
   end
@@ -68,7 +68,7 @@ def list
   tags = []
   re = /(\n|\s)_[^_]*_(\n|\s)/
 
-  walk do |_, line, _|
+  walk_md_files do |_, line, _|
     tags.push line.match(re).to_s.strip if line.match? re
   end
 
@@ -80,29 +80,12 @@ def main
 
   OptionParser.new do |opts|
     opts.banner = 'Usage: q [options]'
-
-    opts.on '-t TAGS',
-            '--tags=TAGS',
-            'Query tags, denoted by markdown _italic_ syntax' do |t|
-      options[:tags] = t.split ' '
-    end
-
-    opts.on '-q QUERY', '--query=QUERY', 'Query by keywords' do |q|
-      options[:query] = q.split ' '
-    end
-
-    opts.on '-c', '--check', 'Query markdown todo items' do |c|
-      options[:todo] = c
-    end
-
-    opts.on '-a', '--anchor', 'Query markdown links' do |a|
-      options[:anchor] = a
-    end
-
-    opts.on '-l', '--list', 'List all tags' do |l|
-      options[:list] = l
-    end
-  end.parse!
+    opts.on '-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax'
+    opts.on '-q QUERY', '--query=QUERY', 'Query by keywords'
+    opts.on '-c', '--check', 'Query markdown todo items'
+    opts.on '-a', '--anchor', 'Query markdown links'
+    opts.on '-l', '--list', 'List all tags'
+  end.parse! into: options
 
   if options[:list]
     list
