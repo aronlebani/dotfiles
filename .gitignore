@@ -3,12 +3,11 @@
 !bin/**/*
 !lib/
 !lib/**/*
-!src/
 !.config/
 !.config/user-dirs.dirs
 !.config/autostart
 !.config/autostart/set-display.desktop
-!.config/autostart/seafile.desktop
+!.config/autostart/syncthing.desktop
 !.config/newsboat
 !.config/newsboat/config
 !.config/qutebrowser

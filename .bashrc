@@ -28,8 +28,8 @@ alias memo="vim $NOTES/memo.md"
 alias notes="vim $NOTES"
 alias bookmarks="vim $XDG_CONFIG_HOME/qutebrowser/quickmarks"
 alias feeds="vim $XDG_CONFIG_HOME/newsboat/urls"
-alias swank="sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"
-alias scratch="vim ~/etc/scratch.lisp"
+alias swank="sbcl --load $HOME/.vim/plugged/slimv/slime/start-swank.lisp"
+alias scratch="vim $HOME/scratch.lisp"
 
 [ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
 [ -f /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
