@@ -4,7 +4,6 @@
 !lib/
 !lib/**/*
 !.config/
-!.config/user-dirs.dirs
 !.config/autostart
 !.config/autostart/set-display.desktop
 !.config/autostart/syncthing.desktop
@@ -15,6 +14,8 @@
 !.config/git/
 !.config/git/config
 !.config/git/ignore
+!.config/i3/
+!.config/i3/config
 !.vim/
 !.vim/scripts.vim
 !.bashrc
