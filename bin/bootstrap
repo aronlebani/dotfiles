@@ -82,10 +82,12 @@ install_essential ()
 admin ()
 {
     mkdir -p "$HOME/src"
+	mkdir -p "$HOME/src/contrib"
 
     # Remove unused directories
     rmdir \
         "$HOME/Documents" \
+        "$HOME/Desktop" \
         "$HOME/Downloads" \
         "$HOME/Music" \
         "$HOME/Videos" \

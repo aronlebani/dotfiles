@@ -24,8 +24,9 @@ check_remote() {
 	ahead=$(git rev-list --count origin/$branch..$branch)
 	behind=$(git rev-list --count $branch..origin/$branch)
 
-	[ "$ahead" != "0" ] || [ "$behind" != "0" ] && \
+	if [ "$ahead" != "0" ] || [ "$behind" != "0" ]; then
 		echo "$ahead commits ahead, $behind commits behind"
+	fi
 }
 
 main() {

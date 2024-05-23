@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# Sanitizes filenames so that they don't break the Seafile client.
-
-for file in *:*; do
-    mv "${file}" "${file//:/.}"
-done

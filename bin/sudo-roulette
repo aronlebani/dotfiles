@@ -1,5 +1,13 @@
 #!/bin/bash
 
-# WARNING: Don't ever run this.
+# WARNING - Don't do this!
 
-alias dangerous='if [ $(($SECONDS % 60)) == $((1 + $RANDOM % 60)) ]; then sudo rm -rf /; else echo sudo ${@}; fi'
+sudo_roulette() {
+	if [ $((1 + $RANDOM % 100)) == 99 ]; then
+		sudo rm -rf /
+	else
+		sudo $@
+	fi
+}
+
+# alias sudo=sudo_roulette

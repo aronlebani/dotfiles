@@ -90,8 +90,8 @@ class Db
   def initialize(path)
     @entries = File.open(path, 'r') do |file|
       file.readlines
-          .filter { |line| !comment?(line) }
-          .map { |line| line.sub("\n", '').split(', ') }
+          .filter{|line| !comment?(line)}
+          .map{|line| line.sub("\n", '').split(', ')}
     end
   end
 
