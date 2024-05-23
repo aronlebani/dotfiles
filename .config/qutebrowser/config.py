@@ -1,3 +1,5 @@
+# To reload this config, run :config-source in browser.
+
 ## Downloads
 
 c.downloads.location.prompt = True

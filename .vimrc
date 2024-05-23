@@ -70,9 +70,7 @@ autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
 autocmd FileType markdown highlight htmlItalic ctermfg=blue cterm=italic
 autocmd FileType markdown highlight mkdItalic ctermfg=blue cterm=italic
-autocmd FileType markdown setlocal spell
 autocmd FileType markdown set colorcolumn=""
-autocmd FileType gitcommit setlocal spell
 
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost l* nested lwindow
@@ -84,8 +82,8 @@ colorscheme default
 highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
 highlight Statement ctermfg=NONE cterm=bold
 highlight PreProc ctermfg=NONE cterm=bold
-highlight Constant ctermfg=blue cterm=italic
-highlight Directory ctermfg=blue ctermbg=NONE cterm=underline
+highlight Constant ctermfg=darkcyan
+highlight Directory ctermfg=darkcyan ctermbg=NONE cterm=underline
 highlight Identifier ctermfg=NONE cterm=NONE
 highlight Type ctermfg=NONE
 highlight Special ctermfg=NONE
@@ -105,6 +103,7 @@ highlight ColorColumn ctermbg=grey
 highlight SignColumn ctermbg=NONE
 highlight StatusLine ctermfg=white ctermbg=blue cterm=bold
 highlight StatusLineNC ctermfg=white ctermbg=grey cterm=bold
+highlight lispParen ctermfg=darkgrey
 
 " ---- Plugin settings ----
 
