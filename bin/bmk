@@ -1,0 +1,40 @@
+#!/bin/bash
+
+usage()
+{
+	printf "bmk: unix bookmark manager
+
+usage: bmks [options] [<file>]
+
+--help		display this help
+
+Bookmarks are stored in a text file, one per line, in the format:
+
+	description <https://example.org>
+
+Searches for bookmarks file in the following locations in order: \
+<file>, \$XDG_CONFIG_HOME/bookmarks, \$HOME/.config/bookmarks.\n"
+}
+
+if [ $1 == "--help" ]; then
+	usage
+	exit 0
+fi
+
+if [ $1 ]; then
+	file=$1
+elif [ -f "$XDG_CONFIG_HOME/bookmarks" ]; then
+	file="$XDG_CONFIG_HOME/bookmarks"
+elif [ -f "$HOME/.config/bookmarks" ]; then
+	file="$HOME/.config/bookmarks"
+else
+	echo "Error: no bookmarks found"
+	exit 1
+fi
+
+cat $file \
+	| sed '/^#/d;/^$/d' \
+	| sort \
+	| dmenu -i -l 10 \
+	| awk -F '[<>]' '{print $2}' \
+	| xargs -I '{}' $BROWSER {}

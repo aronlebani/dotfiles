@@ -1,0 +1,28 @@
+#!/bin/bash
+
+usage()
+{
+	printf "search: search for terms on common websites
+
+usage: search [option] <search-term>
+
+--help		display this help\n"
+}
+
+if [ $1 == "--help" ]; then
+	usage
+	exit 0
+fi
+
+case "$1" in
+	-ecosia ) url="https://ecosia.org/search?q=$2" ;;
+	-mdn	) url="https://developer.mozilla.org/en-US/search?q=$2" ;;
+	-wb		) url="http://web.archive.org/web/*/$2" ;;
+	-wiki	) url="https://en.wikipedia.org/w/index.php?title=Special:Search&search=$2" ;;
+	-clhs	) url="http://www.xach.com/clhs?q=$2" ;;
+	-so		) url="https://stackoverflow.com/search?q=$2" ;;
+	-esp	) url="https://spanishdict.com/translate/$2" ;;
+	*		) url="https://duckduckgo.com?q=$1" ;;
+esac
+
+echo $url | xargs -I '{}' $BROWSER {}
