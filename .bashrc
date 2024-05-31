@@ -6,6 +6,7 @@ shopt -s checkwinsize   # Update window size if necessary after each command
 export LANG=en_AU.UTF-8
 export VISUAL=vim
 export EDITOR=vim
+export BROWSER=qutebrowser
 export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 export XDG_CONFIG_HOME=$HOME/.config
@@ -22,12 +23,9 @@ alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
-alias news="newsboat"
 alias todo="vim $NOTES/todo.md"
 alias memo="vim $NOTES/memo.md"
 alias notes="vim $NOTES"
-alias bkmk="vim $XDG_CONFIG_HOME/qutebrowser/quickmarks"
-alias feed="vim $XDG_CONFIG_HOME/newsboat/urls"
 alias swank="sbcl --load $HOME/.vim/plugged/slimv/slime/start-swank.lisp"
 alias scratch="vim $HOME/scratch.lisp"
 

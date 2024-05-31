@@ -55,9 +55,9 @@ magenta = "#aa22aa"
 cyan = "#1a92aa"
 grey = "#aaaaaa"
 
-c.tabs.position = "bottom"
+c.tabs.position = "top"
 c.tabs.indicator.width = 0
-c.statusbar.position = "bottom"
+c.statusbar.position = "top"
 c.colors.completion.odd.bg = black
 c.colors.completion.even.bg = black
 c.colors.completion.category.bg = blue
