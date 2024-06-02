@@ -10,7 +10,6 @@
 !/scratch.lisp
 !/.config/bookmarks
 !/.config/newsboat/urls
-!/.config/qutebrowser/quickmarks
 !/.local/share/newsboat/cache.db
 !/.bash_history
 !/.ssh/config

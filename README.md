@@ -1,6 +1,6 @@
 # dotfiles
 
-> dotfiles for happier hacking
+Dotfiles for happier hacking.
 
 This respository uses the "reverse gitignore" approach, inspired by
 [this blog post](https://drewdevault.com/2019/12/30/dotfiles.html). It uses a git repository in the
@@ -8,8 +8,6 @@ This respository uses the "reverse gitignore" approach, inspired by
 repository and `$HOME`. To prevent tracking private files, the `.gitignore` file is set up to ignore
 _everything_ using a `*` entry. The files that we want to track are then opted-in using
 `!<filename>` entries.
-
-I only keep config in this repository that works across every system I use. For example, nothing OS or DE related goes in here.
 
 ## Software
 
@@ -22,6 +20,7 @@ binaries by putting `$HOME/bin` at the head of `$PATH`. The `lib` directory cont
 * Editor - [vim](https://www.vim.org/)
 * RSS reader - [newsboat](https://newsboat.org/)
 * Shell - [bash](https://www.gnu.org/software/bash/)
+* WM - [i3](https://i3wm.org/)
 
 ## Installation
 
@@ -46,5 +45,5 @@ The `min` branch is a minimal version of the dotfiles which contains the bare mi
 
 ```sh
 git clone -b min https://github.com/aronlebani/dotfiles.git
-mv dotifles/.bashrc dotifles/.inputrc dotfiles/.vimrc ~
+mv dotfiles/.bashrc dotfiles/.inputrc dotfiles/.vimrc ~
 ```
