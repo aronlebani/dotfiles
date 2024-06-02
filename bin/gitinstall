@@ -1,78 +1,62 @@
-#!/usr/bin/sbcl --script
+#!/usr/bin/ruby
 
-(load "~/.quicklisp/setup.lisp")
-(ql:quickload "dexador" :silent t)
-(ql:quickload "jonathan" :silent t)
-(ql:quickload "clingon" :silent t)
+# frozen_string_literal: true
 
-(defpackage :gitinstall
-  (:use :cl)
-  (:import-from :sb-ext :run-program)
-  (:import-from :sb-posix :getcwd)
-  (:import-from :dexador :request)
-  (:import-from :jonathan :parse)
-  (:import-from :clingon :make-option :make-command :getopt :run))
+require 'optparse'
+require 'net/http'
+require 'json'
+require 'open3'
 
-(in-package :gitinstall)
+def clone(url, path, dry_run: false)
+  puts("cloning #{url} into #{path}")
 
-(defconstant +github-repositories-url+
-  "https://api.github.com/user/repos?per_page=100&affiliation=owner,collaborator")
+  return if dry_run
 
-(defun bearer (token)
-  `(format nil "Bearer ~a" ,token))
+  Open3.popen3('git', 'clone', url, chdir: path) do |_, _, stderr, wait_th|
+    unless wait_th.value.success?
+      if stderr.readline.include?('already exists')
+        puts('...repository already exists')
+      else
+        puts('...failed to clone repository')
+      end
+    end
+  end
+end
 
-(defun get-repositories (token)
-  (parse (request +github-repositories-url+
-                  :headers `(("Authorization" . ,(bearer token))))
-         :as :hash-table))
+def get_repositories(token)
+  headers = { Authorization: "Bearer #{token}" }
+  github_repos_url =
+    'https://api.github.com/user/repos?per_page=100&affiliation=owner,collaborator'
 
-(defun ssh-url (repository)
-  (gethash "ssh_url" repository))
+  res = Net::HTTP.get(URI(github_repos_url), headers)
 
-(defun clone (url path &key dry-run)
-  (format t "cloning ~a into ~a~a~&" url path)
-  (when (not dry-run)
-        (with-output-to-string (err)
-          (run-program "/usr/bin/git"
-                       `("clone" ,url)
-                       :error err
-                       :directory path)
-          (when (search "already exists" (get-output-stream-string err))
-                (format t "...repository already exists~a" #\linefeed)))))
+  JSON.parse(res)
+end
 
-(defun main (cmd)
-  (let ((token (getopt cmd :token))
-        (dest (getopt cmd :dest))
-        (dry-run (getopt cmd :dry-run)))
-    (mapc (lambda (repository)
-            (clone (ssh-url repository) dest :dry-run dry-run))
-          (get-repositories token))))
+def ssh_url(repository)
+  repository['ssh_url']
+end
 
-(defun options ()
-  (list (make-option :string
-                     :description "github personal access token"
-                     :short-name #\t
-                     :long-name "token"
-                     :required t
-                     :key :token)
-        (make-option :string
-                     :description "destination directory"
-                     :short-name #\d
-                     :long-name "dest"
-                     :env-vars '("PWD")
-                     :key :dest)
-        (make-option :flag
-                     :description "dry run"
-                     :long-name "dry-run"
-                     :key :dry-run)))
+def main(options)
+  token = options[:token]
+  dest = options[:dest] || '.'
+  dry_run = options[:"dry-run"]
 
-(defun command ()
-  (make-command :name "gitinstall"
-                :description "clone git repositories into the specified directory"
-                :version "0.1.0"
-                :authors '("Aron Lebani <aron@lebani.dev>")
-                :license "MIT"
-                :options (options)
-                :handler #'main))
+  get_repositories(token).each do |repo|
+    clone(ssh_url(repo), dest, dry_run: dry_run)
+  end
+end
 
-(run (command))
+if __FILE__ == $0
+  parser = OptionParser.new do |opts|
+    opts.banner = 'Usage: gitinstall [OPTIONS]'
+    opts.on('-t TOKEN', '--token=TOKEN', 'github personal access token')
+    opts.on('-d DEST', '--dest=DEST', 'destination directory')
+    opts.on('--dry-run', 'dry run')
+  end
+
+  options = {}
+  parser.parse!(into: options)
+
+  main(options)
+end

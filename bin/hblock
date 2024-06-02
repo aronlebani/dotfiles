@@ -1,0 +1,35 @@
+#!/bin/bash
+
+url="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+my=/etc/hosts.my
+out=/etc/hosts.ads
+
+usage()
+{
+	printf "hblock: block ads and malware using hosts
+
+hblock [options]
+
+--help		print this help
+--init		initialise hosts file for new system
+--update	update hosts file\n"
+}
+
+update()
+{
+	wget -O $out $url
+	sed -i '1,/^#===/d' $out
+	cat $my $out > /etc/hosts
+}
+
+init()
+{
+	cp /etc/hosts $my
+}
+
+case $1 in
+	--help		) usage ;;
+	--init		) init ;;
+	--update	) update ;;
+	*			) usage ;;
+esac

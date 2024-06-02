@@ -3,63 +3,63 @@
 # frozen_string_literal: true
 
 # Usage: photosort <source> <dest>
+# Depends on: exif
 
 require 'fileutils'
 
-def extract_exif_date(file)
+def exif(file)
   out = `exif #{file} 2> /dev/null`
 
-  unless $?.success?
-    puts "#{file}: Does not contain EXIF data or invalid EXIF format"
-    return nil
-  end
+  return out if $?.success?
 
-  date = out.lines.find{|l| l.include? 'Date'}
+  puts("#{file}: Does not contain EXIF data or invalid EXIF format")
+end
 
-  unless date
-    puts "#{file}: Does not contain a date in EXIF"
-    return nil
-  end
+def extract_exif_date(file)
+  out = exif(file)
+  date = out&.lines&.find { |l| l.include? 'Date' }
 
-  date.split('|').at(1).split(':').slice(0, 2)
+  return date.split('|').at(1).split(':').slice(0, 2) if date
+
+  puts("#{file}: Does not contain a date in EXIF")
 end
 
 def make_dedup_dest(path, dest_dir)
   n = 1
-  filename = File.basename path
+  filename = File.basename(path)
 
   while File.exist?(File.join(dest_dir, filename))
     filename = "duplicate-#{n}.#{File.basename path}"
     n += 1
   end
 
-  File.join dest_dir, filename
+  File.join(dest_dir, filename)
 end
 
 if __FILE__ == $0
   if ARGV[0] == '--help'
-    puts 'Usage: photosrt <source> <dest>'
+    puts('Usage: photosort <source> <dest>')
     exit 0
   end
 
   source_dir = ARGV[0]
   dest_dir = ARGV[1]
 
-  Dir.mkdir dest_dir unless Dir.exist? dest_dir
+  Dir.mkdir(dest_dir) unless Dir.exist?(dest_dir)
 
   Dir.glob("#{source_dir}/**/**").each do |path|
-    next if File.directory? path
+    next if File.directory?(path)
 
-    date = extract_exif_date path
+    date = extract_exif_date(path)
 
-    dest_path = if date
-      File.join dest_dir, date[0], date[1]
-    else
-      File.join dest_dir, 'unknown'
-    end
+    dest_path =
+      if date
+        File.join(dest_dir, date[0], date[1])
+      else
+        File.join(dest_dir, 'unknown')
+      end
 
-    FileUtils.mkdir_p dest_path
-    undup_dest_path = make_dedup_dest path, dest_path
-    FileUtils.cp path, undup_dest_path
+    FileUtils.mkdir_p(dest_path)
+    FileUtils.cp(path, make_dedup_dest(path, dest_path))
   end
 end

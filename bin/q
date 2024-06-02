@@ -12,22 +12,35 @@
 
 require 'optparse'
 
-def get_re(options)
-  re_str = ''
-
-  options[:tags]&.split(' ')&.each do |tag|
-    re_str = "#{re_str}(?=.*_#{tag}[^_]*_)"
+def make_tag_re(tags)
+  tags&.split(' ')&.reduce('') do |acc, t|
+    "#{acc}(?=.*_#{t}[^_]*_)"
   end
+end
 
-  options[:query]&.split(' ')&.each do |query|
-    re_str = "#{re_str}(?=.*#{query}*)"
+def make_query_re(query)
+  query&.split(' ')&.reduce('') do |acc, q|
+    "#{acc}(?=.*#{q}*)"
   end
+end
 
-  re_str = "#{re_str}(?=.*\[.*\]\(.*\))" if options[:anchor]
-  re_str = "#{re_str}(?=(\\*|\\-) \\[\s|-\\])" if options[:check]
-  re_str = "#{re_str}.*"
+def make_anchor_re(anchor)
+  "(?=.*\[.*\]\(.*\))" if anchor
+end
 
-  /#{re_str}/i
+def make_check_re(check)
+  "(?=(\\*|\\-) \\[\s|-\\])" if check
+end
+
+def make_re(options)
+  tag_re = make_tag_re(options[:tags])
+  query_re = make_query_re(options[:query])
+  anchor_re = make_anchor_re(options[:anchor])
+  check_re = make_check_re(options[:check])
+
+  re = /#{tag_re}#{query_re}#{anchor_re}#{check_re}.*/i
+  puts("--test: #{re}")
+  re
 end
 
 def colorize(str, color_code)
@@ -35,11 +48,11 @@ def colorize(str, color_code)
 end
 
 def colorize_green(str)
-  colorize str, 32
+  colorize(str, 32)
 end
 
 def colorize_blue(str)
-  colorize str, 34
+  colorize(str, 34)
 end
 
 def walk_md_files
@@ -56,11 +69,12 @@ def walk_md_files
 end
 
 def query(options)
-  re = get_re options
+  re = make_re(options)
 
   walk_md_files do |file, line, line_no|
-    puts "#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}" \
-        if line.match? re
+    if line.match?(re)
+      puts("#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}")
+    end
   end
 end
 
@@ -69,28 +83,32 @@ def list
   re = /(\n|\s)_[^_]*_(\n|\s)/
 
   walk_md_files do |_, line, _|
-    tags.push line.match(re).to_s.strip if line.match? re
+    tags.push(line.match(re).to_s.strip) if line.match? re
   end
 
-  puts tags.uniq.sort
+  puts(tags.uniq.sort)
+end
+
+def make_parser
+  OptionParser.new do |opts|
+    opts.banner = 'Usage: q [options]'
+    opts.on('-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax')
+    opts.on('-q QUERY', '--query=QUERY', 'Query by keywords')
+    opts.on('-c', '--check', 'Query markdown todo items')
+    opts.on('-a', '--anchor', 'Query markdown links')
+    opts.on('-l', '--list', 'List all tags')
+  end
 end
 
 def main
   options = {}
-
-  OptionParser.new do |opts|
-    opts.banner = 'Usage: q [options]'
-    opts.on '-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax'
-    opts.on '-q QUERY', '--query=QUERY', 'Query by keywords'
-    opts.on '-c', '--check', 'Query markdown todo items'
-    opts.on '-a', '--anchor', 'Query markdown links'
-    opts.on '-l', '--list', 'List all tags'
-  end.parse! into: options
+  parser = make_parser
+  parser.parse!(into: options)
 
   if options[:list]
     list
   else
-    query options
+    query(options)
   end
 end
 
