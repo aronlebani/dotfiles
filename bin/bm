@@ -2,9 +2,9 @@
 
 usage()
 {
-	printf "bmk: unix bookmark manager
+	printf "bm: bookmark manager
 
-usage: bmks [options] [<file>]
+usage: bm [options] [<file>]
 
 --help		display this help
 
@@ -37,4 +37,4 @@ cat $file \
 	| sort \
 	| dmenu -i -l 10 \
 	| awk -F '[<>]' '{print $2}' \
-	| xargs -I '{}' $BROWSER {}
+	| xargs -I '{}' $BROWSER {} &> /dev/null &

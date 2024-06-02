@@ -2,7 +2,7 @@
 
 usage()
 {
-	printf "search: search for terms on common websites
+	printf "search: search using common search engines
 
 usage: search [option] <search-term>
 
@@ -25,4 +25,4 @@ case "$1" in
 	*		) url="https://duckduckgo.com?q=$1" ;;
 esac
 
-echo $url | xargs -I '{}' $BROWSER {}
+echo $url | xargs -I '{}' $BROWSER {} &> /dev/null &
