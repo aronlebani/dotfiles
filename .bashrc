@@ -21,6 +21,9 @@ export NOTES=$HOME/notes/
 
 alias ls="ls --group-directories-first --color=auto"
 alias la="ls -lah"
+alias rm="rm -i"
+alias grep="grep --color=auto"
+alias fzf="fzf --height=10 --no-unicode --no-scrollbar --pointer=' ' --color='gutter:-1'"
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 alias todo="vim $NOTES/todo.md"

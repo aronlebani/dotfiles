@@ -16,7 +16,7 @@ Searches for bookmarks file in the following locations in order: \
 <file>, \$XDG_CONFIG_HOME/bookmarks, \$HOME/.config/bookmarks.\n"
 }
 
-if [ $1 == "--help" ]; then
+if [ "$1" == "--help" ]; then
 	usage
 	exit 0
 fi
@@ -32,9 +32,15 @@ else
 	exit 1
 fi
 
-cat $file \
-	| sed '/^#/d;/^$/d' \
-	| sort \
-	| dmenu -i -l 10 \
+bmk=$( \
+	cat $file | sed '/^#/d;/^$/d' | sort | fzf \
+		--height=10 \
+		--no-unicode \
+		--no-scrollbar \
+		--pointer=' ' \
+		--color='gutter:-1' \
+)
+
+echo $bmk \
 	| awk -F '[<>]' '{print $2}' \
 	| xargs -I '{}' $BROWSER {} &> /dev/null &

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
+cache="$cachedir/run"
+
+[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
+
+IFS=:
+if stest -dqr -n "$cache" $PATH; then
+	out=$(stest -flx $PATH | sort -u | tee "$cache")
+else
+	out=$(cat "$cache")
+fi
+
+exe=$( \
+	echo $out | fzf \
+		--height=10 \
+		--no-unicode \
+		--no-scrollbar \
+		--pointer=' ' \
+		--color='gutter:-1' \
+)
+
+exec $exe &> /dev/null &
