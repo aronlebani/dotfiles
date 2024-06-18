@@ -8,8 +8,6 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'kovisoft/slimv'
 " Syntax
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'plasticboy/vim-markdown'
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -67,10 +65,10 @@ autocmd FileType scss setlocal ts=2 sts=2 sw=2
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType markdown setlocal colorcolumn=""
 autocmd FileType markdown setlocal wrap
 autocmd FileType markdown highlight htmlItalic ctermfg=blue cterm=italic
 autocmd FileType markdown highlight mkdItalic ctermfg=blue cterm=italic
-autocmd FileType markdown set colorcolumn=""
 
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost l* nested lwindow
@@ -119,3 +117,5 @@ let g:ale_set_highlights = 0
 
 let g:slimv_repl_split = 3
 let g:slimv_package = 1
+
+let g:netrw_preview = 1
