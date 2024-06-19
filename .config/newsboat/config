@@ -1,5 +1,5 @@
-# General
-browser "qutebrowser %u"
+# Settings
+max-items 1000
 
 # Unbind keys
 unbind-key ENTER
@@ -13,7 +13,7 @@ unbind-key g
 unbind-key ^U
 
 # Bind keys - vim
-bind-key gg home
+bind-key g home
 bind-key G end
 bind-key j down
 bind-key k up
@@ -23,16 +23,11 @@ bind-key ^U pageup
 bind-key ^D pagedown
 
 # Formatting
-feedlist-format "%4i %-11u %t _%T_"
-articlelist-format "%4i %D  %?T?%-20T  ?%t"
+feedlist-format "%4i %n %-10u %t #%T"
+articlelist-format "%4i %n %D %?T?%-20T  ?%t"
 
 highlight article "^(Feed|Title|Author|Link|Links|Date):" default default bold 
-highlight all "https?://[^ ]+" color29 default underline
-highlight all "_.+_" color29
-highlight feedlist "^...." default default bold
-highlight feedlist "\\([0-9]+/[0-9]+\\)" blue default bold
-highlight articlelist "(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) [0-9][0-9]" blue default bold
-highlight articlelist "^...." default default bold
+highlight article "https?://[^ ]+" cyan default underline
 
-color listfocus color36 default
-color listfocus_unread color36 default bold
+color listfocus black cyan
+color listfocus_unread black cyan bold

@@ -9,7 +9,7 @@ usage: search [option] <search-term>
 --help		display this help\n"
 }
 
-if [ $1 == "--help" ]; then
+if [ "$1" == "--help" ]; then
 	usage
 	exit 0
 fi
