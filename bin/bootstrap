@@ -29,7 +29,8 @@ install_full ()
 		orpie \
 		# Linters
 		tidy \
-		rubocop
+		rubocop \
+		shellcheck
 
     # Install rust
     # https://www.rust-lang.org/tools/install
@@ -83,17 +84,6 @@ admin ()
 {
     mkdir -p "$HOME/src"
 	mkdir -p "$HOME/src/contrib"
-
-    # Remove unused directories
-    rmdir \
-        "$HOME/Documents" \
-        "$HOME/Desktop" \
-        "$HOME/Downloads" \
-        "$HOME/Music" \
-        "$HOME/Videos" \
-        "$HOME/Templates" \
-        "$HOME/Pictures" \
-        "$HOME/Public"
 }
 
 for arg in "$@"

@@ -109,7 +109,7 @@ let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_follow_anchor = 1
 
 let g:ale_linters_explicit = 1
-let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop'], 'html': ['tidy'] }
+let g:ale_linters = { 'javascript': ['eslint'], 'ruby': ['rubocop'], 'html': ['tidy'], 'sh': ['shellcheck'] }
 let g:ale_fixers = { 'javascript': ['prettier'], 'scss': ['prettier'], 'rust': ['rustfmt'] }
 let g:ale_virtualtext_cursor = 'disabled'
 let g:ale_set_highlights = 0

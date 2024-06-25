@@ -29,7 +29,7 @@ delete()
 
 _sort()
 {
-	photosort $1 $2
+	photosort "$1" "$2"
 }
 
 count()
@@ -57,7 +57,7 @@ case "$1" in
     -h | --help		) usage ;;
     -c | --convert	) convert ;;
     -d | --delete	) delete ;;
-	-s | --sort		) _sort $2 $3 ;;
+	-s | --sort		) _sort "$2" "$3" ;;
     --count			) count ;;
     *				) usage ;;
 esac

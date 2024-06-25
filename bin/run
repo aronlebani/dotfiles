@@ -6,14 +6,14 @@ cache="$cachedir/run"
 [ ! -e "$cachedir" ] && mkdir -p "$cachedir"
 
 IFS=:
-if stest -dqr -n "$cache" $PATH; then
-	out=$(stest -flx $PATH | sort -u | tee "$cache")
+if stest -dqr -n "$cache" "$PATH"; then
+	out=$(stest -flx "$PATH" | sort -u | tee "$cache")
 else
 	out=$(cat "$cache")
 fi
 
 exe=$( \
-	echo $out | fzf \
+	echo "$out" | fzf \
 		--height=10 \
 		--no-unicode \
 		--no-scrollbar \

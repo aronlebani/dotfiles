@@ -21,8 +21,8 @@ check_remote() {
 	git remote update > /dev/null 2> /dev/null
 
 	branch=$(git rev-parse --abbrev-ref HEAD)
-	ahead=$(git rev-list --count origin/$branch..$branch)
-	behind=$(git rev-list --count $branch..origin/$branch)
+	ahead=$(git rev-list --count origin/"$branch".."$branch")
+	behind=$(git rev-list --count "$branch"..origin/"$branch")
 
 	if [ "$ahead" != "0" ] || [ "$behind" != "0" ]; then
 		echo "$ahead commits ahead, $behind commits behind"
@@ -30,11 +30,11 @@ check_remote() {
 }
 
 main() {
-	find "$(pwd)" -type d | while read dir; do
+	find "$(pwd)" -type d | while read -r dir; do
 		[ ! -d "$dir/.git" ] && continue
 
 		echo "$dir"
-		cd $dir
+		cd "$dir" || continue
 
 		check_status
 		[ "$remote" -eq 1 ] && check_remote

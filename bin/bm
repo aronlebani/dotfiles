@@ -21,7 +21,7 @@ if [ "$1" == "--help" ]; then
 	exit 0
 fi
 
-if [ $1 ]; then
+if [ "$1" ]; then
 	file=$1
 elif [ -f "$XDG_CONFIG_HOME/bookmarks" ]; then
 	file="$XDG_CONFIG_HOME/bookmarks"
@@ -33,7 +33,7 @@ else
 fi
 
 bmk=$( \
-	cat $file | sed '/^#/d;/^$/d' | sort | fzf \
+	cat "$file" | sed '/^#/d;/^$/d' | sort | fzf \
 		--height=10 \
 		--no-unicode \
 		--no-scrollbar \
@@ -41,6 +41,6 @@ bmk=$( \
 		--color='gutter:-1' \
 )
 
-echo $bmk \
+echo "$bmk" \
 	| awk -F '[<>]' '{print $2}' \
-	| xargs -I '{}' $BROWSER {} &> /dev/null &
+	| xargs -I '{}' "$BROWSER" {} &> /dev/null &

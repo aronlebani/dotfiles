@@ -25,4 +25,4 @@ case "$1" in
 	*		) url="https://duckduckgo.com?q=$1" ;;
 esac
 
-echo $url | xargs -I '{}' $BROWSER {} &> /dev/null &
+echo "$url" | xargs -I '{}' "$BROWSER" {} &> /dev/null &
