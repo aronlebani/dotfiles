@@ -68,6 +68,13 @@ c.colors.completion.item.selected.border.top = cyan
 c.colors.completion.item.selected.match.fg = yellow
 c.completion.height = 300
 
+# Keybindings
+
+config.bind("<Ctrl-h>", "tab-prev")
+config.bind("<Ctrl-j>", "back")
+config.bind("<Ctrl-k>", "forward")
+config.bind("<Ctrl-l>", "tab-next")
+
 ## Load this config instead of config from UI
 
 config.load_autoconfig(False)

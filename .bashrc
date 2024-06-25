@@ -6,6 +6,7 @@ shopt -s checkwinsize   # Update window size if necessary after each command
 export LANG=en_AU.UTF-8
 export VISUAL=vim
 export EDITOR=vim
+export PAGER=less
 export BROWSER=qutebrowser
 export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
@@ -27,7 +28,7 @@ alias fzf="fzf --height=10 --no-unicode --no-scrollbar --pointer=' ' --color='gu
 alias fuck='sudo $(history -p \!\!)'
 alias copy="xclip -sel clip"
 alias todo="vim $NOTES/todo.md"
-alias memo="vim $NOTES/memo.md"
+alias memo="vim $NOTES/scratch.j.md"
 alias notes="vim $NOTES"
 alias swank="sbcl --load $HOME/.vim/plugged/slimv/slime/start-swank.lisp"
 alias scratch="vim $HOME/scratch.lisp"
