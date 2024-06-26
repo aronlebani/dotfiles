@@ -30,5 +30,6 @@
 !.stignore
 !.vimrc
 !.gitignore
+!.xinitrc
 !LICENSE
 !README.md
