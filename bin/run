@@ -1,16 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
 cache="$cachedir/run"
 
-[ ! -e "$cachedir" ] && mkdir -p "$cachedir"
-
 IFS=:
-if stest -dqr -n "$cache" "$PATH"; then
-	out=$(stest -flx "$PATH" | sort -u | tee "$cache")
-else
-	out=$(cat "$cache")
+
+if [ ! -f "$cache" ]; then
+	stest -flx $PATH | sort -u > "$cache"
 fi
+
+out=$(cat "$cache")
 
 exe=$( \
 	echo "$out" | fzf \

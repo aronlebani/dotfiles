@@ -20,7 +20,7 @@ export NOTES=$HOME/notes/
 [ -d $HOME/.ruby ] && export PATH=$HOME/.ruby/bin:$PATH
 [ -d $HOME/.cargo/bin ] && export PATH=$HOME/.cargo/bin:$PATH
 
-alias ls="ls --group-directories-first --color=auto"
+alias ls="ls --color=auto"
 alias la="ls -lah"
 alias rm="rm -i"
 alias grep="grep --color=auto"
@@ -33,8 +33,22 @@ alias notes="vim $NOTES"
 alias swank="sbcl --load $HOME/.vim/plugged/slimv/slime/start-swank.lisp"
 alias scratch="vim $HOME/scratch.lisp"
 
-[ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
-[ -f /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
+# Completions
+
+case "$OSTYPE" in
+	freebsd* ) 
+		[ -f /usr/local/etc/bash_completion.d/git-completion.bash ] && \
+			source /usr/local/etc/bash_completion.d/git-completion.bash
+		[ -f /usr/local/etc/bash_completion.d/password-store ] && \
+			source /usr/local/etc/bash_completion.d/password-store
+		;;
+	linux-gnu )
+		[ -f /usr/share/bash-completion/completions/git ] && \
+			source /usr/share/bash-completion/completions/git
+		[ -f /usr/share/bash-completion/completions/pass ] && \
+			source /usr/share/bash-completion/completions/pass
+		;;
+esac
 
 # Prompt
 

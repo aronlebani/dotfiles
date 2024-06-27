@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Recursively converts HEIC files to JPEG in the current directory. The new files will have the
 # same name as the original files. Requires the `libheif-examples` package which can be installed

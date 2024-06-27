@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 usage()
 {
@@ -22,7 +22,7 @@ if [ "$1" == "--help" ]; then
 fi
 
 if [ "$1" ]; then
-	file=$1
+	file="$1"
 elif [ -f "$XDG_CONFIG_HOME/bookmarks" ]; then
 	file="$XDG_CONFIG_HOME/bookmarks"
 elif [ -f "$HOME/.config/bookmarks" ]; then

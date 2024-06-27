@@ -4,6 +4,7 @@
 general {
     colors = false
     interval = 5
+	separator = " "
 }
 
 order += "battery all"
@@ -12,8 +13,8 @@ order += "wireless _first_"
 order += "tztime local"
 
 wireless _first_ {
-    format_up = "🌏%quality"
-    format_down = "down"
+    format_up = "🌏 %essid"
+    format_down = "Not connected"
 }
 
 battery all {

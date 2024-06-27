@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 url="https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 my=/etc/hosts.my
@@ -17,17 +17,17 @@ hblock [options]
 
 update()
 {
-	wget -O $out $url
-	sed -i '1,/^#===/d' $out
-	cat $my $out > /etc/hosts
+	wget -O "$out" "$url"
+	sed -i '' -e '1,/^#===/d' "$out"
+	cat "$my" "$out" > /etc/hosts
 }
 
 init()
 {
-	cp /etc/hosts $my
+	cp /etc/hosts "$my"
 }
 
-case $1 in
+case "$1" in
 	--help		) usage ;;
 	--init		) init ;;
 	--update	) update ;;

@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # frozen_string_literal: true
 
@@ -57,6 +57,11 @@ if __FILE__ == $0
 
   options = {}
   parser.parse!(into: options)
+
+  unless options[:token]
+    puts("Missing personal access token")
+    exit 1
+  end
 
   main(options)
 end

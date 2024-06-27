@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # A wrapper for openvpn3. Because the openvpn3 interface sucks.
 

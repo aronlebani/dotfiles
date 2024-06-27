@@ -10,17 +10,10 @@ set $ws4 "4"
 
 font pango:monospace 10
 
-# start XDG autostart .desktop files using dex
-exec --no-startup-id dex --autostart --environment i3
-
-# lock screen before suspend
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# volume keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id "mixer vol.volume=+5% && pkill -SIGUSR1 i3status"
+bindsym XF86AudioLowerVolume exec --no-startup-id "mixer vol.volume=-5% && pkill -SIGUSR1 i3status"
+bindsym XF86AudioMute exec --no-startup-id "mixer vol.mute=^ && pkill -SIGUSR1 i3status"
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -31,7 +24,7 @@ tiling_drag modifier titlebar
 
 # key bindings
 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 bindsym $mod+a focus parent
 bindsym $mod+d exec --no-startup-id dmenu_run
@@ -62,7 +55,7 @@ bindsym $mod+4 workspace number $ws4
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'yes' 'i3-msg exit'"
 bindsym $mod+Shift+space floating toggle
 
 bindsym $mod+Shift+h move left
