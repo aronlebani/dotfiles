@@ -4,9 +4,8 @@
 !lib/
 !lib/**/*
 !.config/
-!.config/autostart
-!.config/autostart/set-display.desktop
-!.config/autostart/syncthing.desktop
+!.config/alacritty
+!.config/alacritty/alacritty.toml
 !.config/newsboat
 !.config/newsboat/config
 !.config/qutebrowser
