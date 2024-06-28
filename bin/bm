@@ -41,6 +41,8 @@ bmk=$( \
 		--color='gutter:-1' \
 )
 
+[ -z "$bmk" ] && exit 0
+
 echo "$bmk" \
 	| awk -F '[<>]' '{print $2}' \
 	| xargs -I '{}' "$BROWSER" {} &> /dev/null &

@@ -71,9 +71,8 @@ c.completion.height = 300
 # Keybindings
 
 config.bind("<Ctrl-h>", "tab-prev")
-config.bind("<Ctrl-j>", "back")
-config.bind("<Ctrl-k>", "forward")
 config.bind("<Ctrl-l>", "tab-next")
+config.bind("<Ctrl-o>", "cmd-set-text -s :open -ts")
 
 ## Load this config instead of config from UI
 

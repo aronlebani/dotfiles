@@ -14,12 +14,12 @@ order += "tztime local"
 
 wireless _first_ {
     format_up = "🌏 %essid"
-    format_down = "Not connected"
+    format_down = "🌏 Not connected"
 }
 
 battery all {
     format = "%status %percentage %remaining"
-	format_down = "no battery"
+	format_down = "No battery"
     status_chr = "⚡"
     status_bat = "🔋"
     status_full = "🔋"
