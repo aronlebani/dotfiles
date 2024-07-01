@@ -14,7 +14,7 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export SBCL_HOME=/usr/lib/sbcl/
 export GEM_HOME=$HOME/.ruby/
-export NOTES=$HOME/notes/
+export NOTES=$HOME/notes
 
 [ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
 [ -d $HOME/.ruby ] && export PATH=$HOME/.ruby/bin:$PATH

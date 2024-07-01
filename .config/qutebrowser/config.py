@@ -3,6 +3,7 @@
 ## Downloads
 
 c.downloads.location.prompt = True
+c.downloads.location.directory = "~/temp/"
 
 ##  Bookmarklets
 

@@ -21,6 +21,7 @@ binaries by putting `$HOME/bin` at the head of `$PATH`. The `lib` directory cont
 * RSS reader - [newsboat](https://newsboat.org/)
 * Shell - [bash](https://www.gnu.org/software/bash/)
 * WM - [i3](https://i3wm.org/)
+* Terminal emulator - [alacritty](https://alacritty.org/)
 
 ## Installation
 

@@ -96,7 +96,7 @@ highlight Visual ctermbg=lightmagenta ctermfg=grey
 highlight Cursor ctermbg=NONE ctermfg=NONE cterm=NONE
 highlight VertSplit ctermbg=NONE ctermfg=darkgrey cterm=NONE
 highlight LineNr ctermbg=NONE ctermfg=darkgrey
-highlight ColorColumn ctermbg=NONE
+highlight ColorColumn ctermbg=darkgrey
 highlight SignColumn ctermbg=NONE
 highlight StatusLine ctermfg=white ctermbg=blue cterm=bold
 highlight StatusLineNC ctermfg=white ctermbg=grey cterm=bold

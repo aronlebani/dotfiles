@@ -7,10 +7,7 @@ multiplier = 1
 
 [font]
 normal = { family = "monospace", style = "Regular" }
-bold = { style = "Bold" }
-italic = { style = "Italic" }
-bold_italic = { style = "Bold Italic" }
-size = 11
+size = 10
 
 [colors]
 [colors.primary]

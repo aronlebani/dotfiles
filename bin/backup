@@ -1,0 +1,18 @@
+#!/bin/sh
+
+dir=/home/aron
+
+create()
+{
+	tar -czf "backup-$date.tar.gz" $dir
+}
+
+update()
+{
+	tar -uf "$1"
+}
+
+push()
+{
+	rsync -
+}

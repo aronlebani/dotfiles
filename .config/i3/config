@@ -30,11 +30,11 @@ bindsym $mod+w layout tabbed
 bindsym $mod+s layout stacking
 bindsym $mod+r mode "resize"
 bindsym $mod+space focus mode_toggle
-bindsym F1 exec "i3lock"
-bindsym F2 exec --no-startup-id "mixer vol.mute=^ && pkill -SIGUSR1 i3status"
-bindsym F3 exec --no-startup-id "mixer vol.volume=-5% && pkill -SIGUSR1 i3status"
-bindsym F4 exec --no-startup-id "mixer vol.volume=+5% && pkill -SIGUSR1 i3status"
+bindsym F1 exec --no-startup-id "mixer vol.mute=^ && pkill -SIGUSR1 i3status"
+bindsym F2 exec --no-startup-id "mixer vol.volume=-5% && pkill -SIGUSR1 i3status"
+bindsym F3 exec --no-startup-id "mixer vol.volume=+5% && pkill -SIGUSR1 i3status"
 bindsym F11 fullscreen toggle
+bindsym F12 exec "i3lock"
 
 bindsym $mod+h focus left
 bindsym $mod+j focus down

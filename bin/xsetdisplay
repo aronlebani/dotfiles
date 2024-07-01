@@ -1,17 +1,32 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-# set-display.sh
+# xsetdisplay.sh
 #
 # Sets the display resolution using xrandr
 # To configure this to run automatically on login, add the following to Startup Applications:
 # /bin/bash -c "~/bin/set-display.sh"
 
-if [ "$(hostname)" = "bob-knob" ]; then
+bob_knob()
+{
 	xrandr --newmode "1920x1200_90.00"  300.50  1920 2072 2280 2640  1200 1203 1209 1266 -hsync +vsync
 	xrandr --addmode eDP-1 "1920x1200_90.00"
 	xrandr --output eDP-1 --mode 1920x1200_90.00
-elif [ "$(hostname)" = "rosemary-hemphill" ]; then
+}
+
+rosemary_hemphill()
+{
+	# Are there any monitors connected?
+	standalone=$(xrandr --listmonitors | head -n 1 | grep 1)
+
+	[ -n "$standalone" ] && exit 0
+
 	xrandr --output eDP-1 --off \
 		   --output DP-2-1 --primary --mode 1920x1080 --rate 60.00  \
 		   --output DP-2-3 --mode 1920x1080 --rate 60.00 --right-of DP-2-1
+}
+
+if [ "$(hostname)" = "bob-knob" ]; then
+	bob_knob
+elif [ "$(hostname)" = "rosemary-hemphill" ]; then
+	rosemary_hemphill
 fi
