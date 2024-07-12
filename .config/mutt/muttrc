@@ -3,7 +3,7 @@ set ssl_force_tls	= yes
 
 # Incoming
 set imap_user		= "aron@lebani.dev"
-set imap_pass		= "`pass fastmail.com/aron\@lebani.dev | awk 'NR==5' | sed 's/^[^ ]* //'`"
+set imap_pass		= "`pass fastmail.com | awk 'NR==5' | sed 's/^[^ ]* //'`"
 set folder			= "imaps://imap.fastmail.com:993"
 set spoolfile		= "+INBOX"
 set trash			= "+Trash"

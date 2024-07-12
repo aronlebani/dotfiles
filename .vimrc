@@ -64,7 +64,6 @@ autocmd FileType scss setlocal ts=2 sts=2 sw=2
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
-autocmd FileType markdown setlocal colorcolumn=""
 autocmd FileType markdown setlocal wrap
 autocmd FileType markdown highlight htmlItalic ctermfg=blue cterm=italic
 autocmd FileType markdown highlight mkdItalic ctermfg=blue cterm=italic

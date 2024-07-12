@@ -53,7 +53,7 @@ bindsym $mod+4 workspace number $ws4
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'yes' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-msg exit"
 bindsym $mod+Shift+space floating toggle
 
 bindsym $mod+Shift+h move left
