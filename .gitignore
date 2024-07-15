@@ -17,9 +17,8 @@
 !.config/i3/config
 !.config/i3status/
 !.config/i3status/config
-!.config/mutt/
-!.config/mutt/muttrc
-!.config/mutt/signature
+!.config/aerc/
+!.config/aerc/**/*
 !.vim/
 !.vim/scripts.vim
 !.bashrc
