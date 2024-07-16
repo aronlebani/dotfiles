@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-locatedb="$HOME/.locate.db"
-
-find / -print > "$locatedb"
-
-exit 0

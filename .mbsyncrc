@@ -1,0 +1,23 @@
+IMAPAccount home
+Host imap.fastmail.com
+Port 993
+User aron@lebani.dev
+PassCmd "cat ~/.fastmail-app"
+SSLType IMAPS
+
+IMAPStore home-remote
+Account home 
+
+MaildirStore home-local
+Path ~/mail/
+Inbox ~/mail/Inbox
+SubFolders Verbatim
+
+Channel home
+Far :home-remote:
+Near :home-local:
+Patterns *
+SyncState *
+Create Both
+Remove Both
+Expunge Both

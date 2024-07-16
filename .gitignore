@@ -22,10 +22,11 @@
 !.vim/
 !.vim/scripts.vim
 !.bashrc
+!.homesync
 !.inputrc
+!.mbsyncrc
 !.sbclrc
 !.sqliterc
-!.stignore
 !.vimrc
 !.gitignore
 !.xinitrc
