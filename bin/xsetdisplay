@@ -21,8 +21,8 @@ rosemary_hemphill()
 	[ -n "$standalone" ] && exit 0
 
 	xrandr --output eDP-1 --off \
-		   --output DP-2-1 --primary --mode 1920x1080 --rate 60.00  \
-		   --output DP-2-3 --mode 1920x1080 --rate 60.00 --right-of DP-2-1
+		   --output DP-2-1 --primary --mode 1920x1080 --rate 60.00  #\
+		   #--output DP-2-3 --mode 1920x1080 --rate 60.00 --right-of DP-2-1
 }
 
 if [ "$(hostname)" = "bob-knob" ]; then

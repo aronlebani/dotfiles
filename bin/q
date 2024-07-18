@@ -38,9 +38,7 @@ def make_re(options)
   anchor_re = make_anchor_re(options[:anchor])
   check_re = make_check_re(options[:check])
 
-  re = /#{tag_re}#{query_re}#{anchor_re}#{check_re}.*/i
-  puts("--test: #{re}")
-  re
+  /#{tag_re}#{query_re}#{anchor_re}#{check_re}.*/i
 end
 
 def colorize(str, color_code)

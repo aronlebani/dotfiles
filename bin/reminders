@@ -1,0 +1,3 @@
+#!/bin/sh
+
+msmtp -a Aron aron@lebani.dev < "$XDG_CONFIG_HOME/reminders"

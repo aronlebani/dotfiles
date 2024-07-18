@@ -7,9 +7,10 @@ ledger
 notes
 projects
 scratch.lisp
+.config/reminders
 .config/bookmarks
-.config/newsboat/urls
 .config/langs
+.config/newsboat/urls
 .local/share/newsboat/cache.db
 .bash_history
 .ssh/config
