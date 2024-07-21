@@ -11,7 +11,4 @@ export EDITOR=vim
 export HISTSIZE=65536           # Number of lines in history file
 export HISTCONTROL=ignoreboth   # Ignore duplicate lines and lines starting with space in history
 
-alias ls="ls --group-directories-first --color=auto"
-alias la="ls -lah"
-
-[ -f /usr/share/bash-completion/completions/git ] && source /usr/share/bash-completion/completions/git
+alias ls="ls --color=auto"
