@@ -9,7 +9,3 @@
 border.reverse=false
 tab.selected.reverse=true
 tab.selected.bold=true
-part_mimetype.selected.fg=blue
-part_filename.selected.fg=blue
-part_switcher.selected.fg=blue
-completion_default.bg=blue

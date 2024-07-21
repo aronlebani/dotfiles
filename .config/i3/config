@@ -10,12 +10,9 @@ set $ws4 "4"
 
 font pango:monospace 10
 
-# use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-# move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
+default_border normal 0
+floating_modifier $mod
 
 # key bindings
 

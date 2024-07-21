@@ -1,18 +1,7 @@
 # Settings
 max-items 1000
 
-# Unbind keys
-unbind-key ENTER
-unbind-key HOME
-unbind-key END
-unbind-key j
-unbind-key k
-unbind-key J
-unbind-key K
-unbind-key g
-unbind-key ^U
-
-# Bind keys - vim
+# Vim keybindings
 bind-key g home
 bind-key G end
 bind-key j down
@@ -23,11 +12,5 @@ bind-key ^U pageup
 bind-key ^D pagedown
 
 # Formatting
-feedlist-format "%4i %n %-10u %t #%T"
+feedlist-format "%4i %n %-10u %t (%T)"
 articlelist-format "%4i %n %D %?T?%-20T  ?%t"
-
-highlight article "^(Feed|Title|Author|Link|Links|Date):" default default bold 
-highlight article "https?://[^ ]+" cyan default underline
-
-color listfocus black cyan
-color listfocus_unread black cyan bold

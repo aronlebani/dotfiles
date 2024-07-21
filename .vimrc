@@ -65,41 +65,6 @@ autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
-autocmd FileType markdown highlight htmlItalic ctermfg=blue cterm=italic
-autocmd FileType markdown highlight mkdItalic ctermfg=blue cterm=italic
-
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost l* nested lwindow
-
-" ---- Syntax highlighting ----
-
-colorscheme default
-
-highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
-highlight Statement ctermfg=NONE cterm=bold
-highlight PreProc ctermfg=NONE cterm=bold
-highlight Constant ctermfg=grey
-highlight Directory ctermfg=grey ctermbg=NONE cterm=underline
-highlight Identifier ctermfg=NONE cterm=NONE
-highlight Type ctermfg=NONE
-highlight Special ctermfg=NONE
-highlight Underlined ctermfg=NONE cterm=underline
-highlight Title ctermfg=NONE cterm=bold
-highlight Todo ctermbg=yellow cterm=bold
-highlight Error ctermbg=NONE ctermfg=red cterm=underline
-highlight Warning ctermfg=yellow
-highlight SpellBad ctermfg=NONE ctermbg=NONE cterm=underline ctermul=red
-highlight MatchParen ctermfg=NONE ctermbg=blue
-highlight Search ctermbg=lightmagenta ctermfg=grey
-highlight Visual ctermbg=lightmagenta ctermfg=grey
-highlight Cursor ctermbg=NONE ctermfg=NONE cterm=NONE
-highlight VertSplit ctermbg=NONE ctermfg=darkgrey cterm=NONE
-highlight LineNr ctermbg=NONE ctermfg=darkgrey
-highlight ColorColumn ctermbg=darkgrey
-highlight SignColumn ctermbg=NONE
-highlight StatusLine ctermfg=white ctermbg=blue cterm=bold
-highlight StatusLineNC ctermfg=white ctermbg=grey cterm=bold
-highlight lispParen ctermfg=darkgrey
 
 " ---- Plugin settings ----
 
