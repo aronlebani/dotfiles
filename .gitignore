@@ -1,8 +1,6 @@
 *
 !bin/
 !bin/**/*
-!lib/
-!lib/**/*
 !.config/
 !.config/alacritty
 !.config/alacritty/alacritty.toml

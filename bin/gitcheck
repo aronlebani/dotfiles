@@ -1,12 +1,12 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 remote=0
 
 usage() {
-	echo "Usage: gitcheck [OPTION]"
-	echo "Options:"
-	echo "	-h | --help	show help"
-	echo "	-r | --remote	check if branch is ahead of or behind remote"
+	printf "Usage: gitcheck [OPTION]
+
+-h | --help	show help
+-r | --remote	check if branch is ahead of or behind remote\n"
 }
 
 check_status() {
@@ -42,7 +42,7 @@ main() {
 }
 
 case "$1" in
-	-h | --help ) usage ;;
-	-r | --remote ) remote=1; main ;;
-	* ) main ;;
+	-h | --help		) usage ;;
+	-r | --remote	) remote=1; main ;;
+	*				) main ;;
 esac

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+location="$XDG_DATA_HOME/luakit/adblock"
+
+list=( \
+	'https://easylist.to/easylist/easylist.txt' \
+	'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt' \
+	'https://easylist.to/easylist/easyprivacy.txt' \
+)
+
+for item in "${list[@]}"; do
+	filename=$(echo "$item" | rev | cut -d '/' -f 1 | rev)
+	curl "$item" > "$location/$filename"
+done

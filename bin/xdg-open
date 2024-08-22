@@ -1,0 +1,26 @@
+#!/bin/sh
+
+scheme=$(echo "$1" | cut -d: -f1)
+mimetype=$(file --mime-type "$1" | cut -d' ' -f2)
+
+by_mime()
+{
+	case "$mimetype" in
+		application/pdf ) exec mupdf "$1" ;;
+		image/*			) exec feh "$1" ;;
+		text/html		) exec "$BROWSER" "$1" ;;
+		text/*			) exec "$EDITOR" "$1" ;;
+		*				) echo "Don't know how to open $1" ; exit 1 ;;
+	esac
+}
+
+by_scheme()
+{
+	case "$scheme" in
+		http|https	) exec "$BROWSER" "$1" ;;
+		mailto		) exec aerc "$1" ;;
+		*			) by_mime "$1" ;;
+	esac
+}
+
+by_scheme "$@"

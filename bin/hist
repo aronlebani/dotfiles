@@ -1,0 +1,35 @@
+#!/bin/sh
+
+usage()
+{
+	printf "hist: search browser history
+
+usage: hist [OPTIONS]
+
+--help		display this help
+
+Queries the sqlite history database and displays options in dmenu.\n"
+}
+
+if [ "$1" = "--help" ]; then
+	usage
+	exit 0
+fi
+
+db="$XDG_DATA_HOME/luakit/history.db"
+query='select title, uri from history order by last_visit desc;'
+
+selected=$( \
+	sqlite3 -init /dev/null "$db" "$query" \
+	| dmenu -i -l 10 -p 'History' \
+)
+
+if [ -z "$selected" ]; then
+	exit 0
+fi
+
+echo "$selected"
+
+echo "$selected" \
+	| cut -d '|' -f2 \
+	| xargs -I '{}' "$BROWSER" {} 2>/dev/null 1>/dev/null &

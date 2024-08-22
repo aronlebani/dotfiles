@@ -1,0 +1,17 @@
+#!/bin/sh
+
+_red="\[\033[1;31m\]"
+_blue="\[\033[1;34m\]"
+_reset="\[\033[m\]"
+
+_git_dirty() {
+    [ -n "$(git status --porcelain)" ] && echo "*"
+}
+
+_git_info() {
+	branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+
+	[ -n "$branch" ] && echo " $branch$(_git_dirty)"
+}
+
+export PS1="[\t]$_reset $_blue\w$_reset$_red\$(_git_info)$_reset\n\$$_reset "

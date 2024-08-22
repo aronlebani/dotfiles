@@ -8,16 +8,16 @@ require 'json'
 require 'open3'
 
 def clone(url, path, dry_run: false)
-  puts("cloning #{url} into #{path}")
+  puts "cloning #{url} into #{path}"
 
   return if dry_run
 
   Open3.popen3('git', 'clone', url, chdir: path) do |_, _, stderr, wait_th|
     unless wait_th.value.success?
-      if stderr.readline.include?('already exists')
-        puts('...repository already exists')
+      if stderr.readline.include? 'already exists'
+        puts '...repository already exists'
       else
-        puts('...failed to clone repository')
+        puts '...failed to clone repository'
       end
     end
   end
@@ -26,42 +26,43 @@ end
 def get_repositories(token)
   headers = { Authorization: "Bearer #{token}" }
   github_repos_url =
-    'https://api.github.com/user/repos?per_page=100&affiliation=owner,collaborator'
+    URI 'https://api.github.com/user/repos?per_page=100&affiliation=owner,collaborator'
 
-  res = Net::HTTP.get(URI(github_repos_url), headers)
+  res = Net::HTTP.get github_repos_url, headers
 
-  JSON.parse(res)
+  JSON.parse res
 end
 
 def ssh_url(repository)
   repository['ssh_url']
 end
 
-def main(options)
-  token = options[:token]
-  dest = options[:dest] || '.'
-  dry_run = options[:"dry-run"]
+def main(args)
+  token = args[:token]
+  dest = args[:dest] || '.'
+  dry_run = args[:"dry-run"]
 
   get_repositories(token).each do |repo|
-    clone(ssh_url(repo), dest, dry_run: dry_run)
+    url = ssh_url repo
+    clone url, dest, dry_run: dry_run
   end
 end
 
 if __FILE__ == $0
-  parser = OptionParser.new do |opts|
-    opts.banner = 'Usage: gitinstall [OPTIONS]'
-    opts.on('-t TOKEN', '--token=TOKEN', 'github personal access token')
-    opts.on('-d DEST', '--dest=DEST', 'destination directory')
-    opts.on('--dry-run', 'dry run')
-  end
+  args = {}
+  parser = OptionParser.new
 
-  options = {}
-  parser.parse!(into: options)
+  parser.banner = 'Usage: gitinstall [OPTIONS]'
+  parser.on '-t TOKEN', '--token=TOKEN', 'github personal access token'
+  parser.on '-d DEST', '--dest=DEST', 'destination directory'
+  parser.on '--dry-run', 'dry run'
 
-  unless options[:token]
-    puts("Missing personal access token")
+  parser.parse! into: args 
+
+  unless args[:token]
+    puts "Missing personal access token"
     exit 1
   end
 
-  main(options)
+  main args
 end

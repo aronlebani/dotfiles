@@ -26,15 +26,15 @@ class File
   end
 
   def self.shebang(filename)
-    return if File.empty?(filename)
+    return if File.empty? filename
 
-    first_line = File.open(filename, 'r', &:readline)
+    first_line = File.open filename, 'r', &:readline
 
-    return first_line if shebang?(first_line)
+    return first_line if shebang? first_line
   end
 
   def self.shebang?(str)
-    str[0] == '#' and str[1] == '!'
+    str[0] == '#' && str[1] == '!'
   end
 end
 
@@ -45,11 +45,11 @@ class DbBuilder
     @root_stub = '/wiki/List_of_programming_languages'
   end
 
-  def build
+  def build()
     File.open(@path, 'w') do |file|
       parse_root(@root_stub) do |lang_name, lang_href|
         parse_page(lang_href) do |extensions|
-          file.write("#{lang_name}, #{extensions}\n")
+          file.write "#{lang_name}, #{extensions}\n"
         end
       end
     end
@@ -58,9 +58,9 @@ class DbBuilder
   private
 
   def parse_root(stub)
-    uri = "#{@wiki_uri}#{stub}"
+    uri = URI.open "#{@wiki_uri}#{stub}"
     el_path = 'div#mw-content-text div.div-col ul li a'
-    doc = Nokogiri::HTML.parse(URI.open(uri))
+    doc = Nokogiri::HTML.parse uri
 
     doc.search(el_path).each do |a|
       name = a.content
@@ -70,9 +70,9 @@ class DbBuilder
   end
 
   def parse_page(stub)
-    uri = "#{@wiki_uri}#{stub}"
+    uri = URI.open "#{@wiki_uri}#{stub}"
     el_path = 'th.infobox-label'
-    doc = Nokogiri::HTML.parse(URI.open(uri))
+    doc = Nokogiri::HTML.parse uri
 
     doc.search(el_path).each do |infobox_label|
       label_a = infobox_label.element_children[0]
@@ -90,7 +90,7 @@ class Db
   def initialize(path)
     @entries = File.open(path, 'r') do |file|
       file.readlines
-          .filter { |line| !comment?(line) }
+          .filter { |line| !comment? line }
           .map { |line| line.sub("\n", '').split(', ') }
     end
   end
@@ -102,13 +102,13 @@ class Db
       end
     end
 
-    return canonical(lang_item) if lang_item
+    return canonical lang_item if lang_item
   end
 
   private
 
   def comment?(line)
-    line.start_with?('#')
+    line.start_with? '#'
   end
 
   def canonical(entry)
@@ -118,19 +118,21 @@ end
 
 class Lang
   def self.derive(filename)
-    ext = ext_lang(filename)
-    she = shebang_lang(File.shebang(filename))
+    ext = ext_lang filename
+    she = shebang_lang filename
 
     return ext if ext
     return she if she
 
-    filename_lang(filename)
+    filename_lang filename
   end
 
-  def self.shebang_lang(shebang)
+  def self.shebang_lang(filename)
+    shebang = File.shebang filename
+
     return unless shebang
 
-    basename = File.basename(shebang)
+    basename = File.basename filename
     splits = basename.split
 
     # example: #!/usr/bin/env python
@@ -142,13 +144,13 @@ class Lang
   end
 
   def self.ext_lang(filename)
-    ext = File.extname(filename)
+    ext = File.extname filename
 
-    return ext.sub('.', '') unless ext.empty?
+    return ext.sub '.', ''  unless ext.empty?
   end
 
   def self.filename_lang(filename)
-    File.basename(filename)
+    File.basename filename
   end
 end
 
@@ -158,11 +160,11 @@ def puts_dir(path, langs, total)
     "#{key}: #{value} (#{percentage.round}%)"
   end
 
-  puts("#{path} #{langs.join ', '} [total: #{total}]")
+  puts "#{path} #{langs.join ', '} [total: #{total}]"
 end
 
 def puts_file(path, lang, count)
-  puts("#{path} #{lang}: #{count}") if lang
+  puts "#{path} #{lang}: #{count}" if lang
 end
 
 def stat_dir(path, db)
@@ -170,10 +172,10 @@ def stat_dir(path, db)
   total = 0
 
   Dir.glob("#{path}/**/**").each do |child_path|
-    next unless File.file?(child_path)
-    next unless File.ascii?(child_path)
+    next unless File.file? child_path
+    next unless File.ascii? child_path
 
-    lang = db.find(Lang.derive(child_path))
+    lang = db.find Lang.derive child_path
     lang ||= 'other'
     line_count = File.open(child_path, 'r').count
     total += line_count
@@ -185,70 +187,70 @@ def stat_dir(path, db)
     end
   end
 
-  puts_dir(path, langs, total)
+  puts_dir path, langs, total
 end
 
 def stat_file(path, db)
-  return unless File.ascii?(path)
+  return unless File.ascii? path
 
-  lang = db.find(Lang.derive(path))
+  lang = db.find Lang.derive path
   line_count = File.open(path, 'r').count
 
-  puts_file(path, lang, line_count)
+  puts_file path, lang, line_count
 end
 
 def db_path(options)
   if options[:db]
     options[:db]
-  elsif File.exist?("#{Dir.home}/.config/langs")
+  elsif File.exist? "#{Dir.home}/.config/langs"
     "#{Dir.home}/.config/langs"
-  elsif File.exist?("#{Dir.home}/etc/langs")
+  elsif File.exist? "#{Dir.home}/etc/langs"
     "#{Dir.home}/etc/langs"
   end
 end
 
 def main_db_builder(path)
-  builder = DbBuilder.new(path)
+  builder = DbBuilder.new path
   builder.build
 end
 
-def main(path, options)
-  db = Db.new db_path(options)
+def main(path, args)
+  db = Db.new db_path args
 
   glob = path
-  glob = "#{path}/**" if options[:subdir]
-  glob = "#{path}/**/**" if options[:recurse]
+  glob = "#{path}/**" if args[:subdir]
+  glob = "#{path}/**/**" if args[:recurse]
 
   Dir.glob(glob).each do |path|
-    if File.file?(path)
-      stat_file(path, db)
-    elsif File.directory?(path)
-      stat_dir(path, db)
+    if File.file? path
+      stat_file path, db
+    elsif File.directory? path
+      stat_dir path, db
     end
   end
 end
 
 if __FILE__ == $0
-  parser = OptionParser.new do |opts|
-    opts.banner = 'Usage: langstat [options] directory'
-    opts.on('-d DB', '--db=DB', 'language database file')
-    opts.on('-s', '--subdir', 'groups summary by sub-directories')
-    opts.on('-r', '--recurse', 'recurses infinitely')
-    opts.on('--make-db', 'make language database file')
-    opts.on('-h', '--help', 'prints this help')
-  end
+  args = {}
+  parser = OptionParser.new
 
-  options = {}
-  parser.parse!(into: options)
+  parser.banner = 'Usage: langstat [OPTIONS] directory'
+  parser.on '-d DB', '--db=DB', 'language database file'
+  parser.on '-s', '--subdir', 'groups summary by sub-directories'
+  parser.on '-r', '--recurse', 'recurses infinitely'
+  parser.on '--make-db', 'make language database file'
+  parser.on '-h', '--help', 'prints this help'
+
+  parser.parse! into: args
 
   unless ARGV[0]
-    puts(parser.help)
+    puts parser.help
     exit 1
   end
 
-  if options[:"make-db"]
-    main_db_builder(ARGV[0])
+  if args[:"make-db"]
+    main_db_builder ARGV[0]
   else
-    main(ARGV[0], options)
+    main ARGV[0], args
   end
 end

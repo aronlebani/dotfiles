@@ -4,7 +4,7 @@
 
 # Recursively query markdown notes.
 #
-# Usage: q [options]
+# Usage: q [options] [query]
 # Help: q --help
 #
 # Aron Lebani <aron@lebani.dev>
@@ -19,8 +19,8 @@ def make_tag_re(tags)
 end
 
 def make_query_re(query)
-  query&.split(' ')&.reduce('') do |acc, q|
-    "#{acc}(?=.*#{q}*)"
+  query&.reduce('') do |acc, q|
+    "#{acc}(?=.*#{q}.*)"
   end
 end
 
@@ -32,31 +32,37 @@ def make_check_re(check)
   "(?=(\\*|\\-) \\[\s|-\\])" if check
 end
 
-def make_re(options)
-  tag_re = make_tag_re(options[:tags])
-  query_re = make_query_re(options[:query])
-  anchor_re = make_anchor_re(options[:anchor])
-  check_re = make_check_re(options[:check])
+def make_re(options, q)
+  tag_re = make_tag_re options[:tags]
+  anchor_re = make_anchor_re options[:anchor]
+  check_re = make_check_re options[:check]
+  query_re = make_query_re q
 
   /#{tag_re}#{query_re}#{anchor_re}#{check_re}.*/i
 end
 
-def colorize(str, color_code)
-  "\e[#{color_code}m#{str}\e[0m"
+def colorize(str, color_code) "\e[#{color_code}m#{str}\e[0m" end
+
+def green(str) colorize str, 32 end
+
+def blue(str) colorize str, 34 end
+
+def markdown?(file)
+  ext = File.extname file
+  ext == '.md'
 end
 
-def colorize_green(str)
-  colorize(str, 32)
+def walk(glob)
+  Dir.glob(glob).each do |file|
+    next if File.directory? file
+
+    yield file
+  end
 end
 
-def colorize_blue(str)
-  colorize(str, 34)
-end
-
-def walk_md_files
-  Dir.glob('**/**').each do |file|
-    next if File.directory?(file)
-    next if File.extname(file) != '.md'
+def walk_md_files(glob)
+  walk(glob) do |file|
+    next if !markdown? file
 
     File.open(file, 'r') do |content|
       content.readlines.each_with_index do |line, line_no|
@@ -66,48 +72,44 @@ def walk_md_files
   end
 end
 
-def query(options)
-  re = make_re(options)
+def query(options, q)
+  re = make_re(options, q)
 
-  walk_md_files do |file, line, line_no|
-    if line.match?(re)
-      puts("#{colorize_green file}:#{colorize_blue line_no + 1}: #{line}")
+  walk_md_files('**/**') do |file, line, line_no|
+    if line.match? re
+      puts "#{green file}:#{blue line_no + 1}: #{line}"
     end
   end
 end
 
-def list
+def list()
   tags = []
   re = /(\n|\s)_[^_]*_(\n|\s)/
 
-  walk_md_files do |_, line, _|
-    tags.push(line.match(re).to_s.strip) if line.match? re
+  walk_md_files('**/**') do |_, line, _|
+    match = line.match re
+    tags.push match.to_s.strip if line.match? re
   end
 
-  puts(tags.uniq.sort)
+  puts tags.uniq.sort
 end
 
-def make_parser
-  OptionParser.new do |opts|
-    opts.banner = 'Usage: q [options]'
-    opts.on('-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax')
-    opts.on('-q QUERY', '--query=QUERY', 'Query by keywords')
-    opts.on('-c', '--check', 'Query markdown todo items')
-    opts.on('-a', '--anchor', 'Query markdown links')
-    opts.on('-l', '--list', 'List all tags')
-  end
-end
+if __FILE__ == $0
+  args = {}
 
-def main
-  options = {}
-  parser = make_parser
-  parser.parse!(into: options)
+  parser = OptionParser.new
 
-  if options[:list]
+  parser.banner = 'Usage: query [OPTIONS]'
+  parser.on '-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax'
+  parser.on '-c', '--check', 'Query markdown todo items'
+  parser.on '-a', '--anchor', 'Query markdown links'
+  parser.on '-l', '--list', 'List all tags'
+
+  parser.parse! into: args
+
+  if args[:list]
     list
   else
-    query(options)
+    query args, ARGV
   end
 end
-
-main if __FILE__ == $0

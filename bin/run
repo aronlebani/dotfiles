@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
 cache="$cachedir/run"
@@ -6,7 +6,7 @@ cache="$cachedir/run"
 IFS=:
 
 if [ ! -f "$cache" ]; then
-	stest -flx $PATH | sort -u > "$cache"
+	stest -flx "$PATH" | sort -u > "$cache"
 fi
 
 out=$(cat "$cache")
@@ -20,4 +20,4 @@ exe=$( \
 		--color='gutter:-1' \
 )
 
-exec $exe &> /dev/null &
+exec $exe 2>/dev/null 1>/dev/null &

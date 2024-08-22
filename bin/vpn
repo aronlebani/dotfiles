@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # A wrapper for openvpn3. Because the openvpn3 interface sucks.
 
@@ -12,15 +12,15 @@ start ()
 
 stop ()
 {
-    ACTIVE_SESSIONS=$( \
+    active_sessions=$( \
 		openvpn3 sessions-list \
-			| grep -i 'path' \
-			| awk '{p=index($0, ":");print $2}' \
+		| grep -i 'path' \
+		| awk '{p=index($0, ":");print $2}' \
 	)
 
-    echo "$ACTIVE_SESSIONS"
+    echo "$active_sessions"
 
-    for instance in $ACTIVE_SESSIONS; do
+    for instance in $active_sessions; do
         openvpn3 session-manage --disconnect --session-path "${instance}"
     done 
 }
@@ -32,26 +32,18 @@ status ()
 
 usage ()
 {
-    echo "Usage:"
-    echo ""
-    echo "      vpn [OPTION]"
-    echo ""
-    echo "Options:"
-    echo ""
-    echo "      --help                  show help"
-    echo "      start <file>.ovpn       start a session"
-    echo "      stop                    stop all sessions"
-    echo "      status                  show session status"
+	printf "vpn [OPTIONS]
+
+--help                  show help
+start <file>.ovpn       start a session
+stop                    stop all sessions
+status                  show session status\n"
 }
 
-if [ "$CMD" = "start" ]; then
-    start
-elif [ "$CMD" = "stop" ]; then
-    stop
-elif [ "$CMD" = "status" ]; then
-    status
-elif [ "$CMD" = "--help" ]; then
-    usage
-else
-    usage
-fi
+case "$1" in
+	start	) start ;;
+	stop	) stop ;;
+	status	) status ;;
+	--help	) usage ;;
+	*		) usage ;;
+esac

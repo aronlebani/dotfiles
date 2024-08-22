@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 head -c 100 /dev/urandom \
 	| strings -n 1 \

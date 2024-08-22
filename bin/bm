@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 usage()
 {
 	printf "bm: bookmark manager
 
-usage: bm [options] [<file>]
+usage: bm [OPTIONS]
 
 --help		display this help
 
@@ -12,37 +12,33 @@ Bookmarks are stored in a text file, one per line, in the format:
 
 	description <https://example.org>
 
-Searches for bookmarks file in the following locations in order: \
-<file>, \$XDG_CONFIG_HOME/bookmarks, \$HOME/.config/bookmarks.\n"
+Bookmarks should live in \$XDG_CONFIG_HOME/bookmarks. Queries the bookmarks
+file and displays options in dmenu.\n"
 }
 
-if [ "$1" == "--help" ]; then
+if [ "$1" = "--help" ]; then
 	usage
 	exit 0
 fi
 
-if [ "$1" ]; then
-	file="$1"
-elif [ -f "$XDG_CONFIG_HOME/bookmarks" ]; then
-	file="$XDG_CONFIG_HOME/bookmarks"
-elif [ -f "$HOME/.config/bookmarks" ]; then
-	file="$HOME/.config/bookmarks"
-else
+if [ ! -f "$XDG_CONFIG_HOME/bookmarks" ]; then
 	echo "Error: no bookmarks found"
 	exit 1
 fi
 
+file="$XDG_CONFIG_HOME/bookmarks"
+
 bmk=$( \
-	cat "$file" | sed '/^#/d;/^$/d' | sort | fzf \
-		--height=10 \
-		--no-unicode \
-		--no-scrollbar \
-		--pointer=' ' \
-		--color='gutter:-1' \
+	cat "$file" \
+	| sed '/^#/d;/^$/d' \
+	| sort \
+	| dmenu -i -l 10 -p 'Bookmark' \
 )
 
-[ -z "$bmk" ] && exit 0
+if [ -z "$bmk" ]; then
+	exit 0
+fi
 
 echo "$bmk" \
 	| awk -F '[<>]' '{print $2}' \
-	| xargs -I '{}' "$BROWSER" {} &> /dev/null &
+	| xargs -I '{}' "$BROWSER" {} 2>/dev/null 1>/dev/null &

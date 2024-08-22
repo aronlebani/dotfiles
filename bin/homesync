@@ -1,37 +1,35 @@
-#/bin/sh
+#!/bin/sh
 
 include="$HOME/.homesync"
 server=backup
-near="$HOME/"
+near="$HOME"
 far=/var/bak
 
 usage()
 {
-	echo "Usage: homesync [OPTION]"
-	echo ""
-	echo "Sync data in home directory to remote server using rsync."
-	echo ""
-	echo "Options:"
-	echo "	-h | --help	show help"
-	echo "	-d | --dry-run	see which files will by synced"
-	echo "	-r | --restore	restore backup to local"
+	printf "Usage: homesync [OPTION]
+	
+Sync data in home directory to remote server using rsync.
+
+-h | --help	show help
+-d | --dry-run	see which files will by synced
+-r | --restore	restore backup to local\n"
 }
 
 dry_run()
 {
 	rsync -raiz --dry-run --files-from "$include" --delete \
-		"$near" "$server":"$far"
+		"$near/" "$server":"$far"
 }
 
 restore()
 {
-	rsync -raz "$server":"$far" "$near"
+	rsync -raz "$server":"$far/" "$near"
 }
 
 backup()
 {
-	rsync -raz --files-from "$include" --delete \
-		"$near" "$server:$far"
+	rsync -raz --files-from "$include" --delete "$near/" "$server:$far"
 }
 
 case "$1" in
