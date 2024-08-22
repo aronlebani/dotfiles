@@ -6,7 +6,10 @@ finance
 ledger
 notes
 projects
-scratch.lisp
+bin
+lib
+src/scratch.lisp
+src/contrib/index.txt
 .config/reminders
 .config/bookmarks
 .config/langs
