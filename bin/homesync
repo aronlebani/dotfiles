@@ -1,6 +1,7 @@
 #!/bin/sh
 
 include="$HOME/.homesync"
+lock=/tmp/homesync.lock
 server=backup
 near="$HOME"
 far=/var/bak
@@ -32,9 +33,25 @@ backup()
 	rsync -raz --files-from "$include" --delete "$near/" "$server:$far"
 }
 
+cleanup()
+{
+	rm -f "$lock"
+	exit 0
+}
+
+if [ -e "$lock" ] && kill -0 $(cat "$lock") ; then
+	echo "Already running..."
+	exit 1
+fi
+
+trap cleanup INT TERM EXIT
+echo $$ > $lock
+
 case "$1" in
 	-h | --help		) usage ;;
 	-d | --dry-run	) dry_run ;;
 	-r | --restore	) restore ;;
 	*				) backup ;;
 esac
+
+cleanup
