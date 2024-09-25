@@ -1,19 +1,10 @@
 set nocompatible
 
-" ---- Plugins ----
-
-call plug#begin()
-" Plugins
-Plug 'tpope/vim-fugitive'
-Plug 'kovisoft/slimv'
-" Syntax
-Plug 'plasticboy/vim-markdown'
-Plug 'rust-lang/rust.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'jaawerth/fennel.vim'
-call plug#end()
-
 " ---- Settings ----
+
+syntax on
+filetype plugin indent on
+colorscheme default
 
 set showmatch
 set backspace=2
@@ -48,40 +39,32 @@ tnoremap <c-j> <c-w><c-j>
 tnoremap <c-k> <c-w><c-k>
 tnoremap <c-l> <c-w><c-l>
 tnoremap <c-h> <c-w><c-h>
-noremap  <c-t> :terminal<cr>
 tnoremap <c-b> <c-\><c-n>
 nnoremap <localleader>c :center<cr>
 nnoremap <localleader>h :noh<cr><cr>
 nnoremap <localleader>n :bnext<cr>
-nnoremap <localleader>p :bprevious<cr>
 inoremap <localleader>d ## <c-r>=strftime("%F")<c-m>
-nnoremap <localleader>s :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-nnoremap gr yy:!@"<cr>
+nnoremap <localleader>p :bprevious<cr>
+nnoremap <localleader>s :call SynStack()<cr>
+vnoremap <enter> :<c-u>call EvalVisual()<cr>:<bs>
 
 " ---- Settings by language ----
 
-autocmd FileType javascript setlocal ts=2 sts=2 sw=2
-autocmd FileType scss setlocal ts=2 sts=2 sw=2
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
 autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
+autocmd FileType eruby setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
 
 " ---- Plugin settings ----
 
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_follow_anchor = 1
-
 let g:slimv_repl_split = 3
 let g:slimv_package = 1
-
 let g:netrw_preview = 1
+let g:repls = {"ruby": "irb", "sh": "bash", "lisp": "rlwrap sbcl"}
 
 " ---- Colours ----
-
-colorscheme default
 
 highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
 highlight Statement ctermfg=NONE cterm=bold
@@ -94,3 +77,56 @@ highlight LineNr ctermfg=darkgrey
 highlight VertSplit ctermbg=NONE ctermfg=darkgrey cterm=NONE
 highlight Title ctermfg=NONE cterm=bold
 highlight lispParen ctermfg=darkgrey
+
+" ---- Functions ----
+
+function GetVisualSelection()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+
+    if len(lines) == 0
+        return ""
+    endif
+
+    let lines[-1] = lines[-1][: column_end - (&selection == "inclusive" ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+
+    return join(lines, "\n")
+endfunction
+
+function SendTerm(str)
+	let repl = g:repls[&filetype]
+    let bnrs = term_list()
+
+    if len(bnrs) > 0
+        call term_sendkeys(bnrs[0], a:str)
+    else
+		let bnr = term_start(repl)
+        call term_sendkeys(bnr, a:str)
+    endif
+endfunction
+
+function EvalVisual()
+    let data = GetVisualSelection() . "\<cr>"
+
+	call SendTerm(data)
+endfunction
+
+function EvalFile()
+	let filename = expand("%:t")
+
+	if &filetype == "ruby"
+		call SendTerm("load '" . filename . "'" . "\<cr>")
+	elseif &filetype == "sh"
+		call SendTerm("source " . filename . "\<cr>")
+	elseif &filetype == "lisp"
+		call SendTerm("(load \"" . filename . "\")\<cr>a")
+	endif
+endfunction
+
+function SynStack()
+	let s = synID(line("."), col("."), 1)
+
+	echo synIDattr(s, "name") . " -> " . synIDattr(synIDtrans(s), "name")
+endfunction
