@@ -6,6 +6,7 @@ finance
 ledger
 notes
 projects
+clients
 bin
 lib
 src/scratch.lisp
@@ -13,6 +14,7 @@ src/contrib/index.txt
 .config/reminders
 .config/bookmarks
 .config/langs
+.config/packages
 .config/newsboat/urls
 .local/share/newsboat/cache.db
 .bash_history

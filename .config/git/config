@@ -1,24 +1,32 @@
 [user]
-	email = aron@lebani.dev
-	name = Aron Lebani
+email = aron@lebani.dev
+name = Aron Lebani
+
 [core]
-    editor = vim
-    excludesFile = "~/.config/git/ignore"
+editor = vim
+excludesFile = "~/.config/git/ignore"
+
 [init]
-    defaultBranch = main
+defaultBranch = main
+
 [push]
-    default = simple
+default = simple
+
 [pull]
-    rebase = true
+rebase = true
+
 [diff]
-	algorithm = histogram
+algorithm = histogram
+
 [merge]
-	conflictStyle = zdiff3
+conflictStyle = zdiff3
+
 [alias]
-    b = "branch --sort=committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
-    l = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
-    bl = "blame --color-lines"
+b = "branch --sort=committerdate --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+l = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+bl = "blame --color-lines"
+
 [sendemail]
-	sendmailCmd = msmtp -a Aron
-	annotate = yes
-	confirm = yes
+sendmailCmd = msmtp -a Aron
+annotate = yes
+confirm = yes

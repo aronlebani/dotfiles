@@ -12,6 +12,12 @@
 
 require 'optparse'
 
+class String
+  def colorize(color_code) = "\e[#{color_code}m#{self}\e[0m"
+  def green = colorize 32
+  def blue = colorize 34
+end
+
 def make_tag_re(tags)
   tags&.split(' ')&.reduce('') do |acc, t|
     "#{acc}(?=.*_#{t}[^_]*_)"
@@ -40,12 +46,6 @@ def make_re(options, q)
 
   /#{tag_re}#{query_re}#{anchor_re}#{check_re}.*/i
 end
-
-def colorize(str, color_code) "\e[#{color_code}m#{str}\e[0m" end
-
-def green(str) colorize str, 32 end
-
-def blue(str) colorize str, 34 end
 
 def markdown?(file)
   ext = File.extname file
@@ -82,7 +82,7 @@ def query(options, q)
   end
 end
 
-def list()
+def list
   tags = []
   re = /(\n|\s)_[^_]*_(\n|\s)/
 

@@ -14,15 +14,37 @@ if [ "$1" = "--help" ]; then
 	exit 0
 fi
 
-case "$1" in
-	-ecosia ) url="https://ecosia.org/search?q=$2" ;;
-	-mdn	) url="https://developer.mozilla.org/en-US/search?q=$2" ;;
-	-wb		) url="http://web.archive.org/web/*/$2" ;;
-	-wiki	) url="https://en.wikipedia.org/w/index.php?title=Special:Search&search=$2" ;;
-	-clhs	) url="http://www.xach.com/clhs?q=$2" ;;
-	-so		) url="https://stackoverflow.com/search?q=$2" ;;
-	-esp	) url="https://spanishdict.com/translate/$2" ;;
-	*		) url="https://duckduckgo.com?q=$1" ;;
-esac
+search=$( \
+	printf "mdn:\ngithub:\nwayback:\nrosetta:\nwiki:\nclhs:\nso:\nesp:" \
+	| sort \
+	| dmenu -p 'Search' \
+)
+
+[ -z "$search" ] && exit 0
+
+scheme=$(echo "$search" | head -c4)
+
+echo "$scheme"
+
+if [ "$scheme" = "http" ] || [ "$scheme" = "file" ]
+then
+	url="$search"
+else
+	engine=$(echo "$search" | cut -d ':' -f 1)
+	term=$(echo "$search" | cut -d ':' -f 2 | urlencode)
+	default=$(echo "$search" | urlencode)
+
+	case "$engine" in
+		mdn		) url="https://developer.mozilla.org/en-US/search?q=$term" ;;
+		github  ) url="https://github.com/search?q=$term" ;;
+		wayback	) url="http://web.archive.org/web/*/$term" ;;
+		rosetta ) url="https://rosettacode.org/wiki/Special:Search?search=$term" ;;
+		wiki	) url="https://en.wikipedia.org/w/index.php?title=Special:Search&search=$term" ;;
+		clhs	) url="http://www.xach.com/clhs?q=$term" ;;
+		so		) url="https://stackoverflow.com/search?q=$term" ;;
+		esp		) url="https://spanishdict.com/translate/$term" ;;
+		*		) url="https://html.duckduckgo.com/html?q=$default" ;;
+	esac
+fi
 
 echo "$url" | xargs -I '{}' "$BROWSER" {} 2>/dev/null 1>/dev/null &

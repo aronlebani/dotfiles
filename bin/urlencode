@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ -n "$1" ]; then
+	input="$1"
+else
+	read -r input
+fi
+
+[ -z "$input" ] && exit 1
+
+if [ -n "$(which perl)" ]; then
+	encoded=$(echo "$input" | tr -d '\n' | perl -MURI::Escape -ne 'print uri_escape($_)')
+elif [ -n "$(which ruby)" ]; then
+	encoded=$(echo "$input" | tr -d '\n' | ruby -r 'uri' -e 'puts URI.encode_uri_component STDIN.read')
+elif [ -n "$(which xxd)" ]; then
+	encoded=$(echo "$input" | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+fi
+
+echo "$encoded"

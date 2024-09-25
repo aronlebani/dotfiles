@@ -24,7 +24,7 @@ if necessary, can shadow system binaries by putting `$HOME/bin` at the head of
 * Shell - [bash](https://www.gnu.org/software/bash/)
 * WM - [i3](https://i3wm.org/)
 * Terminal emulator - [alacritty](https://alacritty.org/)
-* Mail client - [aerc](https://aerc-mail.org/)
+* Mail - [aerc](https://aerc-mail.org/) + [isync](https://isync.sourceforge.io/) + [mbsmtp](https://marlam.de/msmtp/)
 
 ## Installation
 
