@@ -1,0 +1,14 @@
+.cache
+**/*cache
+.git
+.gnupg
+.password-store
+.go
+.julia
+.quicklisp
+.ruby
+.ssh/id_rsa
+src
+mail
+mbox
+temp

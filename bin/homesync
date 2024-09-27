@@ -1,6 +1,6 @@
 #!/bin/sh
 
-include="$HOME/.homesync"
+ignore_file="$HOME/.hsignore"
 lock=/tmp/homesync.lock
 server=backup
 near="$HOME"
@@ -19,7 +19,7 @@ Sync data in home directory to remote server using rsync.
 
 dry_run()
 {
-	rsync -raiz --dry-run --files-from "$include" --delete \
+	rsync -raiz --dry-run --exclude-from "$ignore_file" --delete \
 		"$near/" "$server":"$far"
 }
 
@@ -30,7 +30,7 @@ restore()
 
 backup()
 {
-	rsync -raz --files-from "$include" --delete "$near/" "$server:$far"
+	rsync -razv --exclude-from "$ignore_file" --delete "$near/" "$server:$far"
 }
 
 cleanup()
