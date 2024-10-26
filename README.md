@@ -7,8 +7,9 @@ post](https://drewdevault.com/2019/12/30/dotfiles.html). It uses a git
 repository in the `$HOME` directory to avoid the need to symlink files or sync
 files back and forth between the repository and `$HOME`. To prevent tracking
 private files, the `.gitignore` file is set up to ignore _everything_ using a
-`*` entry. The files that we want to track are then opted-in using
-`!<filename>` entries.
+`*` entry. The files that we want to track can be explicitly added using
+`git add --force <file>`. Files we no longer want to track can be removed
+with `git rm --cached <file>`.
 
 ## Software
 
