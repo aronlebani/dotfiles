@@ -1,10 +1,8 @@
 set nocompatible
+syntax enable
+filetype plugin indent on
 
 " ---- Settings ----
-
-syntax on
-filetype plugin indent on
-colorscheme default
 
 set showmatch
 set backspace=2
@@ -14,16 +12,15 @@ set number
 set noswapfile
 set colorcolumn=80
 set autoread
-set ignorecase
 set smartcase
 set nowrap
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set path+=**
 set wildmenu
 set laststatus=2
 set grepprg=rg\ --vimgrep\ --smart-case\ --no-heading
-set grepformat=%f:%l:%c:%m
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -53,30 +50,37 @@ vnoremap <enter> :<c-u>call EvalVisual()<cr>:<bs>
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
-autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
+autocmd FileType css setlocal ts=4 sts=4 sw=4
+autocmd FileType php setlocal ts=2 sts=2 sw=2
 autocmd FileType eruby setlocal ts=2 sts=2 sw=2
+autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
 
 " ---- Plugin settings ----
 
-let g:slimv_repl_split = 3
-let g:slimv_package = 1
-let g:netrw_preview = 1
+let g:slimv_repl_split=3
+let g:slimv_package=1
+let g:netrw_banner=0
+let g:netrw_altv=1
+let g:netrw_liststyle=3
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 let g:repls = {"ruby": "irb", "sh": "bash", "lisp": "rlwrap sbcl"}
 
 " ---- Colours ----
 
+colorscheme default
 highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
 highlight Statement ctermfg=NONE cterm=bold
 highlight PreProc ctermfg=NONE cterm=bold
-highlight Constant ctermfg=lightgreen
+highlight Constant ctermfg=green
 highlight Identifier ctermfg=blue
 highlight Type ctermfg=NONE
 highlight Special ctermfg=blue
 highlight LineNr ctermfg=darkgrey
 highlight VertSplit ctermbg=NONE ctermfg=darkgrey cterm=NONE
 highlight Title ctermfg=NONE cterm=bold
-highlight lispParen ctermfg=darkgrey
+highlight lispParen ctermfg=NONE
 
 " ---- Functions ----
 
@@ -117,7 +121,7 @@ function EvalFile()
 	let filename = expand("%:t")
 
 	if &filetype == "ruby"
-		call SendTerm("load '" . filename . "'" . "\<cr>")
+		call SendTerm("source '" . filename . "'" . "\<cr>")
 	elseif &filetype == "sh"
 		call SendTerm("source " . filename . "\<cr>")
 	elseif &filetype == "lisp"

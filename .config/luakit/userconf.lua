@@ -2,6 +2,7 @@ local settings = require "settings"
 local downloads = require "downloads"
 local webinspector = require "webinspector"
 local adblock = require "adblock"
+local styles = require "styles"
 
 settings.window.home_page = "https://old.reddit.com/new"
 settings.window.new_tab_page = "https://lebani.dev/quicklinks"

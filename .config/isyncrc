@@ -2,7 +2,7 @@ IMAPAccount		home
 Host			imap.fastmail.com
 Port			993
 User			aron@lebani.dev
-PassCmd			"cat ~/.fastmail-app"
+PassCmd			"cat ~/.local/share/fastmail-app"
 SSLType			IMAPS
 
 IMAPStore		home-remote

@@ -6,7 +6,7 @@ history = 10000
 multiplier = 1
 
 [font]
-normal = { family = "monospace", style = "Regular" }
+normal = { family = "Jetbrains Mono", style = "Regular" }
 size = 11
 
 [colors]

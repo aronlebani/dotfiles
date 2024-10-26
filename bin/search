@@ -23,11 +23,13 @@ search=$( \
 [ -z "$search" ] && exit 0
 
 scheme=$(echo "$search" | head -c4)
+localhost=$(echo "$search" | head -c9)
 
 echo "$scheme"
 
-if [ "$scheme" = "http" ] || [ "$scheme" = "file" ]
-then
+if [ "$localhost" = "localhost" ]; then
+	url="http://$search"
+elif [ "$scheme" = "http" ] || [ "$scheme" = "file" ]; then
 	url="$search"
 else
 	engine=$(echo "$search" | cut -d ':' -f 1)
@@ -36,14 +38,14 @@ else
 
 	case "$engine" in
 		mdn		) url="https://developer.mozilla.org/en-US/search?q=$term" ;;
-		github  ) url="https://github.com/search?q=$term" ;;
+		github  ) url="https://github.com/search?q=$term&type=repositories" ;;
 		wayback	) url="http://web.archive.org/web/*/$term" ;;
 		rosetta ) url="https://rosettacode.org/wiki/Special:Search?search=$term" ;;
 		wiki	) url="https://en.wikipedia.org/w/index.php?title=Special:Search&search=$term" ;;
 		clhs	) url="http://www.xach.com/clhs?q=$term" ;;
 		so		) url="https://stackoverflow.com/search?q=$term" ;;
 		esp		) url="https://spanishdict.com/translate/$term" ;;
-		*		) url="https://html.duckduckgo.com/html?q=$default" ;;
+		*		) url="https://duckduckgo.com?q=$default" ;;
 	esac
 fi
 

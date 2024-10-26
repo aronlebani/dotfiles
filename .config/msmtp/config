@@ -5,5 +5,5 @@ tls				on
 tls_starttls	on
 auth			on
 user			aron@lebani.dev
-passwordeval	cat ~/.fastmail-app
+passwordeval	cat ~/.local/share/fastmail-app
 from			aron@lebani.dev

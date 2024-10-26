@@ -1,5 +1,6 @@
 #-quicklisp
-(let ((quicklisp-init (merge-pathnames ".quicklisp/setup.lisp" (user-homedir-pathname))))
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (uiop:xdg-data-home))))
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 

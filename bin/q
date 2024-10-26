@@ -77,7 +77,8 @@ def query(options, q)
 
   walk_md_files('**/**') do |file, line, line_no|
     if line.match? re
-      puts "#{green file}:#{blue line_no + 1}: #{line}"
+      one_indexed_line_no = line_no + 1
+      puts "#{file.green}:#{one_indexed_line_no.to_s.blue}: #{line}"
     end
   end
 end

@@ -33,9 +33,7 @@ bindsym F3 exec --no-startup-id "mixer vol.volume=+5% && pkill -SIGUSR1 i3status
 bindsym F4 exec --no-startup-id dmenu_run
 bindsym F5 exec --no-startup-id "backlight -"
 bindsym F6 exec --no-startup-id "backlight +"
-bindsym F8 exec --no-startup-id search
-bindsym F9 exec --no-startup-id hist
-bindsym F10 exec --no-startup-id bm
+bindsym F10 exec --no-startup-id omnibar
 bindsym F11 fullscreen toggle
 bindsym F12 exec "i3lock"
 
