@@ -69,18 +69,15 @@ let g:repls = {"ruby": "irb", "sh": "bash", "lisp": "rlwrap sbcl"}
 
 " ---- Colours ----
 
-colorscheme default
-highlight Comment ctermbg=NONE ctermfg=darkgrey cterm=italic
-highlight Statement ctermfg=NONE cterm=bold
-highlight PreProc ctermfg=NONE cterm=bold
-highlight Constant ctermfg=green
-highlight Identifier ctermfg=blue
-highlight Type ctermfg=NONE
-highlight Special ctermfg=blue
+colorscheme habamax
+highlight Normal ctermbg=NONE
+highlight Statement cterm=bold
+highlight PreProc cterm=bold
 highlight LineNr ctermfg=darkgrey
+highlight StatusLine ctermfg=NONE ctermbg=NONE cterm=bold,reverse
+highlight StatusLineNC ctermfg=NONE ctermbg=NONE cterm=reverse
+highlight ColorColumn ctermbg=red
 highlight VertSplit ctermbg=NONE ctermfg=darkgrey cterm=NONE
-highlight Title ctermfg=NONE cterm=bold
-highlight lispParen ctermfg=NONE
 
 " ---- Functions ----
 
