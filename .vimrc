@@ -55,6 +55,7 @@ autocmd FileType php setlocal ts=2 sts=2 sw=2
 autocmd FileType eruby setlocal ts=2 sts=2 sw=2
 autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
+autocmd FileType mail setlocal textwidth=0
 
 " ---- Plugin settings ----
 
