@@ -5,6 +5,7 @@
 .gnupg
 .password-store
 .ssh/id_rsa
+.ssh/id_rsa.pub
 src
 mail
 mbox
