@@ -15,8 +15,9 @@ set autoread
 set smartcase
 set nowrap
 set tabstop=4
-set softtabstop=4
+set softtabstop=0
 set shiftwidth=4
+set noexpandtab
 set path+=**
 set wildmenu
 set laststatus=2
@@ -47,13 +48,12 @@ vnoremap <enter> :<c-u>call EvalVisual()<cr>:<bs>
 
 " ---- Settings by language ----
 
-autocmd FileType json setlocal ts=2 sts=2 sw=2
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2
-autocmd FileType html setlocal ts=2 sts=2 sw=2
-autocmd FileType css setlocal ts=4 sts=4 sw=4
-autocmd FileType php setlocal ts=2 sts=2 sw=2
-autocmd FileType eruby setlocal ts=2 sts=2 sw=2
-autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
+autocmd FileType json setlocal ts=2 sts=0 sw=2
+autocmd FileType yaml setlocal ts=2 sts=0 sw=2
+autocmd FileType html setlocal ts=2 sts=0 sw=2
+autocmd FileType php setlocal ts=2 sts=0 sw=2
+autocmd FileType eruby setlocal ts=2 sts=0 sw=2
+autocmd FileType htmldjango setlocal ts=2 sts=0 sw=2
 autocmd FileType markdown setlocal wrap
 autocmd FileType mail setlocal textwidth=0
 
@@ -66,19 +66,29 @@ let g:netrw_altv=1
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
-let g:repls = {"ruby": "irb", "sh": "bash", "lisp": "rlwrap sbcl"}
+let g:repls = {"ruby": "irb", "sh": "bash", "lisp": "rlwrap sbcl", "scheme": "chicken-csi"}
+let g:slimv_lisp = "/usr/local/bin/chicken-csi"
+let g:ruby_recommended_style = 0
 
 " ---- Colours ----
 
-colorscheme habamax
-highlight Normal ctermbg=NONE
-highlight Statement cterm=bold
-highlight PreProc cterm=bold
-highlight LineNr ctermfg=darkgrey
+colorscheme default
+highlight Normal ctermfg=NONE ctermbg=NONE
+highlight Constant ctermfg=blue
+highlight Identifier ctermfg=cyan
+highlight Type ctermfg=lightred
+highlight Special ctermfg=NONE
+highlight Statement ctermfg=NONE cterm=bold
+highlight PreProc ctermfg=NONE cterm=bold
+highlight Comment ctermfg=darkgrey
+highlight LineNr ctermfg=darkgrey ctermbg=NONE
 highlight StatusLine ctermfg=NONE ctermbg=NONE cterm=bold,reverse
 highlight StatusLineNC ctermfg=NONE ctermbg=NONE cterm=reverse
 highlight ColorColumn ctermbg=red
 highlight VertSplit ctermbg=NONE ctermfg=darkgrey cterm=NONE
+highlight Search ctermfg=yellow ctermbg=NONE cterm=reverse
+highlight Todo ctermbg=NONE ctermfg=darkgrey cterm=underline
+highlight Title ctermfg=NONE cterm=bold
 
 " ---- Functions ----
 
