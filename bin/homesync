@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ignore_file="$XDG_CONFIG_HOME/hsignore"
+ignore_file="$HOME/.config/hsignore"
 lock=/tmp/homesync.lock
 server=backup
 near="$HOME"

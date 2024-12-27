@@ -14,7 +14,7 @@ if [ "$1" = "--help" ]; then
 	exit 0
 fi
 
-search=$( \
+search=$(
 	printf "mdn:\ngithub:\nwayback:\nrosetta:\nwiki:\nclhs:\nso:\nesp:" \
 	| sort \
 	| dmenu -p 'Search' \

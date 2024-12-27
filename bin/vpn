@@ -2,20 +2,17 @@
 
 # A wrapper for openvpn3. Because the openvpn3 interface sucks.
 
-CMD=$1
-PATH=$2
-
 start ()
 {
-    openvpn3 session-start --config "$PATH"
+    openvpn3 session-start --config "$2"
 }
 
 stop ()
 {
-    active_sessions=$( \
+    active_sessions=$(
 		openvpn3 sessions-list \
 		| grep -i 'path' \
-		| awk '{p=index($0, ":");print $2}' \
+		| awk '{p=index($0, ":");print $2}'
 	)
 
     echo "$active_sessions"

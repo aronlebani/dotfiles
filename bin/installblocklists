@@ -2,10 +2,10 @@
 
 location="$XDG_DATA_HOME/luakit/adblock"
 
-list=( \
-	'https://easylist.to/easylist/easylist.txt' \
-	'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt' \
-	'https://easylist.to/easylist/easyprivacy.txt' \
+list=(
+	'https://easylist.to/easylist/easylist.txt'
+	'https://secure.fanboy.co.nz/fanboy-cookiemonster.txt'
+	'https://easylist.to/easylist/easyprivacy.txt'
 )
 
 for item in "${list[@]}"; do

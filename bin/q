@@ -13,104 +13,100 @@
 require 'optparse'
 
 class String
-  def colorize(color_code) = "\e[#{color_code}m#{self}\e[0m"
-  def green = colorize 32
-  def blue = colorize 34
+	def colorize(color_code) = "\e[#{color_code}m#{self}\e[0m"
+	def green = colorize 32
+	def blue = colorize 34
 end
 
 def make_tag_re(tags)
-  tags&.split(' ')&.reduce('') do |acc, t|
-    "#{acc}(?=.*_#{t}[^_]*_)"
-  end
+	tags&.split(' ')&.reduce('') do |acc, t|
+		"#{acc}(?=.*_#{t}[^_]*_)"
+	end
 end
 
 def make_query_re(query)
-  query&.reduce('') do |acc, q|
-    "#{acc}(?=.*#{q}.*)"
-  end
+	query&.reduce('') do |acc, q|
+		"#{acc}(?=.*#{q}.*)"
+	end
 end
 
-def make_anchor_re(anchor)
-  "(?=.*\[.*\]\(.*\))" if anchor
-end
+def make_anchor_re(anchor) = "(?=.*\[.*\]\(.*\))" if anchor
 
-def make_check_re(check)
-  "(?=(\\*|\\-) \\[\s|-\\])" if check
-end
+def make_check_re(check) = "(?=(\\*|\\-) \\[\s|-\\])" if check
 
 def make_re(options, q)
-  tag_re = make_tag_re options[:tags]
-  anchor_re = make_anchor_re options[:anchor]
-  check_re = make_check_re options[:check]
-  query_re = make_query_re q
+	tag_re = make_tag_re options[:tags]
+	anchor_re = make_anchor_re options[:anchor]
+	check_re = make_check_re options[:check]
+	query_re = make_query_re q
 
-  /#{tag_re}#{query_re}#{anchor_re}#{check_re}.*/i
+	/#{tag_re}#{query_re}#{anchor_re}#{check_re}.*/i
 end
 
 def markdown?(file)
-  ext = File.extname file
-  ext == '.md'
+	ext = File.extname file
+	ext == '.md'
 end
 
 def walk(glob)
-  Dir.glob(glob).each do |file|
-    next if File.directory? file
+	Dir.glob(glob).each do |file|
+		next if File.directory? file
 
-    yield file
-  end
+		yield file
+	end
 end
 
 def walk_md_files(glob)
-  walk(glob) do |file|
-    next if !markdown? file
+	walk(glob) do |file|
+		next if !markdown? file
 
-    File.open(file, 'r') do |content|
-      content.readlines.each_with_index do |line, line_no|
-        yield file, line, line_no
-      end
-    end
-  end
+		File.open(file, 'r') do |content|
+			content.readlines.each_with_index do |line, line_no|
+				yield file, line, line_no
+			end
+		end
+	end
 end
 
 def query(options, q)
-  re = make_re(options, q)
+	re = make_re(options, q)
 
-  walk_md_files('**/**') do |file, line, line_no|
-    if line.match? re
-      one_indexed_line_no = line_no + 1
-      puts "#{file.green}:#{one_indexed_line_no.to_s.blue}: #{line}"
-    end
-  end
+	walk_md_files('**/**') do |file, line, line_no|
+		if line.match? re
+			one_indexed_line_no = line_no + 1
+			puts "#{file.green}:#{one_indexed_line_no.to_s.blue}: #{line}"
+		end
+	end
 end
 
 def list
-  tags = []
-  re = /(\n|\s)_[^_]*_(\n|\s)/
+	tags = []
+	re = /(\n|\s)_[^_]*_(\n|\s)/
 
-  walk_md_files('**/**') do |_, line, _|
-    match = line.match re
-    tags.push match.to_s.strip if line.match? re
-  end
+	walk_md_files('**/**') do |_, line, _|
+		match = line.match re
+		tags.push match.to_s.strip if line.match? re
+	end
 
-  puts tags.uniq.sort
+	puts tags.uniq.sort
 end
 
 if __FILE__ == $0
-  args = {}
+	args = {}
 
-  parser = OptionParser.new
+	parser = OptionParser.new
 
-  parser.banner = 'Usage: query [OPTIONS]'
-  parser.on '-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax'
-  parser.on '-c', '--check', 'Query markdown todo items'
-  parser.on '-a', '--anchor', 'Query markdown links'
-  parser.on '-l', '--list', 'List all tags'
+	parser.banner = 'Usage: query [OPTIONS]'
+	parser.on '-t TAGS', '--tags=TAGS', 'Query tags, denoted by markdown _italic_ syntax'
+	parser.on '-c', '--check', 'Query markdown todo items'
+	parser.on '-a', '--anchor', 'Query markdown links'
+	parser.on '-l', '--list', 'List all tags'
 
-  parser.parse! into: args
+	parser.parse! into: args
 
-  if args[:list]
-    list
-  else
-    query args, ARGV
-  end
+	if args[:list]
+		list
+	else
+		query args, ARGV
+	end
 end

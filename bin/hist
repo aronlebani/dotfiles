@@ -18,17 +18,11 @@ fi
 
 db="$XDG_DATA_HOME/luakit/history.db"
 query='select title, uri from history order by last_visit desc;'
-
-selected=$( \
-	sqlite3 -init /dev/null "$db" "$query" \
-	| dmenu -i -l 10 -p 'History' \
-)
+selected=$(sqlite3 -init /dev/null "$db" "$query" | dmenu -i -l 10 -p 'History')
 
 if [ -z "$selected" ]; then
 	exit 0
 fi
-
-echo "$selected"
 
 echo "$selected" \
 	| cut -d '|' -f2 \

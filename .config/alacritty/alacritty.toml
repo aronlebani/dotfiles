@@ -1,3 +1,5 @@
+import = ["~/.config/alacritty/solarized_dark.toml"]
+
 [window]
 title = "Terminal"
 
@@ -7,12 +9,7 @@ multiplier = 1
 
 [font]
 normal = { family = "Jetbrains Mono", style = "Regular" }
-size = 11
-
-[colors]
-[colors.primary]
-foreground = "#d8d8d8"
-background = "#141414"
+size = 10
 
 [mouse]
 hide_when_typing = true

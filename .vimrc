@@ -15,13 +15,15 @@ set autoread
 set smartcase
 set nowrap
 set tabstop=4
-set softtabstop=0
+set softtabstop=4
 set shiftwidth=4
 set noexpandtab
 set path+=**
 set wildmenu
 set laststatus=2
 set grepprg=rg\ --vimgrep\ --smart-case\ --no-heading
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+ " `:set list` to use
+set scrolloff=3
 
 let mapleader = ","
 let maplocalleader = "\\"
@@ -38,62 +40,51 @@ tnoremap <c-k> <c-w><c-k>
 tnoremap <c-l> <c-w><c-l>
 tnoremap <c-h> <c-w><c-h>
 tnoremap <c-b> <c-\><c-n>
-nnoremap <localleader>c :center<cr>
 nnoremap <localleader>h :noh<cr><cr>
 nnoremap <localleader>n :bnext<cr>
-inoremap <localleader>d ## <c-r>=strftime("%F")<c-m>
 nnoremap <localleader>p :bprevious<cr>
+inoremap <localleader>d ## <c-r>=strftime("%F")<c-m>
 nnoremap <localleader>s :call SynStack()<cr>
-vnoremap <enter> :<c-u>call EvalVisual()<cr>:<bs>
+nnoremap <localleader>c :<c-u>call OpenRepl()<cr>:<bs>
+vnoremap <localleader>e :<c-u>call EvalVisual()<cr>:<bs>
+vnoremap <localleader>b :<c-u>call EvalFile()<cr>:<bs>
 
 " ---- Settings by language ----
 
-autocmd FileType json setlocal ts=2 sts=0 sw=2
-autocmd FileType yaml setlocal ts=2 sts=0 sw=2
-autocmd FileType html setlocal ts=2 sts=0 sw=2
-autocmd FileType php setlocal ts=2 sts=0 sw=2
-autocmd FileType eruby setlocal ts=2 sts=0 sw=2
-autocmd FileType htmldjango setlocal ts=2 sts=0 sw=2
+autocmd FileType json setlocal ts=2 sts=2 sw=2
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2
+autocmd FileType html setlocal ts=2 sts=2 sw=2
+autocmd FileType php setlocal ts=2 sts=2 sw=2
+autocmd FileType eruby setlocal ts=2 sts=2 sw=2
+autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
 autocmd FileType mail setlocal textwidth=0
+autocmd FileType eruby let g:surround_45 = "<% \r %>" " -
+autocmd FileType eruby let g:surround_61 = "<%= \r %>"	" =
+autocmd FileType php let g:surround_45 = "<php? \r ?>" " -
+autocmd FileType php let g:surround_61 = "<?= \r ?>" " =
 
 " ---- Plugin settings ----
 
-let g:slimv_repl_split=3
-let g:slimv_package=1
-let g:netrw_banner=0
-let g:netrw_altv=1
-let g:netrw_liststyle=3
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+let g:slimv_repl_split = 3
+let g:slimv_package = 1
+let g:netrw_liststyle = 3
 let g:repls = {"ruby": "irb", "sh": "bash", "lisp": "rlwrap sbcl", "scheme": "chicken-csi"}
-let g:slimv_lisp = "/usr/local/bin/chicken-csi"
 let g:ruby_recommended_style = 0
 
 " ---- Colours ----
 
-colorscheme default
-highlight Normal ctermfg=NONE ctermbg=NONE
-highlight Constant ctermfg=blue
-highlight Identifier ctermfg=cyan
-highlight Type ctermfg=lightred
-highlight Special ctermfg=NONE
-highlight Statement ctermfg=NONE cterm=bold
-highlight PreProc ctermfg=NONE cterm=bold
-highlight Comment ctermfg=darkgrey
-highlight LineNr ctermfg=darkgrey ctermbg=NONE
-highlight StatusLine ctermfg=NONE ctermbg=NONE cterm=bold,reverse
-highlight StatusLineNC ctermfg=NONE ctermbg=NONE cterm=reverse
-highlight ColorColumn ctermbg=red
-highlight VertSplit ctermbg=NONE ctermfg=darkgrey cterm=NONE
-highlight Search ctermfg=yellow ctermbg=NONE cterm=reverse
-highlight Todo ctermbg=NONE ctermfg=darkgrey cterm=underline
-highlight Title ctermfg=NONE cterm=bold
+set background=dark
+colorscheme solarized
+
+" ---- Enable build-in packages ----
+
+packadd comment
 
 " ---- Functions ----
 
 function GetVisualSelection()
-    let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_start, column_start] = getpos("'<")[1:2]
     let [line_end, column_end] = getpos("'>")[1:2]
     let lines = getline(line_start, line_end)
 
@@ -107,33 +98,35 @@ function GetVisualSelection()
     return join(lines, "\n")
 endfunction
 
-function SendTerm(str)
+function OpenRepl()
 	let repl = g:repls[&filetype]
     let bnrs = term_list()
 
-    if len(bnrs) > 0
-        call term_sendkeys(bnrs[0], a:str)
-    else
+    if len(bnrs) == 0
 		let bnr = term_start(repl)
-        call term_sendkeys(bnr, a:str)
+		return bnr
+	else
+		return bnrs[0]
     endif
 endfunction
 
 function EvalVisual()
     let data = GetVisualSelection() . "\<cr>"
+	let bnr = OpenRepl()
 
-	call SendTerm(data)
+    call term_sendkeys(bnr, data)
 endfunction
 
 function EvalFile()
 	let filename = expand("%:t")
+	let bnr = OpenRepl()
 
 	if &filetype == "ruby"
-		call SendTerm("source '" . filename . "'" . "\<cr>")
+		call term_sendkeys(bnr, "source '" . filename . "'" . "\<cr>")
 	elseif &filetype == "sh"
-		call SendTerm("source " . filename . "\<cr>")
+		call term_sendkeys(bnr, "source " . filename . "\<cr>")
 	elseif &filetype == "lisp"
-		call SendTerm("(load \"" . filename . "\")\<cr>a")
+		call term_sendkeys(bnr, "(load \"" . filename . "\")\<cr>a")
 	endif
 endfunction
 

@@ -1,7 +1,4 @@
 #!/bin/sh
 
-head -c 100 /dev/urandom \
-	| strings -n 1 \
-	| tr -dc "a-zA-Z0-9!@#$%^&*" \
-	| head -c 14
+head -c 100 /dev/urandom | strings -n 1 | tr -dc "a-zA-Z0-9!@#$%^&*" | head -c 14
 echo

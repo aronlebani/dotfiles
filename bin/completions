@@ -7,7 +7,7 @@ case $(uname -s) in
 		[ -f /usr/local/etc/bash_completion.d/password-store ] && \
 			. /usr/local/etc/bash_completion.d/password-store
 		;;
-	linux-gnu )
+	Linux )
 		[ -f /usr/share/bash-completion/completions/git ] && \
 			. /usr/share/bash-completion/completions/git
 		[ -f /usr/share/bash-completion/completions/pass ] && \

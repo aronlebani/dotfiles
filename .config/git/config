@@ -30,3 +30,6 @@ bl = "blame --color-lines"
 sendmailCmd = msmtp -a Aron
 annotate = yes
 confirm = yes
+
+[safe]
+directory = /usr/src

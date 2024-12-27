@@ -6,67 +6,73 @@
 # Depends on: exif
 
 require 'fileutils'
+require 'optparse'
 
 def exif(file)
-  out = `exif #{file} 2> /dev/null`
+	out = `exif #{file} 2> /dev/null`
 
-  return out if $?.success?
+	return out if $?.success?
 
-  puts "#{file}: Does not contain EXIF data or invalid EXIF format"
+	puts "#{file}: Does not contain EXIF data or invalid EXIF format"
 end
 
 def extract_exif_date(file)
-  out = exif file
-  date = out&.lines&.find { |l| l.include? 'Date' }
+	out = exif(file)
+	date = out&.lines&.find { |l| l.include? 'Date' }
 
-  return date.split('|').at(1).split(':').slice(0, 2) if date
+	return date.split('|').at(1).split(':').slice(0, 2) if date
 
-  puts "#{file}: Does not contain a date in EXIF"
+	puts "#{file}: Does not contain a date in EXIF"
 end
 
 def make_dedup_dest_path(path, dest_dir)
-  n = 1
-  filename = File.basename path
-  fullpath = File.join dest_dir, filename
+	n = 1
+	filename = File.basename(path)
+	fullpath = File.join(dest_dir, filename)
 
-  while File.exist? fullpath
-    filename = "duplicate-#{n}.#{File.basename path}"
-    n += 1
-  end
+	while File.exist?(fullpath)
+		filename = "duplicate-#{n}.#{File.basename(path)}"
+		n += 1
+	end
 
-  File.join dest_dir, filename
+	File.join(dest_dir, filename)
 end
 
-def main(source_dir, dest_dir)
-  unless Dir.exist? dest_dir
-    Dir.mkdir dest_dir
-  end
+def main(source_dir, dest_dir, opts)
+	Dir.mkdir(dest_dir) unless Dir.exist?(dest_dir)
 
-  Dir.glob("#{source_dir}/**/**").each do |path|
-    next if File.directory? path
+	Dir.glob("#{source_dir}/**/**").each do |path|
+		next if File.directory?(path)
 
-    date = extract_exif_date path
+		date = extract_exif_date(path)
 
-    dest_path = if date
-      File.join dest_dir, date[0], date[1]
-    else
-      File.join dest_dir, 'unknown'
-    end
+		dest_path = if date
+			File.join(dest_dir, date[0], date[1])
+		else
+			File.join(dest_dir, 'unknown')
+		end
 
-    FileUtils.mkdir_p dest_path
-    dedup_dest_path = make_dedup_dest_path path, dest_path
-    FileUtils.cp path, dedup_dest_path
-  end
+		dedup_dest_path = make_dedup_dest_path(path, dest_path)
+
+		if opts[:'dry-run']
+			puts "mkdir -p #{dest_path}"
+			puts "cp #{path} #{dedup_dest_path}"
+		else
+			FileUtils.mkdir_p(dest_path)
+			FileUtils.cp(path, dedup_dest_path)
+		end
+	end
 end
 
 if __FILE__ == $0
-  if ARGV[0] == '--help'
-    puts 'Usage: photosort <source> <dest>'
-    exit 0
-  end
+	opts = {}
+	OptionParser.new  do |p|
+		p.banner = 'Usage: photosort <source> <dest>'
+		p.on '--dry-run', 'Dry run'
+		p.parse! into: opts
+	end
 
-  source_dir = ARGV[0]
-  dest_dir = ARGV[1]
+	source_dir, dest_dir = ARGV
 
-  main source_dir, dest_dir
+	main(source_dir, dest_dir, opts)
 end

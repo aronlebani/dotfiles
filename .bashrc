@@ -15,12 +15,11 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 export XDG_CACHE_HOME=$HOME/.cache
 export NOTES=$HOME/notes
-export BUNDLE_USER_CONFIG=$XDG_CONFIG_HOME/bundle
-export BUNDLE_USER_CACHE=$XDG_CACHE_HOME/bundle
-export BUNDLE_USER_PLUGIN=$XDG_DATA_HOME/bundle
 export W3M_DIR=$XDG_DATA_HOME/w3m
+export PS1="\u@\h:\w\\$ "
 
 [ -d $HOME/bin ] && export PATH=$HOME/bin:$PATH
+[ -d $HOME/.local/bin ] && export PATH=$HOME/.local/bin:$PATH
 
 alias ls="ls --color=auto"
 alias la="ls -lah"
@@ -31,13 +30,6 @@ alias copy="xclip -sel clip"
 alias todo="vim $NOTES/todo.md"
 alias memo="vim $NOTES/scratch.j.md"
 alias notes="vim $NOTES"
-alias swank="sbcl --load $HOME/.vim/plugged/slimv/slime/start-swank.lisp"
 alias scratch="vim $HOME/src/scratch.lisp"
 
-. $HOME/bin/prompt
 . $HOME/bin/completions
-
-if [ -f /usr/local/share/chruby/chruby.sh ]; then
-	. /usr/local/share/chruby/chruby.sh
-	chruby ruby-3.3.3
-fi

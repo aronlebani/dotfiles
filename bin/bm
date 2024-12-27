@@ -27,13 +27,7 @@ if [ ! -f "$XDG_CONFIG_HOME/bookmarks" ]; then
 fi
 
 file="$XDG_CONFIG_HOME/bookmarks"
-
-bmk=$( \
-	cat "$file" \
-	| sed '/^#/d;/^$/d' \
-	| sort \
-	| dmenu -i -l 10 -p 'Bookmark' \
-)
+bmk=$(cat "$file" | sed '/^#/d;/^$/d' | sort | dmenu -i -l 10 -p 'Bookmark')
 
 if [ -z "$bmk" ]; then
 	exit 0
