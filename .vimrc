@@ -12,6 +12,7 @@ set number
 set noswapfile
 set colorcolumn=80
 set autoread
+set ignorecase
 set smartcase
 set nowrap
 set tabstop=4
@@ -45,16 +46,12 @@ nnoremap <localleader>n :bnext<cr>
 nnoremap <localleader>p :bprevious<cr>
 inoremap <localleader>d ## <c-r>=strftime("%F")<c-m>
 nnoremap <localleader>s :call SynStack()<cr>
-nnoremap <localleader>c :<c-u>call OpenRepl()<cr>:<bs>
-vnoremap <localleader>e :<c-u>call EvalVisual()<cr>:<bs>
-vnoremap <localleader>b :<c-u>call EvalFile()<cr>:<bs>
 
 " ---- Settings by language ----
 
 autocmd FileType json setlocal ts=2 sts=2 sw=2
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2
 autocmd FileType html setlocal ts=2 sts=2 sw=2
-autocmd FileType php setlocal ts=2 sts=2 sw=2
 autocmd FileType eruby setlocal ts=2 sts=2 sw=2
 autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
@@ -69,69 +66,21 @@ autocmd FileType php let g:surround_61 = "<?= \r ?>" " =
 let g:slimv_repl_split = 3
 let g:slimv_package = 1
 let g:netrw_liststyle = 3
-let g:repls = {"ruby": "irb", "sh": "bash", "lisp": "rlwrap sbcl", "scheme": "chicken-csi"}
 let g:ruby_recommended_style = 0
 
 " ---- Colours ----
 
-set background=dark
 colorscheme solarized
 
-" ---- Enable build-in packages ----
+" ---- Enable built-in packages ----
 
 packadd comment
 
-" ---- Functions ----
+" ---- funcs ----
 
-function GetVisualSelection()
-	let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-
-    if len(lines) == 0
-        return ""
-    endif
-
-    let lines[-1] = lines[-1][: column_end - (&selection == "inclusive" ? 1 : 2)]
-    let lines[0] = lines[0][column_start - 1:]
-
-    return join(lines, "\n")
-endfunction
-
-function OpenRepl()
-	let repl = g:repls[&filetype]
-    let bnrs = term_list()
-
-    if len(bnrs) == 0
-		let bnr = term_start(repl)
-		return bnr
-	else
-		return bnrs[0]
-    endif
-endfunction
-
-function EvalVisual()
-    let data = GetVisualSelection() . "\<cr>"
-	let bnr = OpenRepl()
-
-    call term_sendkeys(bnr, data)
-endfunction
-
-function EvalFile()
-	let filename = expand("%:t")
-	let bnr = OpenRepl()
-
-	if &filetype == "ruby"
-		call term_sendkeys(bnr, "source '" . filename . "'" . "\<cr>")
-	elseif &filetype == "sh"
-		call term_sendkeys(bnr, "source " . filename . "\<cr>")
-	elseif &filetype == "lisp"
-		call term_sendkeys(bnr, "(load \"" . filename . "\")\<cr>a")
-	endif
-endfunction
-
-function SynStack()
+func SynStack()
 	let s = synID(line("."), col("."), 1)
 
 	echo synIDattr(s, "name") . " -> " . synIDattr(synIDtrans(s), "name")
-endfunction
+endf
+

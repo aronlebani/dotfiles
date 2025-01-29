@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+# Recursively converts HEIC files to JPEG in the current directory. The new files will have the
+# same name as the original files. Requires the `libheif-examples` package which can be installed
+# with apt.
+#
+# Usage: photoutil [OPTION]
+# Example: photoutil --convert
+#
+# Dependencies: libheif, exif
+
+heic_convert()
+{
+    [ ! -f "$1.jpg" ] && heif-dec -q 100 "$1" "$1.jpg"
+}
+
+export -f heic_convert
+
+convert()
+{
+    find . -type f -iname "*.heic" -exec bash -c 'heic_convert "$0"' {} \;
+}
+
+delete()
+{
+    find . -type f -iname "*.heic" -delete
+    find . -type f -iname "*.mov" -delete
+}
+
+audit()
+{
+    echo "HEIC file count: $(find . -type f -iname "*.heic" | wc -l)"
+    echo "Converted count: $(find . -type f -iname "*.heic.jpg" | wc -l)"
+}
+
+usage()
+{
+    printf "photoutil: manage photos
+
+Depends on: libheif-examples, exif
+
+Usage: photoutil [OPTIONS]
+
+-h | --help\tshow help
+-c | --convert\trecursively convert all .HEIC files in the current directory to JPG
+-d | --delete\trecursively delete all .HEIC and .MOV files in the current directory
+-s | --sort\tsort photos into year and month directories
+-a | --audit\tshow count of converted files
+
+Examples:
+
+First convert all HEIC photos to JPG:
+
+	cd ~/tmp
+	photo --convert
+
+Check to see if any were not converted for some reason:
+
+	photo --audit
+
+Then delete all the original HEIC photos:
+
+	photo --delete
+
+Finally, copy photos into the camera directory, organised by year and month:
+
+	photo --sort . ~/camera\n"
+}
+
+case "$1" in
+    -h | --help		) usage ;;
+    -c | --convert	) convert ;;
+    -d | --delete	) delete ;;
+	-s | --sort		) photosort "$2" "$3" ;;
+    -a | --audit	) audit ;;
+    *				) usage ;;
+esac

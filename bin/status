@@ -1,0 +1,21 @@
+#!/bin/sh
+
+while true
+do
+	bat=$(apm -l)
+	if [ "$(apm -t)" != -1 ]; then
+		bat_rem=$(apm -t | xargs -I '{}' date -r {} -u +%H:%M)
+	fi
+	vol=$(mixer vol.volume | cut -d '=' -f 2 | cut -d ':' -f 1 | xargs -I '{}' echo {}*100 | bc)
+	if [ "$(mixer vol.mute | cut -d '=' -f 2)" = 'on' ]; then
+		vol_mut=" (mut)"
+	else
+		vol_mut=""
+	fi
+	net=$(ifconfig | grep ssid | cut -d '"' -f 2)
+	time=$(date "+%d/%m/%Y %H:%M")
+
+	printf 'BAT %d%% (%s) VOL %.0f%%%s NET %s %s\n' "$bat" "$bat_rem" "$vol" "$vol_mut" "$net" "$time"
+
+	sleep 1
+done

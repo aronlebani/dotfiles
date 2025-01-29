@@ -2,7 +2,7 @@
 
 # Downloads
 c.downloads.location.prompt = True
-c.downloads.location.directory = "~/temp/"
+c.downloads.location.directory = "~/tmp/"
 
 # Bookmarklets
 # They don't work, so the workaround is to set up aliases for each bookmarklet. See

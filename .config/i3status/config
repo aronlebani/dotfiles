@@ -4,7 +4,8 @@
 general {
     colors = false
     interval = 5
-	separator = " "
+	separator = " | "
+	output_format = "none"
 }
 
 order += "battery all"
@@ -13,23 +14,23 @@ order += "wireless _first_"
 order += "tztime local"
 
 wireless _first_ {
-    format_up = "🌏 %essid"
-    format_down = "🌏 Not connected"
+    format_up = "NET %essid"
+    format_down = "NET Not connected"
 }
 
 battery all {
     format = "%status %percentage %remaining"
 	format_down = "No battery"
-    status_chr = "⚡"
-    status_bat = "🔋"
-    status_full = "🔋"
+    status_chr = "BAT (chg)"
+    status_bat = "BAT"
+    status_full = "BAT (full)"
 	low_threshold = 10
 }
 
 volume master {
-	format = "🔊 %volume"
-    format_muted = "🔈 %volume"
-	device = "default"
+	format = "VOL %volume"
+    format_muted = "VOL %volume (mute)"
+	mixer_idx = 0
 }
 
 tztime local {

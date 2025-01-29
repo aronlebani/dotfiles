@@ -2,14 +2,20 @@
 
 Dotfiles for happier hacking.
 
-This respository uses the "reverse gitignore" approach, inspired by [this blog
-post](https://drewdevault.com/2019/12/30/dotfiles.html). It uses a git
-repository in the `$HOME` directory to avoid the need to symlink files or sync
-files back and forth between the repository and `$HOME`. To prevent tracking
-private files, the `.gitignore` file is set up to ignore _everything_ using a
-`*` entry. The files that we want to track can be explicitly added using
-`git add --force <file>`. Files we no longer want to track can be removed
-with `git rm --cached <file>`.
+## Approach
+
+There are many approaches for managing dotfiles. The one that I've found that
+works best for me is the "reverse gitignore" approach, inspired by [this blog
+post](https://drewdevault.com/2019/12/30/dotfiles.html). The idea is that your
+entire `$HOME` directory is a git repository. This approach doesn't require any
+special software and you don't need to maintain scripts to symlink or sync
+files files back and forth between the repository and `$HOME`.
+
+To prevent tracking private files, the `.gitignore` file ignores _everything_
+using a `*` entry. You then explicitly add the files you want to track using
+`git add --force <file>`. For files you no longer want to track, you can remove
+them with `git rm --cached <file>`. If you want to see a list of files that are
+currently being tracked, you can do so with `git ls-files`.
 
 ## Software
 
@@ -32,7 +38,7 @@ if necessary, can shadow system binaries by putting `$HOME/bin` at the head of
 1. If setting up a fresh OS installation, you may need to install `git` and
    `vim`.
 
-        sudo apt install -y git vim
+        sudo pkg install -y git vim
 
 2. It's not possible to clone into an existing non-empty directory, so instead
    set up a new git repository add the remote.
@@ -54,4 +60,4 @@ just as easy to clone it onto the server, and move the files into the home
 directory.
 
     git clone -b min https://github.com/aronlebani/dotfiles.git
-    mv dotfiles/.bashrc dotfiles/.inputrc dotfiles/.vimrc ~
+    cd dotfiles && cp .bashrc .inputrc .vimrc ~

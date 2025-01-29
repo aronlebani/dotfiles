@@ -1,0 +1,1 @@
+highlight lispParen ctermfg=darkgrey

@@ -13,6 +13,7 @@ font pango:monospace 10
 tiling_drag modifier titlebar
 default_border normal 0
 floating_modifier $mod
+workspace_layout tabbed
 
 # key bindings
 

@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require 'bundler/inline'
+
+gemfile do
+	source 'https://rubygems.org'
+
+	gem 'facets'
+end
+
+require 'facets/string/titlecase'
+
+if __FILE__ == $0
+	puts ARGV[0].titlecase
+end

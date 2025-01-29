@@ -10,7 +10,13 @@ bind-key l open
 bind-key h quit
 bind-key ^U pageup
 bind-key ^D pagedown
+bind-key n toggle-article-read
+bind-key N next-unread
 
 # Formatting
 feedlist-format "%4i %n %-10u %t (%T)"
 articlelist-format "%4i %n %D %?T?%-20T  ?%t"
+
+# The default listfocus colour is really hard to read
+color listfocus blue default reverse
+color listfocus_unread blue default bold reverse

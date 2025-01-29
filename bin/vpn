@@ -2,18 +2,14 @@
 
 # A wrapper for openvpn3. Because the openvpn3 interface sucks.
 
-start ()
+start()
 {
-    openvpn3 session-start --config "$2"
+    openvpn3 session-start --config "$1"
 }
 
-stop ()
+stop()
 {
-    active_sessions=$(
-		openvpn3 sessions-list \
-		| grep -i 'path' \
-		| awk '{p=index($0, ":");print $2}'
-	)
+    active_sessions=$(openvpn3 sessions-list | grep -i 'path' | awk '{p=index($0, ":");print $2}')
 
     echo "$active_sessions"
 
@@ -22,12 +18,12 @@ stop ()
     done 
 }
 
-status ()
+status()
 {
     openvpn3 sessions-list
 }
 
-usage ()
+usage()
 {
 	printf "vpn [OPTIONS]
 
@@ -38,7 +34,7 @@ status                  show session status\n"
 }
 
 case "$1" in
-	start	) start ;;
+	start	) start "$2" ;;
 	stop	) stop ;;
 	status	) status ;;
 	--help	) usage ;;

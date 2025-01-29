@@ -39,7 +39,7 @@ cleanup()
 	exit 0
 }
 
-if [ -e "$lock" ] && kill -0 $(cat "$lock") ; then
+if [ -e "$lock" ] && kill -0 "$(cat $lock)" ; then
 	echo "Already running..."
 	exit 1
 fi

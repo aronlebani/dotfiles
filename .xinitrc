@@ -7,4 +7,6 @@
 # Configure display using xrandr (see ~/bin/xsetdisplay)
 xsetdisplay
 
+feh --no-fehbg --bg-scale $HOME/.local/share/wallpaper.png
+
 exec i3

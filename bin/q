@@ -30,9 +30,13 @@ def make_query_re(query)
 	end
 end
 
-def make_anchor_re(anchor) = "(?=.*\[.*\]\(.*\))" if anchor
+def make_anchor_re(anchor)
+	"(?=.*\[.*\]\(.*\))" if anchor
+end
 
-def make_check_re(check) = "(?=(\\*|\\-) \\[\s|-\\])" if check
+def make_check_re(check)
+	"(?=(\\*|\\-) \\[\s|-\\])" if check
+end
 
 def make_re(options, q)
 	tag_re = make_tag_re options[:tags]

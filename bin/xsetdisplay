@@ -7,20 +7,33 @@ bob_knob()
 	xrandr --output eDP-1 --mode 1920x1200_90.00
 }
 
-rosemary_hemphill()
+rosemary_hemphill_single()
 {
-	# Are there any monitors connected?
-	standalone=$(xrandr --listmonitors | head -n 1 | grep 1)
-
-	[ -n "$standalone" ] && exit 0
-
+	# Display for a single connected monitor.
 	xrandr --output eDP-1 --off \
-		   --output DP-2-1 --primary --mode 1920x1080 --rate 60.00  #\
-		   #--output DP-2-3 --mode 1920x1080 --rate 60.00 --right-of DP-2-1
+		   --output DP-2-1 --primary --mode 1920x1080 --rate 60.00
+}
+
+rosemary_hemphill_dual()
+{
+	# Display for two connected monitors.
+	xrandr --output eDP-1 --off \
+		   --output DP-2-1 --primary --mode 1920x1080 --rate 60.00  \
+		   --output DP-2-3 --mode 1920x1080 --rate 60.00 --right-of DP-2-1
+}
+
+rosemary_hemphill_laptop()
+{
+	# Display for one connected montior plus the laptop screen.
+	xrandr --output DP-2-1 --primary --mode 1920x1080 --rate 60.00  \
+		   --output eDP-1 --mode 1920x1080 --rate 60.0 --right-of DP-2-1
 }
 
 if [ "$(hostname)" = "bob-knob" ]; then
 	bob_knob
 elif [ "$(hostname)" = "rosemary-hemphill" ]; then
-	rosemary_hemphill
+	# Are there any monitors connected? If so, do nothing.
+	[ -n "$(xrandr --listmonitors | head -n 1 | grep 1)" ] && exit 0
+
+	rosemary_hemphill_laptop
 fi

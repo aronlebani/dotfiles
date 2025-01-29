@@ -34,54 +34,6 @@ class File
 	end
 end
 
-class DbBuilder
-	def initialize(path)
-		@path = path
-		@wiki_uri = 'https://en.wikipedia.org'
-		@root_stub = '/wiki/List_of_programming_languages'
-	end
-
-	def build()
-		File.open(@path, 'w') do |file|
-			parse_root(@root_stub) do |lang_name, lang_href|
-				parse_page(lang_href) do |extensions|
-					file.write "#{lang_name}, #{extensions}\n"
-				end
-			end
-		end
-	end
-
-	private
-
-	def parse_root(stub)
-		uri = URI.open "#{@wiki_uri}#{stub}"
-		el_path = 'div#mw-content-text div.div-col ul li a'
-		doc = Nokogiri::HTML.parse uri
-
-		doc.search(el_path).each do |a|
-			name = a.content
-			href = a['href']
-			yield name, href
-		end
-	end
-
-	def parse_page(stub)
-		uri = URI.open "#{@wiki_uri}#{stub}"
-		el_path = 'th.infobox-label'
-		doc = Nokogiri::HTML.parse uri
-
-		doc.search(el_path).each do |infobox_label|
-			label_a = infobox_label.element_children[0]
-			label_href = label_a && label_a['href']
-
-			if label_href == '/wiki/Filename_extension'
-				extensions = infobox_label.next_sibling.content
-				yield extensions
-			end
-		end
-	end
-end
-
 class Db
 	def initialize(path)
 		@entries = File.open(path, 'r') do |file|
@@ -199,11 +151,6 @@ def db_path(options)
 	end
 end
 
-def main_db_builder(path)
-	builder = DbBuilder.new path
-	builder.build
-end
-
 def main(path, args)
 	db = Db.new db_path args
 
@@ -228,7 +175,6 @@ if __FILE__ == $0
 	parser.on '-d DB', '--db=DB', 'language database file'
 	parser.on '-s', '--subdir', 'groups summary by sub-directories'
 	parser.on '-r', '--recurse', 'recurses infinitely'
-	parser.on '--make-db', 'make language database file'
 	parser.on '-h', '--help', 'prints this help'
 
 	parser.parse! into: args
@@ -238,9 +184,5 @@ if __FILE__ == $0
 		exit 1
 	end
 
-	if args[:"make-db"]
-		main_db_builder ARGV[0]
-	else
-		main ARGV[0], args
-	end
+	main ARGV[0], args
 end
