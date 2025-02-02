@@ -56,6 +56,7 @@ autocmd FileType eruby setlocal ts=2 sts=2 sw=2
 autocmd FileType htmldjango setlocal ts=2 sts=2 sw=2
 autocmd FileType markdown setlocal wrap
 autocmd FileType mail setlocal textwidth=0
+autocmd FileType mail setlocal wrap
 autocmd FileType eruby let g:surround_45 = "<% \r %>" " -
 autocmd FileType eruby let g:surround_61 = "<%= \r %>"	" =
 autocmd FileType php let g:surround_45 = "<php? \r ?>" " -
